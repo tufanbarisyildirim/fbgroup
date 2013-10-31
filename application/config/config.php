@@ -434,5 +434,11 @@ $config['rewrite_short_tags'] = FALSE;
 $config['proxy_ips'] = '';
 
 
+$config['facebook'] = array(
+    'appId'  => 'APP_ID',
+    'secret' => 'APP_SECRET'
+);
+
+
 /* End of file config.php */
 /* Location: ./application/config/config.php */
