@@ -3,8 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dashboard extends MY_Controller {
 
-	public function index()
+    public function __construct()
+    {
+        parent::__construct();
+    }
+    
+	public function Index()
 	{
-		$this->load->view('welcome_message');
+       $this->load->view('welcome_message');
 	}
 }
