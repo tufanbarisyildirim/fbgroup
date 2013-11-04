@@ -50,4 +50,20 @@
         {  
             return ($this->session->userdata('user_id') !== null);
         }
+        
+        
+        public function header()
+        {
+            return $this->load->view('common/header',array(),true);
+        }
+        
+        public function footer()
+        {
+            return $this->load->view('common/footer',array(),true);
+        }
+        
+        public function sidebar()
+        {
+            return $this->load->view('common/sidebar',array(),true);
+        }
 }
