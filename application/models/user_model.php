@@ -32,13 +32,23 @@
         }
         
         
+        public function set_fb_access_token($token,$user_id = null)
+        {
+            $this->db->update('users',array('access_token' => $token),array('id' => ($user_id === null ? $this->id : $user_id)));
+        }
+        
         public function login_with_facebook($fb_data)
         {
+            
             $user_id = $fb_data['id'];
             $user =  $this->by_id($user_id);
              
             if($user)
+            {
+                //renew the access token
+                $user->set_fb_access_token($fb_data['access_token']);
                 return $user;
+            }
             else 
             {
                 $data = array(
@@ -47,7 +57,8 @@
                     'surname' => $fb_data['last_name'], 
                     'fb_username' => $fb_data['username'], 
                     'locale' => $fb_data['locale'], 
-                    'gender' => $fb_data['gender']
+                    'gender' => $fb_data['gender'],
+                    'access_token' => $fb_data['access_token'],
                 );
                       
                 $this->db->insert("users",$data,true);

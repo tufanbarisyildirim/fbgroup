@@ -10,6 +10,6 @@ class Dashboard extends MY_Controller {
     
 	public function Index()
 	{
-       $this->load->view('welcome_message');
+       $this->load->view('dashboard');
 	}
 }

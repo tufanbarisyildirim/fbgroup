@@ -54,16 +54,25 @@
         
         public function header()
         {
-            return $this->load->view('common/header',array(),true);
+            return $this->load->view('common/header',$this->common_data(),true);
         }
         
         public function footer()
         {
-            return $this->load->view('common/footer',array(),true);
+            return $this->load->view('common/footer',$this->common_data(),true);
         }
         
         public function sidebar()
         {
-            return $this->load->view('common/sidebar',array(),true);
+            return $this->load->view('common/sidebar',$this->common_data(),true);
+        }
+        
+        public function common_data()
+        {
+            $data = array();
+            $data['current_user'] = $this->current_user;
+            $data['controller'] = &$this;
+            
+            return $data;
         }
 }

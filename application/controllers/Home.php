@@ -24,6 +24,7 @@
                     try {
 
                         $user_profile = $this->facebook->api('/me','GET');
+                        $user_profile['access_token'] = $this->facebook->getAccessToken();
                         $user = $this->user_model->login_with_facebook($user_profile);
                         $this->session->set_userdata("user_id",$user_profile['id']);
                         
@@ -36,7 +37,7 @@
                         // In this case, we'll get an exception, so we'll
                         // just ask the user to login again here.
                         $login_url = $this->facebook->getLoginUrl(); 
-                        echo 'Please <a href="' . $login_url . '">login.</a>';
+                        $this->load->view('login',array('fb_login_url' => $login_url));
                         error_log($e->getType());
                         error_log($e->getMessage());
                     }   
@@ -44,10 +45,9 @@
 
                     // No user, print a link for the user to login
                     $login_url = $this->facebook->getLoginUrl();
-                    echo 'Please <a href="' . $login_url . '">login.</a>';
+                    $this->load->view('login',array('fb_login_url' => $login_url));
 
                 }
             }  
         }
     }
-?>
