@@ -11,4 +11,9 @@
             $this->session->sess_destroy();
             redirect(site_url());
         }
+        
+        public function not_found()
+        {
+            $this->load->view('errors/error_404');
+        }
 }

@@ -74,7 +74,7 @@
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'home';
-$route['404_override'] = '';
+$route['404_override'] = 'actions/not_found';
 $route['translate_uri_dashes'] = FALSE;
 
 /* End of file routes.php */

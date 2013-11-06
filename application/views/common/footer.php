@@ -5,7 +5,7 @@
         <!-- start: FOOTER -->
         <div class="footer clearfix">
             <div class="footer-inner">
-                2013 &copy; clip-one by cliptheme.
+                2013 - 2014 &copy; İstanbul Aydın University English Preparatory School. Class 317
             </div>
             <div class="footer-items">
                 <span class="go-top"><i class="clip-chevron-up"></i></span>
@@ -36,36 +36,7 @@
                 </div>
             </div>
         </div>
-        <!-- start: MAIN JAVASCRIPTS -->
-        <!--[if lt IE 9]>
-        <script src="<?php echo assets_url(); ?>/plugins/respond.min.js"></script>
-        <script src="<?php echo assets_url(); ?>/plugins/excanvas.min.js"></script>
-        <![endif]-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script src="<?php echo assets_url(); ?>/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js"></script>
-        <script src="<?php echo assets_url(); ?>/plugins/bootstrap/js/bootstrap.min.js"></script>
-        <script src="<?php echo assets_url(); ?>/plugins/blockUI/jquery.blockUI.js"></script>
-        <script src="<?php echo assets_url(); ?>/plugins/iCheck/jquery.icheck.min.js"></script>
-        <script src="<?php echo assets_url(); ?>/plugins/perfect-scrollbar/src/jquery.mousewheel.js"></script>
-        <script src="<?php echo assets_url(); ?>/plugins/perfect-scrollbar/src/perfect-scrollbar.js"></script>
-        <script src="<?php echo assets_url(); ?>/js/main.js"></script>
-        <!-- end: MAIN JAVASCRIPTS -->
-        <!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
-        <script src="<?php echo assets_url(); ?>/plugins/flot/jquery.flot.js"></script>
-        <script src="<?php echo assets_url(); ?>/plugins/flot/jquery.flot.pie.js"></script>
-        <script src="<?php echo assets_url(); ?>/plugins/flot/jquery.flot.resize.min.js"></script>
-        <script src="<?php echo assets_url(); ?>/plugins/jquery.sparkline/jquery.sparkline.js"></script>
-        <script src="<?php echo assets_url(); ?>/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
-        <script src="<?php echo assets_url(); ?>/plugins/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
-        <script src="<?php echo assets_url(); ?>/plugins/fullcalendar/fullcalendar/fullcalendar.js"></script>
-        <script src="<?php echo assets_url(); ?>/js/index.js"></script>
-        <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
-        <script>
-            jQuery(document).ready(function() {
-                Main.init();
-                Index.init();
-            });
-        </script>
+       
     </body>
     <!-- end: BODY -->
 </html>

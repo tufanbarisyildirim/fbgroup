@@ -8,6 +8,7 @@
     * @property $current_user User_model
     * @property $user_model User_model
     * @property $facebook Facebook
+    * @property $cache CI_Cache
     */
     class MY_Controller extends CI_Controller
     {
@@ -22,10 +23,10 @@
             $this->load->library('facebook',$this->config->facebook);
             $this->load->driver('session');
             $this->load->library('session');
+            $this->load->driver('cache',array('adapter' => 'apc' , 'backup' => 'file'));
+            
             $this->load->model('user_model');
             $this->load->helper('url');
-
-
 
             if($this->is_logged_in())
             {             
