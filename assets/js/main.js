@@ -156,7 +156,7 @@ var Main = function () {
                 overlayCSS: {
                     backgroundColor: '#fff'
                 },
-                message: '<img src="assets/images/loading.gif" /> Just a moment...',
+                message: '<img src="/assets/images/loading.gif" /> Just a moment...',
                 css: {
                     border: 'none',
                     color: '#333',
@@ -164,7 +164,9 @@ var Main = function () {
                 }
             });
             window.setTimeout(function () {
-                el.unblock();
+                $.get('/index.php/dashboard/delete_file_cache',{},function(){
+                   window.location.reload(true); 
+                });
             }, 1000);
             e.preventDefault();
         });

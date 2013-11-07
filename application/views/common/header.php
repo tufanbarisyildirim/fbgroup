@@ -42,7 +42,7 @@
         <script src="<?php echo assets_url(); ?>/plugins/respond.min.js"></script>
         <script src="<?php echo assets_url(); ?>/plugins/excanvas.min.js"></script>
         <![endif]-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="<?php echo assets_url(); ?>/js/jquery-1.10.2.min.js"></script>
         <script src="<?php echo assets_url(); ?>/plugins/jquery-ui/jquery-ui-1.10.2.custom.min.js"></script>
         <script src="<?php echo assets_url(); ?>/plugins/bootstrap/js/bootstrap.min.js"></script>
         <script src="<?php echo assets_url(); ?>/plugins/blockUI/jquery.blockUI.js"></script>
@@ -407,7 +407,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="pages_user_profile.html">
+                            <a href="<?php echo site_url('account/me'); ?>">
                                 <i class="clip-user-2"></i>
                                 &nbsp;My Profile
                             </a>

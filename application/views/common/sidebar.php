@@ -19,8 +19,13 @@
                 </a>
             </li>
             <li>
+                <a href="<?php echo site_url('vocabulary'); ?>"><i class="clip-plus-circle-2"></i>
+                    <span class="title">Vocabulary</span><span class="selected"></span>
+                </a>
+            </li>
+            <li>
                 <a href="javascript:;"><i class="clip-question"></i>
-                    <span class="title"> Questions &amp Answers </span><i class="icon-arrow"></i>
+                    <span class="title">Questions &amp Answers </span><i class="icon-arrow"></i>
                     <span class="selected"></span>
                 </a>
                 <ul class="sub-menu">
