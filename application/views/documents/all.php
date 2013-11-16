@@ -67,6 +67,7 @@
                         <tbody>
                             <?php 
                                 foreach($files as $file): 
+                                
                                     $file_segments = explode('/',$file['download_link']);
                                     $file_name = urldecode(end($file_segments));
                                     $name_segments = explode('.',$file_name);
@@ -80,34 +81,11 @@
                                     <td class="hidden-xs"><img src="<?php echo  fb_profile_pic_url($file['from']['id']);?>" width="30" class="circle-img"/>&nbsp;<?php echo $file['from']['name']?></td>
                                     <td class="center">
                                         <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                            <a href="#" class="btn btn-teal tooltips" data-placement="top" data-original-title="Edit"><i class="icon-edit"></i></a>
-                                            <a href="#" class="btn btn-green tooltips" data-placement="top" data-original-title="Share"><i class="icon-share"></i></a>
-                                            <a href="#" class="btn btn-bricky tooltips" data-placement="top" data-original-title="Remove"><i class="icon-remove icon-white"></i></a>
+                                            <a href="https://www.facebook.com/download/preview/<?php echo $file['id'] ?>" class="btn btn-teal tooltips" data-placement="top" data-original-title="View"><i class="icon-search"></i></a>
+                                            <a href="<?php echo $file['download_link']; ?>" class="btn btn-green tooltips" data-placement="top" data-original-title="Download"><i class="icon-download"></i></a>
+                      
                                         </div>
-                                        <div class="visible-xs visible-sm hidden-md hidden-lg">
-                                            <div class="btn-group">
-                                                <a class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" href="#">
-                                                    <i class="icon-cog"></i> <span class="caret"></span>
-                                                </a>
-                                                <ul role="menu" class="dropdown-menu pull-right">
-                                                    <li role="presentation">
-                                                        <a role="menuitem" tabindex="-1" href="#">
-                                                            <i class="icon-edit"></i> Edit
-                                                        </a>
-                                                    </li>
-                                                    <li role="presentation">
-                                                        <a role="menuitem" tabindex="-1" href="#">
-                                                            <i class="icon-share"></i> Share
-                                                        </a>
-                                                    </li>
-                                                    <li role="presentation">
-                                                        <a role="menuitem" tabindex="-1" href="#">
-                                                            <i class="icon-remove"></i> Remove
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div></td>
+                                       </td>
                                 </tr>
                                 <?php endforeach; ?>
                         </tbody>

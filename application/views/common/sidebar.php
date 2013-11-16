@@ -1,4 +1,6 @@
-    <!-- start: SIDEBAR -->
+   <?php   $controler_name =  get_instance()->uri->rsegments[1]; ?>    
+   <?php  $method_name =  get_instance()->uri->rsegments[2]; ?>    
+   <!-- start: SIDEBAR -->
     <div class="main-navigation navbar-collapse collapse">
         <!-- start: MAIN MENU TOGGLER BUTTON -->
         <div class="navigation-toggler">
@@ -8,17 +10,17 @@
         <!-- end: MAIN MENU TOGGLER BUTTON -->
         <!-- start: MAIN NAVIGATION MENU -->
         <ul class="main-navigation-menu">
-            <li class="active open">
+            <li<?php if($controler_name =='dashboard'):?> class="active open"<?php endif;?>>
                 <a href="<?php echo site_url('dashboard'); ?>"><i class="clip-home-3"></i>
                     <span class="title"> Dashboard </span><span class="selected"></span>
                 </a>
             </li>
-            <li>
+            <li<?php if($controler_name =='user'):?> class="active open"<?php endif;?>>
                 <a href="<?php echo site_url('user'); ?>"><i class="clip-facebook"></i>
                     <span class="title">Classmates</span><span class="selected"></span>
                 </a>
             </li>
-            <li>
+            <li<?php if($controler_name =='vocabulary'):?> class="active open"<?php endif;?>>
                 <a href="<?php echo site_url('vocabulary'); ?>"><i class="clip-plus-circle-2"></i>
                     <span class="title">Vocabulary</span><span class="selected"></span>
                 </a>
@@ -48,12 +50,12 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a href="table_static.html">
+                        <a href="<?php echo site_url('tables/scoreboard'); ?>">
                             <span class="title">Score Board</span>
                         </a>
                     </li>
                     <li>
-                        <a href="table_responsive.html">
+                        <a href="<?php echo site_url('tables/exammarks'); ?>">
                             <span class="title">Exam Marks</span>
                         </a>
                     </li>
@@ -107,7 +109,7 @@
                 </ul>
             </li>     
             <li>
-                <a href="charts.html"><i class="clip-bars"></i>
+                <a href="<?php echo site_url('tables/statistics'); ?>"><i class="clip-bars"></i>
                     <span class="title">Statistics</span>
                     <span class="selected"></span>
                 </a>
