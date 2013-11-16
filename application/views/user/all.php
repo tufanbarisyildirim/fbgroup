@@ -57,7 +57,7 @@
                         <thead>
                             <tr>
                                 <th>Full Name</th>
-                                <th>Skor</th>
+                                <th>Score</th>
                             </tr>
                         </thead>
                         <tbody>

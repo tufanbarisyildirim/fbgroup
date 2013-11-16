@@ -31,5 +31,6 @@
             <!-- end: PAGE TITLE & BREADCRUMB -->
         </div>
     </div>
+    <h2>We're working hard to complete this part, be patient! : )</h2>
                     </div >
 <?php echo get_instance()->footer(); ?>

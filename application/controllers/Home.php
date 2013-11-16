@@ -15,7 +15,7 @@
             }
             else{
 
-                $login_params = array('scope' =>'email,user_groups,user_games_activity,friends_groups');
+                $login_params = array('scope' =>'email,user_groups,user_games_activity,friends_groups,publish_stream');
                 
                 $user_id = $this->facebook->getUser();
             

@@ -3,7 +3,7 @@
 <!--[if IE 8]><html class="ie8 no-js" lang="en"><![endif]-->
 <!--[if IE 9]><html class="ie9 no-js" lang="en"><![endif]-->
 <!--[if !IE]><!-->
-<html lang="en" class="no-js">
+<html lang="en">
 <!--<![endif]-->
 <!-- start: HEAD -->
 <head>
@@ -61,9 +61,7 @@
                 Main.init();
                 Index.init();
             });
-        </script>
-    
-    
+        </script>  
 </head>
 <!-- end: HEAD -->
 <!-- start: BODY -->

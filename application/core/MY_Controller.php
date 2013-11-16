@@ -10,6 +10,7 @@
     * @property $facebook Facebook
     * @property $cache CI_Cache
     * @property $comment_model Comment_model
+    * @property $question_model Question_model
     */
     class MY_Controller extends CI_Controller
     {
@@ -77,12 +78,14 @@
             return $this->load->view('common/sidebar',$this->common_data(),true);
         }
 
-        public function common_data()
+        public function common_data($controller_data = array())
         {
             $data = array();
             $data['current_user'] = $this->current_user;
             $data['controller'] = &$this;
+            
+            
 
-            return $data;
+            return array_merge($data,$controller_data);
         }
 }

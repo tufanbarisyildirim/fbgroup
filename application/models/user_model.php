@@ -26,9 +26,9 @@
         }
 
 
-        function by_id($user_id)
+        public static function by_id($user_id)
         {          
-            $q = $this->db->get_where('users',array('id' => $user_id));
+            $q = get_instance()->db->get_where('users',array('id' => $user_id));
             $user = $q->result() ;
 
             if($user)

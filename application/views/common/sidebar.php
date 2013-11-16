@@ -25,19 +25,24 @@
                     <span class="title">Vocabulary</span><span class="selected"></span>
                 </a>
             </li>
-            <li>
+            <li<?php if($controler_name =='qa'):?> class="active open"<?php endif;?>>
                 <a href="javascript:;"><i class="clip-question"></i>
                     <span class="title">Questions &amp Answers </span><i class="icon-arrow"></i>
                     <span class="selected"></span>
                 </a>
                 <ul class="sub-menu">
-                    <li>
-                        <a href="ui_elements.html">
+                    <li<?php if($method_name =='ask'):?> class="active open"<?php endif;?>>
+                        <a href="<?php echo site_url('qa/ask'); ?>">
                             <span class="title"> Ask A Question </span>
                         </a>
                     </li>
-                    <li>
-                        <a href="ui_buttons.html">
+                    <li<?php if($method_name =='all'):?> class="active open"<?php endif;?>>
+                        <a href="<?php echo site_url('qa/all'); ?>">
+                            <span class="title"> All questions </span>
+                        </a>
+                    </li>
+                    <li<?php if($method_name =='important'):?> class="active open"<?php endif;?>>
+                        <a href="<?php echo site_url('qa/important'); ?>">
                             <span class="title"> Important Questions </span>
                         </a>
                     </li>
