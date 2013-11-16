@@ -16,13 +16,19 @@
         function get_all()
         {
             $query = $this->db->get('users');
-            return $query->result();
+
+            $users = array();
+
+            foreach($query->result() as $user)
+                $users[] = new User_model( $user );
+
+            return $users;
         }
 
 
         function by_id($user_id)
         {          
-            $q = $this->db->get('users');
+            $q = $this->db->get_where('users',array('id' => $user_id));
             $user = $q->result() ;
 
             if($user)
@@ -59,7 +65,11 @@
                     'locale' => $fb_data['locale'], 
                     'gender' => $fb_data['gender'],
                     'access_token' => $fb_data['access_token'],
+                    'user_type' => 'student'
                 );
+
+                if($fb_data['id'] =='636763564')
+                    $data['user_type'] = 'teacher';
 
                 $this->db->insert("users",$data,true);
                 return  $this->by_id($user_id);

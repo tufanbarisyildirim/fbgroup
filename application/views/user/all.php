@@ -65,7 +65,7 @@
                                 foreach($users as $user):     
                                 ?>
                                 <tr>
-                                    <td><a href="<?php echo site_url('user/profile/' . $user->id)?>"><img src="<?php echo  fb_profile_pic_url($user->id);?>" width="30" class="circle-img"/> <?php echo $user->name; ?> <?php echo $user->surname; ?></a>
+                                    <td><a href="<?php echo site_url('user/profile/' . $user->id)?>"><img src="<?php echo  fb_profile_pic_url($user->id);?>" width="30" class="circle-img"/> <?php echo $user->full_name; ?></a>
                                     </td>
                                    <td>0</td>
                                 </tr>

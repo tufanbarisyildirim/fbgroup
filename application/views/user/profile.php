@@ -54,7 +54,7 @@
                                 <p>
                                     <?php echo $comment->text; ?>
                                 </p>
-                                <span class="time"><?php echo $comment->comment_date ?></span>
+                                <span class="time" style="font-size: 11px;"><?php echo $comment->comment_date ?></span>
                             </div>
                         </li>
                            <?php endforeach; ?>
