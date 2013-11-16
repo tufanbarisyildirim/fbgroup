@@ -4,9 +4,9 @@
         public function __construct()
         {
             parent::__construct();
+            $this->force_to_login();
         }
-
-
+            
         public function index()
         {
             //show account/me  as default.

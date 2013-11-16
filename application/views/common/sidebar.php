@@ -14,8 +14,8 @@
                 </a>
             </li>
             <li>
-                <a href="<?php echo site_url('facebook'); ?>"><i class="clip-facebook"></i>
-                    <span class="title">Facebook Group Posts</span><span class="selected"></span>
+                <a href="<?php echo site_url('user'); ?>"><i class="clip-facebook"></i>
+                    <span class="title">Classmates</span><span class="selected"></span>
                 </a>
             </li>
             <li>

@@ -36,7 +36,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <i class="icon-external-link-sign"></i>
-                    Table with images
+                    Documents
                     <div class="panel-tools">
                         <a class="btn btn-xs btn-link panel-collapse collapses" href="#">
                         </a>

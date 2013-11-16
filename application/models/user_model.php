@@ -24,25 +24,25 @@
         {          
             $q = $this->db->get('users');
             $user = $q->result() ;
-              
+
             if($user)
                 return new User_model( $user[0] );
 
             return null;
         }
-        
-        
+
+
         public function set_fb_access_token($token,$user_id = null)
         {
             $this->db->update('users',array('access_token' => $token),array('id' => ($user_id === null ? $this->id : $user_id)));
         }
-        
+
         public function login_with_facebook($fb_data)
         {
-            
+
             $user_id = $fb_data['id'];
             $user =  $this->by_id($user_id);
-             
+
             if($user)
             {
                 //renew the access token
@@ -60,9 +60,22 @@
                     'gender' => $fb_data['gender'],
                     'access_token' => $fb_data['access_token'],
                 );
-                      
+
                 $this->db->insert("users",$data,true);
                 return  $this->by_id($user_id);
+            }
+
+        }
+
+        public function __get($var)
+        {
+            if($var == 'full_name')
+            {
+                return "{$this->name} {$this->surname}";
+            }  
+            else
+            {
+                return parent::__get($var);
             }
 
         }
