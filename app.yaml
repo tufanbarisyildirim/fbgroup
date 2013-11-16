@@ -1,0 +1,14 @@
+application: engprep317
+version: 1
+runtime: php
+api_version: 1
+
+handlers:
+- url: /
+  script: index.php
+  
+- url: /assets
+  static_dir: assets
+
+- url: /.*
+  script: index.php
