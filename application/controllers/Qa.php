@@ -58,13 +58,16 @@
 
             if($_POST) // do validation.
             {
-                $this->answer_model->add($question_id,$this->current_user->id,$_POST['answer_detail']);
+                $answer_id = $this->answer_model->add($question_id,$this->current_user->id,$_POST['answer_detail']);
 
                 if($question->fb_id)
                 {
                     $a = $this->facebook->api('/'.$question->fb_id.'/comments','POST',array(    
                         'message' => $_POST['answer_detail'],
                     ));
+                    
+                   $this->answer_model->set_fb_id($answer_id,$a['id']);
+                   
                 }
 
                 redirect(site_url('qa/view/' . $question_id));

@@ -24,6 +24,8 @@
                 'user_id'   =>   $user_id ,
                 'content'  => $content
                 ),true); 
+
+            return $this->db->insert_id();
         }
 
         public static function get_all()
@@ -50,6 +52,10 @@
             return $answers;
         }
 
+        public function set_fb_id($answer_id,$fb_id)
+        {
+            $this->db->update('answers',array('fb_id' => $fb_id),array('id' => $answer_id));
+        }
 
         public function __get($prop)
         {
