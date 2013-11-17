@@ -1,5 +1,4 @@
-<?php
-
+<?php 
     /**
     * @method Question_model by_id(int $question_id)
     * @property $user User_model
@@ -10,8 +9,6 @@
         function __construct($result = null) 
         {
             parent::__construct($result);
-
-
         }
 
         public function ask($user_id,$title,$content)
@@ -32,7 +29,7 @@
 
         function get_all()
         {
-            $query = $this->db->get('questions');
+            $query = $this->db->order_by('id','DESC')->get('questions');
             $questions = array();
 
             foreach($query->result() as $question)
@@ -43,7 +40,7 @@
 
         function get_important()
         {
-            $query = $this->db->get_where('questions',array('important' => 1));
+            $query = $this->db->order_by('id','DESC')->get_where('questions',array('important' => 1));
             $questions = array();
 
             foreach($query->result() as $question)
@@ -62,17 +59,22 @@
 
             return null; 
         } 
-
+        
+        public function get_answers($question_id = null)
+        {
+            return Answer_model::get_by_question_id($question_id == null ? $this->id : $question_id);
+        }
+        
         public function __get($prop)
         {
             if($prop == 'user')
                 return $this->user = User_model::by_id($this->user_id);
-                else
+            else
                 return parent::__get($prop);
         } 
-        
+
         public static function set_fb_id ($question_id,$fb_id)
         {       
-             get_instance()->db->update('questions',array('fb_id' => $fb_id),array('id' => $question_id));
+            get_instance()->db->update('questions',array('fb_id' => $fb_id),array('id' => $question_id));
         }
 }

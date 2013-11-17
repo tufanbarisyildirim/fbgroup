@@ -31,7 +31,13 @@
             <!-- end: PAGE TITLE & BREADCRUMB -->
         </div>
     </div>
-
+      <?php if($questions_type == 'Important'): ?>
+      <div class="row">
+      <div class="col-md-12">
+      <div class="alert alert-warning">These questions are marked as "<b>Important</b>" by the teacher.</div>
+      </div>
+      </div>
+      <?php endif; ?>
     <div class="row">
         <div class="col-md-12">
             <!-- start: TABLE WITH IMAGES PANEL -->

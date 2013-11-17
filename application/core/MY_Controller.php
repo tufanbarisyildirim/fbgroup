@@ -11,6 +11,7 @@
     * @property $cache CI_Cache
     * @property $comment_model Comment_model
     * @property $question_model Question_model
+    * @property $answer_model Answer_model
     */
     class MY_Controller extends CI_Controller
     {

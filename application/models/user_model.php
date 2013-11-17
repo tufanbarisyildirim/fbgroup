@@ -1,5 +1,4 @@
-<?php
-
+<?php 
     /**
     * @method User_model   by_id(int $user_id)
     */

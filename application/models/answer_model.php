@@ -2,22 +2,28 @@
 
     /**
     * @method Answer_model   by_id(int $answer_id)
+    * 
+    * @property $question_id int
+    * @property $user_id int
+    * @property $user User_model
+    * @property $content  string
+    * @property $answer_date string
     */
     class Answer_model extends MY_Model 
     {     
-        
+
         function __construct($result = null) 
         {
             parent::__construct($result);
         }
-        
+
         public function add($question_id,$user_id,$content)
         {
-           $this->db->insert('answers',array(
-           'question_id' => $question_id ,
-           'user_id'   =>   $user_id ,
-           'content'  => $content
-           ),true); 
+            $this->db->insert('answers',array(
+                'question_id' => $question_id ,
+                'user_id'   =>   $user_id ,
+                'content'  => $content
+                ),true); 
         }
 
         public static function get_all()
@@ -31,10 +37,10 @@
 
             return $answers;
         }
-        
+
         public static function get_by_question_id($question_id)
         {
-              $query = get_instance()->db->get_where('answers',array('question_id' => $question_id));
+            $query = get_instance()->db->get_where('answers',array('question_id' => $question_id));
 
             $answers = array();
 
@@ -44,6 +50,14 @@
             return $answers;
         }
 
+
+        public function __get($prop)
+        {
+            if($prop == 'user')
+                return $this->user = User_model::by_id($this->user_id);
+            else
+                return parent::__get($prop);
+        } 
 
         public static function by_id($answers_id)
         {          
@@ -55,6 +69,6 @@
 
             return null;
         }
-            
+
 
 }
