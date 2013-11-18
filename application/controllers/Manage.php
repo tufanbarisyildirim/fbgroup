@@ -1,5 +1,5 @@
 <?php
-    class Quizzes extends MY_Controller
+    class Manage extends MY_Controller
     {
         public function __construct()
         {
@@ -8,12 +8,12 @@
 
         public function index()
         {
-            $this->all();
+            // honk?
         }
 
-        public function all()
+        public function quizzes()
         {
-            $this->load->view('quizzes/all');
+            $this->load->view('manage/quizzes');
         }
 
     }

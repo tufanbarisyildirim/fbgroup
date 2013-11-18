@@ -15,6 +15,8 @@
 
         public function me()
         {
+            $data = array();
+            $data['user'] = &$this->current_user;
             
             $this->load->view('account/profile',$this->common_data( $data));
         }
