@@ -13,11 +13,12 @@
         public function index()
         {   
             
-            if ( ! $files = $this->cache->get('fb_files'))
+            $cache_key = 'fb_files_' . $this->config->item('group_id');
+            if ( ! $files = $this->cache->get($cache_key))
             {
                  $files_data = $this->facebook->api('/' . $this->config->item('group_id').'/files'); 
                  $files = $files_data['data'];
-                 $this->cache->save('fb_files', $files, 60 * 60 * 5);
+                 $this->cache->save($cache_key, $files, 60 * 60 * 5);
             }
              
             $this->load->view('documents/all',array('files' => $files));

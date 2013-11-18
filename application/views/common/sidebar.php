@@ -114,11 +114,35 @@
                 </ul>
             </li>     
             <li>
-                <a href="<?php echo site_url('tables/statistics'); ?>"><i class="clip-bars"></i>
-                    <span class="title">Statistics</span>
+                <a href="<?php echo site_url('rank/top10s'); ?>"><i class="clip-bars"></i>
+                    <span class="title">Top 5s</span>
                     <span class="selected"></span>
                 </a>
             </li>
+             <li>
+                <a href="<?php echo site_url('help'); ?>"><i class="clip-question"></i>
+                    <span class="title">Help</span>
+                    <span class="selected"></span>
+                </a>
+            </li>
+             <li>
+                <a href="javascript:void(0)"><i class="clip-file"></i>
+                    <span class="title"> Management </span><i class="icon-arrow"></i>
+                    <span class="selected"></span>
+                </a>
+                <ul class="sub-menu">
+                 <li>
+                        <a href="<?php echo site_url('quizzes/all'); ?>">
+                            <span class="title">Quizzes</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo site_url('users/manage'); ?>">
+                            <span class="title">User Management</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>   
         </ul>
         <!-- end: MAIN NAVIGATION MENU -->
     </div>

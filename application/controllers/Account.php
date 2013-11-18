@@ -6,7 +6,7 @@
             parent::__construct();
             $this->force_to_login();
         }
-            
+
         public function index()
         {
             //show account/me  as default.
@@ -15,29 +15,9 @@
 
         public function me()
         {
-            /*
-            * set edit permission to here. 
-            */
-            $this->profile($this->current_user->id);
-        }
-
-        public function profile($user_id)
-        {
-            $data = array();
-            $data['editable'] = false;
-
-            if($user_id == $this->current_user->id)
-            {
-                $data['editable'] = true;
-                $data['user'] = $this->current_user;  
-            }
-            else
-            {
-                $data['user'] = $this->user_model->by_id($user_id);
-            }
             
-            $this->load->view('account/profile',$data);
-
+            $this->load->view('account/profile',$this->common_data( $data));
         }
 
-    }
+
+}
