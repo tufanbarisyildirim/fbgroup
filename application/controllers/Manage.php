@@ -12,9 +12,15 @@
             // honk?
         }
 
-        public function quizzes()
+        public function quizzes($quiz_id = null)
         {
+
+            if($_POST)
+            {
+                $this->quiz_model->add($_POST['quiz_name'],$_POST['quiz_date'],$_POST['track_id']);
+            }
+
             $data['quizzes'] = $this->quiz_model->getAll();
             $this->load->view('manage/quizzes',$this->common_data($data));
         }
-    }
+}

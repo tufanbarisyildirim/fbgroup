@@ -22,11 +22,12 @@
         }
 
 
-        public function add($quiz_name,$date)
+        public function add($quiz_name,$date,$track_id)
         {
             $this->db->insert('quizzes',array(
                 'name' => $quiz_name,
-                'date' => $date
+                'date' => $date,
+                'track_id' => $track_id
                 ),true);
 
             return $this->db->inser_id();  
