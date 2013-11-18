@@ -114,7 +114,7 @@
             </ul>
         </li>     
         <li>
-            <a href="<?php echo site_url('rank/top10s'); ?>"><i class="clip-bars"></i>
+            <a href="<?php echo site_url('rank/top5s'); ?>"><i class="clip-bars"></i>
                 <span class="title">Top 5s</span>
                 <span class="selected"></span>
             </a>

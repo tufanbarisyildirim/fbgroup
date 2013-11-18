@@ -4,6 +4,8 @@
         public function __construct()
         {
             parent::__construct();
+            $this->check_admin();
+
             $this->load->model('quiz_model');
         }
 

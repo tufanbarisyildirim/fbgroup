@@ -20,8 +20,7 @@
 
             return $quizzes;               
         }
-
-
+         
         public function add($quiz_name,$date,$track_id)
         {
             $this->db->insert('quizzes',array(

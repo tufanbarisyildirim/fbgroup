@@ -63,6 +63,15 @@
 
             }
         }
+        
+        public function check_admin()
+        {
+             if($this->current_user->user_type != 'administrator')
+             {      
+                 redirect(site_url('home'));
+                 die();
+             }
+        }
 
 
         public function header()
