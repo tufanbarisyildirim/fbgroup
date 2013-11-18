@@ -4,6 +4,7 @@
         public function __construct()
         {
             parent::__construct();
+            $this->load->model('quiz_model');
         }
 
         public function index()
@@ -13,7 +14,7 @@
 
         public function quizzes()
         {
-            $this->load->view('manage/quizzes');
+            $data['quizzes'] = $this->quiz_model->getAll();
+            $this->load->view('manage/quizzes',$this->common_data($data));
         }
-
     }

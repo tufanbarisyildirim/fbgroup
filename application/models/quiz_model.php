@@ -12,10 +12,11 @@
 
             $results = $this->db
             ->order_by('quiz_date','DESC')
-            ->get_where('quizzes',$user_id == null ? null : " NOT EXISTS(SELECT 1 FROM quiz_scores WHERE quiz_scores.user_id = ".$user_id." AND quiz_scores.quiz_id = quizzes.id)");
+            ->get_where('quizzes',$user_id == null ? null : " NOT EXISTS(SELECT 1 FROM quiz_scores WHERE quiz_scores.user_id = ".$user_id." AND quiz_scores.quiz_id = quizzes.id)")
+            ->result();
 
             foreach($results as $quiz)
-                $quizzes[] = $quiz;
+                $quizzes[] = new Quiz_model( $quiz );
 
             return $quizzes;               
         }

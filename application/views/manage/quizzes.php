@@ -33,10 +33,7 @@
 
     <div class="row">
         <div class="col-sm-12">
-        quiz list
-        add quiz 
-        edit quiz
-        etc.
+      <?php var_dump($quizzes); ?>
         </div>
     </div>
 </div>
