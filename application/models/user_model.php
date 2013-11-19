@@ -23,6 +23,19 @@
 
             return $users;
         }
+        
+        
+        function get_where($where)
+        {
+              $query = $this->db->get_where('users',$where);
+
+            $users = array();
+
+            foreach($query->result() as $user)
+                $users[] = new User_model( $user );
+
+            return $users;
+        }
 
 
         public static function by_id($user_id)
@@ -67,6 +80,8 @@
                     'user_type' => 'student'
                 );
 
+                //set user as teacher before register.
+                // this is only for test.
                 if($fb_data['id'] =='636763564')
                     $data['user_type'] = 'teacher';
 
@@ -75,6 +90,12 @@
             }
 
         }
+        
+        
+        public function update($data,$user_id = null)
+        {
+              return $this->db->update('users',$data,array('id' => $user_id == null ? $this->id : $user_id));
+        }                                               
 
         public function __get($var)
         {
