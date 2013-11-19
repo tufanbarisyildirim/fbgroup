@@ -44,37 +44,36 @@
                 </div>
                 <div class="panel-body panel-scroll">
                     <ol class="discussion">
-                    
-                    <?php if($comments) foreach($comments as $comment):?>
-                        <li class="<?php echo $user->id == $this->current_user->id ? 'self' : 'other'?>">
-                            <div class="avatar">
-                                <img alt="" src="<?php echo fb_profile_pic_url($comment->from_id); ?>">
-                            </div>
-                            <div class="messages">
-                                <p>
-                                    <?php echo $comment->text; ?>
-                                </p>
-                                <span class="time" style="font-size: 11px;"><?php echo $comment->comment_date ?></span>
-                            </div>
-                        </li>
-                           <?php endforeach; ?>
+
+                        <?php if($comments) foreach($comments as $comment):?>
+                            <li class="<?php echo $user->id == $this->current_user->id ? 'self' : 'other'?>">
+                                <div class="avatar">
+                                    <img alt="" src="<?php echo fb_profile_pic_url($comment->from_id); ?>">
+                                </div>
+                                <div class="messages">
+                                    <p>
+                                        <?php echo $comment->text; ?>
+                                    </p>
+                                    <span class="time" style="font-size: 11px;"><?php echo $comment->comment_date ?></span>
+                                </div>
+                            </li>
+                            <?php endforeach; ?>
                     </ol>
                 </div>
             </div>
         </div>
         <div class="col-sm-12">
             <div class="chat-form">
-            <form method="post">
-                <div class="input-group">
-                    <textarea type="text" name="comment_text" class="form-control input-mask-date" placeholder="Write something about <?php echo $user->id == $this->current_user->id ? "yourself" : $user->name; ?>"></textarea>
-                    <span class="input-group-btn">
-                        <input class="btn btn-primary" name="add_comment" type="submit" value="Send"/>
-                  </span>
-                </div>
+                <form method="post">
+                    <div class="input-group">
+                        <textarea type="text" name="comment_text" class="form-control input-mask-date" placeholder="Write something about <?php echo $user->id == $this->current_user->id ? "yourself" : $user->name; ?>"></textarea>
+                        <span class="input-group-btn">
+                            <input class="btn btn-primary" name="add_comment" type="submit" value="Send"/>
+                        </span>
+                    </div>
                 </form>
             </div>
         </div>
     </div> 
-
-                    </div >
+     </div >
 <?php echo get_instance()->footer(); ?>

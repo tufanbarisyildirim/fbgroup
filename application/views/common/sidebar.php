@@ -137,9 +137,9 @@
                             <span class="title">Quizzes</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="<?php echo site_url('manage/users'); ?>">
-                            <span class="title">User Management</span>
+                   <li>
+                        <a href="<?php echo site_url('manage/badges'); ?>">
+                            <span class="title">Badges</span>
                         </a>
                     </li>
                 </ul>

@@ -13,6 +13,7 @@
     * @property $question_model Question_model
     * @property $answer_model Answer_model
     * @property $quiz_model Quiz_model
+    * @property $badge_model Badge_model
     */
     class MY_Controller extends CI_Controller
     {
@@ -30,7 +31,7 @@
             $this->load->driver('cache',array('adapter' => 'apc' , 'backup' => 'file'));
 
             $this->load->model('user_model');
-            
+
             $this->load->helper('url');
 
             if($this->is_logged_in())
@@ -63,14 +64,14 @@
 
             }
         }
-        
+
         public function check_admin()
         {
-             if($this->current_user->user_type != 'administrator')
-             {      
-                 redirect(site_url('home'));
-                 die();
-             }
+            if($this->current_user->user_type != 'administrator')
+            {      
+                redirect(site_url('home'));
+                die();
+            }
         }
 
 
@@ -94,9 +95,21 @@
             $data = array();
             $data['current_user'] = $this->current_user;
             $data['controller'] = &$this;
-            
-            
+
+
 
             return array_merge($data,$controller_data);
         }
+
+        /* fuck you codeigniter!
+        public function __get($property_name)
+        {
+        if(strpos($property_name,'_model') > 0)
+        {
+        $this->load->model($property_name);
+        return $this->{$property_name};
+        }
+        else
+        return get_instance()->$property_name;   
+        }*/
 }

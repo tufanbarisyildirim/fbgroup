@@ -30,7 +30,6 @@
             <!-- end: PAGE TITLE & BREADCRUMB -->
         </div>
     </div>
-
     <div class="row">
         <div class="col-sm-12">
             <div class="panel panel-default">
@@ -64,7 +63,7 @@
                             </div>
                             <div id="collapseTwo" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    Do you want to see yourself in a Top5 chart? Be a team member. Just share to show your collaboration. And then, charts will really be glad to show your name at the top! : )
+                                    Do you want to see yourself in a <a href="<?php echo site_url('rank/top5s')?>">Top5 chart</a>? Be a team member. Just share to show your collaboration. And then, charts will really be glad to show your name at the top! : )
                                 </div>
                             </div>
                         </div>
@@ -78,7 +77,22 @@
                             </div>
                             <div id="collapseThree" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    Well, this part is preparing if you really want to ask a question urgently use the facebook page. Thank you for your understanding. 
+                                    Well, this part is under construction. If you really want to ask a question urgently use the <a href="https://www.facebook.com/groups/iauengprep317">facebook page</a>. Thank you for your understanding. 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                        <i class="icon-arrow"></i>
+                                        Do you want to be a developer?
+                                    </a></h4>
+                            </div>
+                            <div id="collapseFour" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    This is an opensource application. It's not just for using. Also for learning <b>web development technologies</b> for my classmates who will study <b>Computer or Software Engineering</b>.
+                                    If you will study Computer / Software Engineering you can contribute for development of this collaboration area. Just send me (<a href="https://www.facebook.com/tufan.baris.yildirim">Tufan Barış YILDIRIM</a>) a private message to start learn how to contribute and start to develop.
                                 </div>
                             </div>
                         </div>
@@ -87,6 +101,5 @@
             </div>
         </div>
     </div>
-
-                    </div>
+</div>
 <?php echo get_instance()->footer(); ?>

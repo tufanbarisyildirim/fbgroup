@@ -18,11 +18,21 @@
         {
 
             if($_POST)
-            {
                 $this->quiz_model->add($_POST['quiz_name'],$_POST['quiz_date'],$_POST['track_id']);
-            }
-
+         
             $data['quizzes'] = $this->quiz_model->getAll();
             $this->load->view('manage/quizzes',$this->common_data($data));
+        }
+        
+        public function badges()
+        {
+            $this->load->model('badge_model');
+            
+            if($_POST)
+                $this->badge_model->add($_POST['badge_name'],$_POST['badge_class']);
+            
+            $data = array();
+            $data['badges'] = $this->badge_model->get_all();
+            $this->load->view('manage/badges',$this->common_data($data));
         }
 }

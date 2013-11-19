@@ -42,32 +42,38 @@
                     <div class="panel-tools">
                         <a class="btn btn-xs btn-link panel-collapse collapses" href="#">
                         </a>
-                       
+
                         <a class="btn btn-xs btn-link panel-refresh" href="#">
                             <i class="icon-refresh"></i>
                         </a>
                         <a class="btn btn-xs btn-link panel-expand" href="#">
                             <i class="icon-resize-full"></i>
                         </a>
-                        
+
                     </div>
                 </div>
                 <div class="panel-body">
-                    <table class="table table-condensed table-hover">
+                    <table class="table table-bordered table-hover">
                         <thead>
                             <tr>
                                 <th>Full Name</th>
-                                <th>Score</th>
+                                <th>Role</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php 
-                                foreach($users as $user):     
+                            <?php
+                                $badge_colors = array(
+                                    'teacher' => 'success',
+                                    'student' => 'info',
+                                    'guest' => 'orange',
+                                    'administrator' => 'danger'
+                                ); 
+                                foreach($users as $user):
+
                                 ?>
-                                <tr>
-                                    <td><a href="<?php echo site_url('user/profile/' . $user->id)?>"><img src="<?php echo  fb_profile_pic_url($user->id);?>" width="30" class="circle-img"/> <?php echo $user->full_name; ?></a>
-                                    </td>
-                                   <td>0</td>
+                                <tr<?php if($user->user_type =='teacher'):?> class="success"<?php endif;?>>
+                                    <td><a href="<?php echo site_url('user/profile/' . $user->id)?>"><img src="<?php echo  fb_profile_pic_url($user->id);?>" width="30" class="circle-img"/> <?php echo $user->full_name; ?></a></td>
+                                    <td><span class="badge badge-<?php echo $badge_colors[$user->user_type]?>"><?php echo $user->role; ?></span></td>
                                 </tr>
                                 <?php endforeach; ?>
                         </tbody>
@@ -77,6 +83,5 @@
             <!-- end: TABLE WITH IMAGES PANEL -->
         </div>
     </div>
-
-                    </div >
+</div >
 <?php echo get_instance()->footer(); ?>

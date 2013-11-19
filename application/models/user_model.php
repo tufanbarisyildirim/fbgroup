@@ -14,7 +14,7 @@
 
         function get_all()
         {
-            $query = $this->db->get('users');
+            $query = $this->db->order_by('name','ASC')->get('users');
 
             $users = array();
 
@@ -23,11 +23,11 @@
 
             return $users;
         }
-        
-        
+
+
         function get_where($where)
         {
-              $query = $this->db->get_where('users',$where);
+            $query = $this->db->get_where('users',$where);
 
             $users = array();
 
@@ -90,11 +90,11 @@
             }
 
         }
-        
-        
+
+
         public function update($data,$user_id = null)
         {
-              return $this->db->update('users',$data,array('id' => $user_id == null ? $this->id : $user_id));
+            return $this->db->update('users',$data,array('id' => $user_id == null ? $this->id : $user_id));
         }                                               
 
         public function __get($var)
@@ -102,6 +102,18 @@
             if($var == 'full_name')
             {
                 return "{$this->name} {$this->surname}";
+            }
+            else if($var == 'role')
+            {
+                $roles = array(
+                    'student' => 'Student',
+                    'teacher' => 'Teacher',
+                    'guest' => 'Guest',
+                    'administrator' => 'Administrator'
+                );
+                
+                return $roles[$this->user_type];
+
             }  
             else
             {
