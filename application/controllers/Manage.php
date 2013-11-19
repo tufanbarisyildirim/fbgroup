@@ -29,7 +29,10 @@
             $this->load->model('badge_model');
             
             if($_POST)
+            {
                 $this->badge_model->add($_POST['badge_name'],$_POST['badge_class']);
+                redirect(site_url('manage/badges'));
+            }
             
             $data = array();
             $data['badges'] = $this->badge_model->get_all();
