@@ -77,7 +77,7 @@
                     <tr><th>Quiz Name</th><th>Track ID</th><th>Quiz Date</th></tr>
                 </thead>
                 <?php foreach($quizzes as $quiz):?>
-                    <tr><td><?php echo $quiz->name; ?></td><td><?php echo $quiz->track_id; ?></td><td><?php echo $quiz->quiz_date; ?></td></tr>
+                    <tr><td><?php echo $quiz->quiz_name; ?></td><td><?php echo $quiz->track_id; ?></td><td><?php echo $quiz->quiz_date; ?></td></tr>
                     <?php endforeach;?>
             </table>
         </div>

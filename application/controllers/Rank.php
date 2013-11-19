@@ -19,7 +19,7 @@
                     $panels[$quiz['track_id']] = array();
                    
                  $quiz['top5'] = array();
-                 $quiz['top5']  =   $this->db->query("SELECT qs.*,u.* FROM quiz_scores qs JOIN users u ON u.id = qs.user_id AND qs.quiz_id =  " . $quiz['id']." ORDER BY qs.score DESC LIMIT 5")->result_array();
+                 $quiz['top5']  =   $this->db->query("SELECT qs.*,u.* FROM quiz_scores qs JOIN users u ON u.user_id = qs.user_id AND qs.quiz_id =  " . $quiz['quiz_id']." ORDER BY qs.score DESC LIMIT 5")->result_array();
                     
                 $panels[$quiz['track_id']][] = $quiz;
             }    

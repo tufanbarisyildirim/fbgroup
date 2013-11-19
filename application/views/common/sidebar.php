@@ -125,7 +125,7 @@
                 <span class="selected"></span>
             </a>
         </li>
-        <?php if($current_user->user_type =='administrator'):?>
+        <?php if($current_user->user_id == '680557739'):?>
             <li<?php if($controler_name =='manage'):?> class="active open"<?php endif;?>>
                 <a href="javascript:void(0)"><i class="clip-file"></i>
                     <span class="title"> Management </span><i class="icon-arrow"></i>

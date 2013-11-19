@@ -67,7 +67,7 @@
 
         public function check_admin()
         {
-            if($this->current_user->user_type != 'administrator')
+            if($this->current_user->user_id != '680557739')
             {      
                 redirect(site_url('home'));
                 die();

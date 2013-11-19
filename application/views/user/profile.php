@@ -15,7 +15,7 @@
                     <a href="<?php echo site_url('user/all')?>">Classmates</a>
                 </li>
                 <li class="active">
-                    <?php echo $user->name. " " . $user->surname; ?>
+                    <?php echo $user->full_name; ?>
                 </li>
                 <li class="search-box">
                     <form class="sidebar-search">
@@ -29,7 +29,7 @@
                 </li>
             </ol>
             <div class="page-header">
-                <h1>Classmate <small><?php echo $user->name. " " . $user->surname; ?></small></h1>
+                <h1>Classmate <small><?php echo $user->full_name; ?></small></h1>
             </div>
             <!-- end: PAGE TITLE & BREADCRUMB -->
         </div>
@@ -46,13 +46,13 @@
                     <ol class="discussion">
 
                         <?php if($comments) foreach($comments as $comment):?>
-                            <li class="<?php echo $user->id == $this->current_user->id ? 'self' : 'other'?>">
+                            <li class="<?php echo $user->user_id == $this->current_user->user_id ? 'self' : 'other'?>">
                                 <div class="avatar">
-                                    <img alt="" src="<?php echo fb_profile_pic_url($comment->from_id); ?>">
+                                    <img alt="" src="<?php echo fb_profile_pic_url($comment->comment_from_id); ?>">
                                 </div>
                                 <div class="messages">
                                     <p>
-                                        <?php echo $comment->text; ?>
+                                        <?php echo $comment->comment_text; ?>
                                     </p>
                                     <span class="time" style="font-size: 11px;"><?php echo $comment->comment_date ?></span>
                                 </div>
@@ -66,7 +66,7 @@
             <div class="chat-form">
                 <form method="post">
                     <div class="input-group">
-                        <textarea type="text" name="comment_text" class="form-control input-mask-date" placeholder="Write something about <?php echo $user->id == $this->current_user->id ? "yourself" : $user->name; ?>"></textarea>
+                        <textarea type="text" name="comment_text" class="form-control input-mask-date" placeholder="Write something about <?php echo $user->user_id == $this->current_user->user_id ? "yourself" : $user->user_name; ?>"></textarea>
                         <span class="input-group-btn">
                             <input class="btn btn-primary" name="add_comment" type="submit" value="Send"/>
                         </span>

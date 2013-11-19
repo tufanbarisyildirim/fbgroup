@@ -15,8 +15,8 @@
         {
             $this->db->insert('questions',array(
                 'user_id'  => $user_id,
-                'title' => $title,
-                'content' =>  $content
+                'question_title' => $title,
+                'question_content' =>  $content
                 ),true);  
 
             return $this->db->insert_id();
@@ -24,12 +24,12 @@
 
         public function set_as_important( $comment_id = null)
         {
-            $this->db->update('questions',array('important'=> 1),array('id' => $comment_id == null ? $this->id : $comment_id));  
+            $this->db->update('questions',array('question_important'=> 1),array('question_id' => $comment_id == null ? $this->question_id : $comment_id));  
         }
 
         function get_all()
         {
-            $query = $this->db->order_by('id','DESC')->get('questions');
+            $query = $this->db->order_by('question_id','DESC')->get('questions');
             $questions = array();
 
             foreach($query->result() as $question)
@@ -40,7 +40,7 @@
 
         function get_important()
         {
-            $query = $this->db->order_by('id','DESC')->get_where('questions',array('important' => 1));
+            $query = $this->db->order_by('question_id','DESC')->get_where('questions',array('question_important' => 1));
             $questions = array();
 
             foreach($query->result() as $question)
@@ -51,7 +51,7 @@
 
         function by_id($question_id)
         {          
-            $q = $this->db->get_where('questions',array('id' => $question_id));
+            $q = $this->db->get_where('questions',array('question_id' => $question_id));
             $question = $q->result();
 
             if($question)
@@ -62,7 +62,7 @@
         
         public function get_answers($question_id = null)
         {
-            return Answer_model::get_by_question_id($question_id == null ? $this->id : $question_id);
+            return Answer_model::get_by_question_id($question_id == null ? $this->question_id : $question_id);
         }
         
         public function __get($prop)
@@ -75,6 +75,6 @@
 
         public static function set_fb_id ($question_id,$fb_id)
         {       
-            get_instance()->db->update('questions',array('fb_id' => $fb_id),array('id' => $question_id));
+            get_instance()->db->update('questions',array('question_fb_id' => $fb_id),array('question_id' => $question_id));
         }
 }

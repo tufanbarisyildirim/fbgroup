@@ -13,4 +13,5 @@
                 foreach($result as $key => $val)
                     $this->{$key} = $val;  
         }
+
 }

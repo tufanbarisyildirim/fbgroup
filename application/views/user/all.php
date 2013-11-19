@@ -71,9 +71,9 @@
                                 foreach($users as $user):
 
                                 ?>
-                                <tr<?php if($user->user_type =='teacher'):?> class="success"<?php endif;?>>
-                                    <td><a href="<?php echo site_url('user/profile/' . $user->id)?>"><img src="<?php echo  fb_profile_pic_url($user->id);?>" width="30" class="circle-img"/> <?php echo $user->full_name; ?></a></td>
-                                    <td><span class="badge badge-<?php echo $badge_colors[$user->user_type]?>"><?php echo $user->role; ?></span></td>
+                                <tr>
+                                    <td><a href="<?php echo site_url('user/profile/' . $user->user_id)?>"><img src="<?php echo  fb_profile_pic_url($user->user_id);?>" width="30" class="circle-img"/> <?php echo $user->full_name; ?></a></td>
+                                    <td><?php echo $user->print_badges(); ?></td>
                                 </tr>
                                 <?php endforeach; ?>
                         </tbody>

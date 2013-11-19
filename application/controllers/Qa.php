@@ -15,7 +15,7 @@
             if(isset($_POST) && $_POST)
             {
 
-                $question_id = $this->question_model->ask($this->current_user->id,$_POST['question_title'],$_POST['question_detail']);
+                $question_id = $this->question_model->ask($this->current_user->user_id,$_POST['question_title'],$_POST['question_detail']);
 
                 $a = $this->facebook->api('/'.$this->config->item('group_id').'/feed','POST',array(    
                     'message' => 'I have just asked a question on English Preparation application. Could you please help me?',
@@ -58,11 +58,11 @@
 
             if($_POST) // do validation.
             {
-                $answer_id = $this->answer_model->add($question_id,$this->current_user->id,$_POST['answer_detail']);
+                $answer_id = $this->answer_model->add($question_id,$this->current_user->user_id,$_POST['answer_detail']);
 
                 if($question->fb_id)
                 {
-                    $a = $this->facebook->api('/'.$question->fb_id.'/comments','POST',array(    
+                    $a = $this->facebook->api('/'.$question->question_fb_id.'/comments','POST',array(    
                         'message' => $_POST['answer_detail'],
                     ));
                     

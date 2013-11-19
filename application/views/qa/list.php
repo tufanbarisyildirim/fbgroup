@@ -70,7 +70,7 @@
                                 foreach($questions as $question):     
                                 ?>
                                 <tr>
-                                    <td><img src="<?php echo  fb_profile_pic_url($question->user_id);?>" width="30" class="circle-img"/>&nbsp;<a href="<?php echo site_url('qa/view/' . $question->id)?>"><b><?php echo $question->title; ?></b></a>
+                                    <td><img src="<?php echo  fb_profile_pic_url($question->user_id);?>" width="30" class="circle-img"/>&nbsp;<a href="<?php echo site_url('qa/view/' . $question->question_id)?>"><b><?php echo $question->question_title; ?></b></a>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>

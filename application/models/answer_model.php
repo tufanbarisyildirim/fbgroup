@@ -22,7 +22,7 @@
             $this->db->insert('answers',array(
                 'question_id' => $question_id ,
                 'user_id'   =>   $user_id ,
-                'content'  => $content
+                'answer_content'  => $content
                 ),true); 
 
             return $this->db->insert_id();
@@ -54,7 +54,7 @@
 
         public function set_fb_id($answer_id,$fb_id)
         {
-            $this->db->update('answers',array('fb_id' => $fb_id),array('id' => $answer_id));
+            $this->db->update('answers',array('answer_fb_id' => $fb_id),array('answer_id' => $answer_id));
         }
 
         public function __get($prop)
@@ -67,7 +67,7 @@
 
         public static function by_id($answers_id)
         {          
-            $q = get_instance()->db->get_where('answers',array('id' => $answers_id));
+            $q = get_instance()->db->get_where('answers',array('answer_id' => $answers_id));
             $answers = $q->result() ;
 
             if($answers)

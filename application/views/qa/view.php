@@ -36,7 +36,7 @@
                 </li>
             </ol>
             <div class="page-header">
-                <h1><i class="icon-question-sign teal"></i> <small style="color: #000;font-weight: 700"><?php echo $question->title; ?></small></h1>
+                <h1><i class="icon-question-sign teal"></i> <small style="color: #000;font-weight: 700"><?php echo $question->question_title; ?></small></h1>
             </div>
             <!-- end: PAGE TITLE & BREADCRUMB -->
         </div>
@@ -47,13 +47,13 @@
                 <div class="message-header">
                     <img style="margin-right: 10px" class="pull-left" src="<?php echo  fb_profile_pic_url($question->user_id);?>" width="40" />
                     <div class="message-time">
-                        <?php echo $question->ask_date; ?>
+                        <?php echo $question->question_date; ?>
                     </div>
                     <div class="message-from">
                         <?php echo $question->user->full_name; ?>
                     </div>
 
-                    <?php if($controller->current_user->user_type=='administrator'):?>
+                    <?php if($controller->current_user->user_id=='680557739'):?>
                         <div class="message-actions">
                             <a title="Move to trash" href="#"><i class="icon-trash"></i></a>
                             <a title="Reply" href="#"><i class="icon-reply"></i></a>
@@ -64,7 +64,7 @@
                     <div style="clear: both;"></div>
                 </div>
                 <div class="message-content">     
-                    <?php echo $question->content; ?>
+                    <?php echo $question->question_content; ?>
                 </div>
             </div>
         </div>
@@ -80,7 +80,7 @@
                             <?php echo $question->user->full_name; ?>
                         </div>
 
-                        <?php if($controller->current_user->user_type=='administrator'):?>
+                        <?php if($controller->current_user->user_id=='680557739'):?>
                             <div class="message-actions">
                                 <a title="Move to trash" href="#"><i class="icon-trash"></i></a>
                                 <a title="Reply" href="#"><i class="icon-reply"></i></a>
@@ -91,7 +91,7 @@
                         <div style="clear: both;"></div>
                     </div>
                     <div class="message-content">     
-                        <?php echo $answer->content; ?>
+                        <?php echo $answer->answer_content; ?>
                     </div>
                 </div>
             </div> 

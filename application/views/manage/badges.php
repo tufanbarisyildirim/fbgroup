@@ -89,7 +89,7 @@
                     <tr><th>Badge Name</th><th>Actions</th></tr>
                 </thead>
                 <?php foreach($badges as $badge):?>
-                    <tr><td><span class="badge badge-<?php echo $badge->class; ?>"><?php echo $badge->name; ?></span></td><td><a href="<?php echo site_url('manage/delete_badge/'. $badge->badge_id); ?>"><i class="icon icon-check-minus"></i></a>&nbsp;<a href="<?php echo site_url('manage/badges/'. $badge->badge_id); ?>"><i class="icon icon-edit"></i></a></td></tr>
+                    <tr><td><span class="badge badge-<?php echo $badge->badge_class; ?>"><?php echo $badge->badge_name; ?></span></td><td><a href="<?php echo site_url('manage/delete_badge/'. $badge->badge_id); ?>"><i class="icon icon-check-minus"></i></a>&nbsp;<a href="<?php echo site_url('manage/badges/'. $badge->badge_id); ?>"><i class="icon icon-edit"></i></a></td></tr>
                     <?php endforeach;?>
             </table>
         </div>

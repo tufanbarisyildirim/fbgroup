@@ -21,7 +21,7 @@
         {
             $this->check_admin();
             //$users = $this->user_model->get_where(array('fb_username' => ''));
-            $users = $this->user_model->get_all(array('fb_username' => ''));
+            $users = $this->user_model->get_all(array('user_fb_username' => ''));
 
             /**
             * @var $user User_model
@@ -33,11 +33,11 @@
                 $result =  $this->facebook->api('/'  . $user->id,'GET',array('access_token',$this->config->item('access_token')));
 
                $user->update(array(
-                    'name' => trim($result['first_name']." " . $result['middle_name']),
-                    'surname' =>$result['last_name'],
-                    'fb_username' =>$result['username'],
-                    'gender' =>$result['gender'],
-                    'locale' =>$result['locale']
+                    'user_name' => trim($result['first_name']." " . $result['middle_name']),
+                    'user_surname' =>$result['last_name'],
+                    'user_fb_username' =>$result['username'],
+                    'user_gender' =>$result['gender'],
+                    'user_locale' =>$result['locale']
                 ));
             }   
 

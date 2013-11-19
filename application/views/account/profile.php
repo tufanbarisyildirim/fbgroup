@@ -26,7 +26,7 @@
                 </li>
             </ol>
             <div class="page-header">
-                <h1>Profile <small><?php echo $user->name . ' ' . $user->surname; ?></small></h1>
+                <h1>Profile <small><?php echo $user->full_name; ?></small></h1>
             </div>
             <!-- end: PAGE TITLE & BREADCRUMB -->
         </div>

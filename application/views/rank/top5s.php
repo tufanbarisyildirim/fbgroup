@@ -50,13 +50,13 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <i class="icon-question-sign"></i>
-                                   <?php echo $quiz['name']; ?>
+                                   <?php echo $quiz['quiz_name']; ?>
                                 </div>
                                 <div class="panel-body">
                                     <table class="table table-bordered table-condensed">
                                         <tr><th>Name</th><th>Score</th></tr>
                                         <?php foreach($quiz['top5'] as $user): ?>
-                                            <tr><td><img src="<?php echo fb_profile_pic_url($user['user_id']); ?>" class="circle-img" width="30" />&nbsp;<a href="<?php echo site_url('user/profile/' . $user['id'] )?>"><?php echo $user['name']; ?> <?php echo $user['surname']; ?></a></td><td><?php echo $user['score']; ?></td></tr>
+                                            <tr><td><img src="<?php echo fb_profile_pic_url($user['user_id']); ?>" class="circle-img" width="30" />&nbsp;<a href="<?php echo site_url('user/profile/' . $user['user_id'] )?>"><?php echo $user['user_name']; ?> <?php echo $user['user_surname']; ?></a></td><td><?php echo $user['score']; ?></td></tr>
                                             <?php endforeach;?>
                                     </table>
                                 </div>

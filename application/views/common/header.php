@@ -95,8 +95,8 @@
                 <!-- start: USER DROPDOWN -->
                 <li class="dropdown current-user">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <img width="30" src="<?php echo fb_profile_pic_url($controller->current_user->id); ?>" class="circle-img" alt="">
-                        <span class="username"><?php echo $controller->current_user->name ?> <?php echo $controller->current_user->surname ?></span>
+                        <img width="30" src="<?php echo fb_profile_pic_url($controller->current_user->user_id); ?>" class="circle-img" alt="">
+                        <span class="username"><?php echo $controller->current_user->user_name ?> <?php echo $controller->current_user->user_surname ?></span>
                         <i class="clip-chevron-down"></i>
                     </a>
                     <ul class="dropdown-menu">
