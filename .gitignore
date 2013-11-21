@@ -5,3 +5,5 @@
 */cache/!index.html
 /appengine.pass
 /application/config/googleapp
+/application/controllers/Others.php
+/application/views/others

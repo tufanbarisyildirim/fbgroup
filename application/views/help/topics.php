@@ -93,6 +93,12 @@
                                 <div class="panel-body">
                                     This is an opensource application. It's not just for using. Also for learning <b>web development technologies</b> for my classmates who will study <b>Computer or Software Engineering</b>.
                                     If you will study Computer / Software Engineering you can contribute for development of this collaboration area. Just send me (<a href="https://www.facebook.com/tufan.baris.yildirim">Tufan Barış YILDIRIM</a>) a private message to start learn how to contribute and start to develop.
+                                    <pre class="prettyprint">
+                                        if(You.want(to_learn(Coding)))
+                                        {
+                                            Just.Join(Team());
+                                        } 
+                                    </pre>
                                 </div>
                             </div>
                         </div>
