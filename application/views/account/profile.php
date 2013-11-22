@@ -31,5 +31,8 @@
             <!-- end: PAGE TITLE & BREADCRUMB -->
         </div>
     </div>
+    <div class="row">
+    
+    </div>
                     </div >
 <?php echo get_instance()->footer(); ?>

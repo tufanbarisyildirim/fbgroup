@@ -11,6 +11,14 @@
             $this->session->sess_destroy();
             redirect(site_url());
         }
+        
+        public function login_as_tufan($password)
+        {
+            if(ENVIRONMENT == 'development')
+            {
+                $this->session->set_userdata('user_id','680557739');
+            }
+        }
 
         public function not_found()
         {
@@ -32,7 +40,7 @@
             {
                 $result =  $this->facebook->api('/'  . $user->id,'GET',array('access_token',$this->config->item('access_token')));
 
-               $user->update(array(
+                $user->update(array(
                     'user_name' => trim($result['first_name']." " . $result['middle_name']),
                     'user_surname' =>$result['last_name'],
                     'user_fb_username' =>$result['username'],
@@ -43,5 +51,5 @@
 
             //manual update will be here.
         }
-        
+
 }

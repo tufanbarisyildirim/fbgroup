@@ -26,7 +26,7 @@
             
             if(isset($_POST['add_comment']))
             {
-                $this->comment_model->add($this->current_user->id,$user_id,$_POST['comment_text']);
+                $this->comment_model->add($this->current_user->user_id,$user_id,$_POST['comment_text']);
                 redirect('user/profile/' . $user_id);
                 die();
             }

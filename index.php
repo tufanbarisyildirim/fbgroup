@@ -45,7 +45,7 @@
     if(isset($_SERVER['APPLICATION_ID']))
         define('ENVIRONMENT','googleapp');
     else
-        define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+        define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'production');
 
     /*
     *---------------------------------------------------------------
