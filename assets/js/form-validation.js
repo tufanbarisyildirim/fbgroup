@@ -210,7 +210,7 @@ var FormValidator = function () {
             submitHandler: function (form) {
                 successHandler2.show();
                 errorHandler2.hide();
-                $('#comment_detail').val($('.note-editable').html());
+                $('.note-editable').parent().parent().find('textarea:first').val($('.note-editable').html());
                 form.submit();
             }
         });

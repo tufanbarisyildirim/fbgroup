@@ -93,7 +93,7 @@
         public function common_data($controller_data = array())
         {
             $data = array();
-            $data['current_user'] = $this->current_user;
+            $data['current_user'] = &$this->current_user;
             $data['controller'] = &$this;
 
 

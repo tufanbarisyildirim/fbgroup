@@ -17,9 +17,22 @@
         {
             $data = array();
             $data['user'] = &$this->current_user;
-            
+
             $this->load->view('account/profile',$this->common_data( $data));
         }
 
+        public function about_me()
+        {
+            $data = array();
+            $data['user'] = &$this->current_user;
 
+            if($_POST)
+            {
+                $this->current_user->update(array('user_about' => $_POST['about_me']));
+                redirect( site_url( 'account/about_me' ) );
+                die();
+            }
+
+            $this->load->view('account/about_me',$this->common_data( $data));
+        }
 }

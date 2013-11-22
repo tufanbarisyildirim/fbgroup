@@ -31,10 +31,27 @@
                 die();
             }
             
-            
             $data['user'] = $this->user_model->by_id($user_id);
+            
+            $panels = array(); //horrays   
+
+            $quizzes = $this->db->query("SELECT qs.*,u.*,q.* FROM quiz_scores qs JOIN quizzes q ON q.quiz_id = qs.quiz_id JOIN users u ON u.user_id = qs.user_id AND u.user_id = " . $data['user']->user_id  . " ORDER BY q.quiz_date DESC")->result_array();
+
+            foreach($quizzes as $quiz)
+            {
+                if(!isset($panels[$quiz['track_id']]))
+                    $panels[$quiz['track_id']] = array(); 
+                    
+                    $panels[$quiz['track_id']][] = $quiz;   
+                 
+            }    
+            
+            $data['panels'] = $panels;
+            
+            
+            
             $data['comments'] = $this->comment_model->get_by_to_id($user_id)->result();
             
-            $this->load->view('user/profile',$data);
+            $this->load->view('user/profile',$this->common_data( $data ));
         }
 }   

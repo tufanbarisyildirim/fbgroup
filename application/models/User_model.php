@@ -41,7 +41,7 @@
             $print = '';
             foreach($badges as $badge)
             {
-                $print .='<span class="badge badge-'.$badge->badge_class.'">'.$badge->badge_name.'</span>';
+                $print .='<span class="badge badge-'.$badge->badge_class.'">'.$badge->badge_name.'</span>&nbsp;';
             }
 
             return $print;
@@ -59,8 +59,11 @@
 
             if($user)
             {
-                $userCache[$user->user_id] = $user;
-                return new User_model( $user[0] );
+
+                $user = new User_model( $user[0] );
+                self::$userCache[$user->user_id] = $user;
+
+                return $user;
             }
 
             return null;
@@ -102,10 +105,9 @@
 
         }
 
-
         public function update($data,$user_id = null)
         {
-            return $this->db->update('users',$data,array('user_id' => $user_id == null ? $this->id : $user_id));
+            return $this->db->update('users',$data,array('user_id' => $user_id == null ? $this->user_id : $user_id));
         } 
 
         public function is_admin()
@@ -131,6 +133,10 @@
                 return $roles[$this->user_type];
 
             } 
+            else if($var =='herhim')
+            {
+                return $this->user_gender == 'male' ? 'him' : 'her';
+            }
             else
             {
                 return parent::__get($var);
