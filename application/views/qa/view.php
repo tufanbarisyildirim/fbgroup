@@ -77,7 +77,7 @@
                             <?php echo $answer->answer_date; ?>
                         </div>
                         <div class="message-from">
-                            <?php echo $question->user->full_name; ?>
+                            <?php echo $answer->user->full_name; ?>
                         </div>
 
                         <?php if($controller->current_user->user_id=='680557739'):?>

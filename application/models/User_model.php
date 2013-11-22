@@ -4,6 +4,8 @@
     */
     class User_model extends MY_Model 
     {
+        public static $userCache = array();
+
         function __construct($result = null) 
         {
             parent::__construct($result);
@@ -20,7 +22,7 @@
 
             return $users;
         }
-        
+
         function get_where($where)
         {
             $query = $this->db->get_where('users',$where);
@@ -32,27 +34,34 @@
 
             return $users;
         }
-        
+
         public function print_badges()
         {
             $badges =  Badge_model::get_user_badges('role',$this->user_id);
             $print = '';
             foreach($badges as $badge)
             {
-               $print .='<span class="badge badge-'.$badge->badge_class.'">'.$badge->badge_name.'</span>';
+                $print .='<span class="badge badge-'.$badge->badge_class.'">'.$badge->badge_name.'</span>';
             }
-            
+
             return $print;
         }
 
 
         public static function by_id($user_id)
-        {          
+        {     
+            if(isset(self::$userCache[$user_id]))
+                return self::$userCache[$user_id];
+
+
             $q = get_instance()->db->get_where('users',array('user_id' => $user_id));
             $user = $q->result() ;
 
             if($user)
+            {
+                $userCache[$user->user_id] = $user;
                 return new User_model( $user[0] );
+            }
 
             return null;
         }
@@ -98,7 +107,7 @@
         {
             return $this->db->update('users',$data,array('user_id' => $user_id == null ? $this->id : $user_id));
         } 
-        
+
         public function is_admin()
         {
             return $this->user_id == '680557739';
@@ -118,7 +127,7 @@
                     'guest' => 'Guest',
                     'administrator' => 'Administrator'
                 );
-                
+
                 return $roles[$this->user_type];
 
             } 
