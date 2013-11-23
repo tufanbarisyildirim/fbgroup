@@ -35,9 +35,8 @@
     </div>
     <div class="row">
         <div class="col-sm-12">
-            <p><?php echo $word->definition; ?></p>
-            
-            <a href="javascript:;" class="badge badge-green pull-right" onclick="$('#example_form').toggle('slow')"><i class="icon icon-play-sign"></i>&nbsp; add an example</a>
+            <p><?php echo $word->definition; ?></p>        
+            <a href="javascript:;" class="badge badge-green pull-right" onclick="$('#example_form').toggle('fast')"><i class="icon icon-play-sign"></i>&nbsp; add an example</a>
             <div class="row" id="example_form" style="display:none;">
                 <div class="col-sm-12">
                     <form action="#" method="post" role="form" id="form2">

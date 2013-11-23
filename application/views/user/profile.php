@@ -66,12 +66,15 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="panel_tab2_example1">
+                      <?php echo $user->herhim; ?> badges : <?php echo $user->print_all_bages(); ?>
+                             <hr />
                         <?php echo $user->user_about; ?>
                         <?php if($current_user->user_id == $user->user_id):?>
                             <p class="alert alert-info">You are looking your own profile. <?php if(!$user->user_about):?> But, why did not you write anything abouy yourself? <a href="<?php echo site_url('account/about_me'); ?>">Click here to complete your profile.</a><?php else: ?> <a href="<?php echo site_url('account/about_me'); ?>">Click here to edit this text.</a><?php endif; ?></p>
                             <?php elseif(!strlen(trim($user->user_about))): ?>
                             <?php echo $user->user_name; ?> has not written anything about <?php echo $user->herhim; ?>self yet :(                        
-                            <?php endif; ?>
+                            <?php endif; ?>   
+                          
                     </div>
                     <div class="tab-pane" id="panel_tab2_example2">
                         <div class="panel-body panel-scroll">
@@ -131,13 +134,25 @@
                     </div>
                     <?php if($current_user->is_admin()): ?>
                         <div class="tab-pane" id="panel_tab2_example4">
+                            <form method="post">
+                                <div class="input-group">
+                                    <select name="badge_id" class="form-control">
+                                        <?php  foreach($all_badges  as $badge):?>
+                                            <option value="<?php echo $badge->badge_id?>"><?php echo $badge->badge_name?></option> 
+                                            <?php  endforeach; ?> 
+                                    </select>
+                                    <span class="input-group-btn">
+                                        <input class="btn btn-primary" name="add_badge" type="submit" value="Add"/>
+                                    </span>
+                                </div>
+                            </form>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr><th>Badge</th><th>Action</th></tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach($badges as $badge):?>
-                                        <tr><th></th><th><a href="<?php echo site_url('user/delete_badge/'); ?>">Delete</a></th></tr>
+                                        <tr><th><?php echo $badge; ?></th><th><a href="<?php echo site_url('user/delete_badge/' . $badge->user_badge_id); ?>">Delete</a></th></tr>
                                         <?php endforeach; ?>
                                 </tbody>
                             </table>
@@ -147,5 +162,5 @@
             </div>
         </div>
     </div> 
-     </div >
+     </div>
 <?php echo get_instance()->footer(); ?>

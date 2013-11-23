@@ -30,12 +30,13 @@
             return $words;
         }
 
-        public function add($word,$form,$definition)
+        public function add($word,$form,$definition,$user_id)
         {
             $this->db->insert('vocabulary',array(
                 'word' => $word,
                 'form' => $word,
-                'definition' => $definition
+                'definition' => $definition,
+                'user_id' => $user_id
                 ),true);
 
             return $this->db->insert_id();   

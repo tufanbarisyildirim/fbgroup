@@ -28,17 +28,21 @@
 
             return $badges;
         }
-        
-        public static function get_user_badges($badge_type,$user_id)
+
+        public static function get_user_badges($user_id,$badge_type = null)
         {
             $badges = array();
+
+            $where = array('user_badges.user_id' => $user_id);
+            if($badge_type != null)
+                $where['badge_type'] = $badge_type;
 
             $badges_ = 
             get_instance()
             ->db
             ->join('user_badges','user_badges.badge_id = badges.badge_id')
-            ->get_where('badges',array('badge_type'=>$badge_type,'user_badges.user_id' => $user_id))->result();
-            
+            ->get_where('badges',$where)->result();
+
             foreach($badges_ as $badge)
             {
                 $badges[] = new Badge_model($badge);
@@ -46,5 +50,25 @@
 
             return $badges;
         }
-        
+
+        public function delete_user_badge($user_badge_id)
+        {
+            return $this->db->delete('user_badges',array('user_badge_id' => $user_badge_id),1);
+        }
+
+        public function add_user_badge($badge_id,$user_id)
+        {
+            $this->db->insert('user_badges',array(
+                'badge_id' => $badge_id,
+                'user_id' => $user_id
+            ));
+            
+            return  $this->db->insert_id();
+        }
+
+        public function __toString()
+        {
+            return '<span class="badge badge-'.$this->badge_class.'">'.$this->badge_name.'</span>';
+        }
+
 }

@@ -37,7 +37,31 @@
 
         public function print_badges()
         {
-            $badges =  Badge_model::get_user_badges('role',$this->user_id);
+            $badges =  Badge_model::get_user_badges($this->user_id,'role');
+            $print = '';
+            foreach($badges as $badge)
+            {
+                $print .='<span class="badge badge-'.$badge->badge_class.'">'.$badge->badge_name.'</span>&nbsp;';
+            }
+
+            return $print;
+        }
+        
+        public function print_all_bages()
+        {
+            $badges =  Badge_model::get_user_badges($this->user_id);
+            $print = '';
+            foreach($badges as $badge)
+            {
+                $print .='<span class="badge badge-'.$badge->badge_class.'">'.$badge->badge_name.'</span>&nbsp;';
+            }
+
+            return $print;
+        }
+        
+        public function print_all_badges()
+        {
+            $badges =  Badge_model::get_user_badges($this->user_id);
             $print = '';
             foreach($badges as $badge)
             {

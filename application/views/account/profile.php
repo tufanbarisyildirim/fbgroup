@@ -31,8 +31,11 @@
             <!-- end: PAGE TITLE & BREADCRUMB -->
         </div>
     </div>
-    <div class="row">
+    <div class="row col-sm-12">
     
+        <h4>My badges</h4><?php echo $user->print_all_badges(); ?>
+        <h4><a href="<?php echo site_url('account/about_me'); ?>">About me</a></h4>
+        <h4><a href="<?php echo site_url('user/profile/' . $user->user_id); ?>">My Public Profile</a></h4>
     </div>
                     </div >
 <?php echo get_instance()->footer(); ?>

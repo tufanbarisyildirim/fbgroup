@@ -22,7 +22,7 @@
 
             if($_POST)
             {
-                $new_word_id = $this->vocabulary_model->add($_POST['word'],$_POST['word_form'],$_POST['word_definition']);
+                $new_word_id = $this->vocabulary_model->add($_POST['word'],$_POST['word_form'],$_POST['word_definition'],$this->current_user->user_id);
                 redirect(site_url('vocabulary/view/' . $new_word_id));
                 die();
             }
