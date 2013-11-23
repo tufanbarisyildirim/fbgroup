@@ -34,12 +34,18 @@
         {
             $this->db->insert('vocabulary',array(
                 'word' => $word,
-                'form' => $word,
+                'form' => $form,
                 'definition' => $definition,
                 'user_id' => $user_id
                 ),true);
 
             return $this->db->insert_id();   
+        }
+        
+        public function set_fb_id($word_id,$fb_id)
+        {
+            return $this->db->update('vocabulary',array('word_fb_id' => $fb_id),array('id' => $word_id));
+            
         }
         
         public function get_by_id($id)

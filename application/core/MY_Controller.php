@@ -17,6 +17,7 @@
     * @property $vocabulary_model Vocabulary_model
     * @property $sentence_model Sentence_model
     * @property $badge_model Badge_model
+    * @property $blog_model Blog_model
     */
     class MY_Controller extends CI_Controller
     {
@@ -37,6 +38,7 @@
             $this->load->model('vocabulary_model');
             $this->load->model('sentence_model');
             $this->load->model('badge_model');
+            $this->load->model('blog_model');
 
             $this->load->helper('url');
 

@@ -6,11 +6,12 @@
             parent::__construct($result);
         }
 
-        public function add($badge_name,$badge_class)
+        public function add($badge_name,$badge_class,$badge_type = 'badge')
         {
             $this->db->insert('badges',array(
                 'badge_name' => $badge_name,
-                'badge_class' => $badge_class
+                'badge_class' => $badge_class,
+                'badge_type' => $badge_type
                 ),true);
 
             return $this->db->insert_id();

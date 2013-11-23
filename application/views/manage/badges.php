@@ -47,16 +47,17 @@
                 </div>
                 <div class="panel-body">
                     <form role="form" class="form-horizontal" method="post">
-                        <div class="form-group">
+                        
+                        <div class="form-group col-sm-12">
                             <label class="col-sm-2">Badge Name</label>
                             <div class="col-sm-9">
                                 <input class="form-control" id="badge_name" type="text" name="badge_name" onkeyup="previewBadge()"/>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-2">Badge Class</label>
+                        <div class="form-group col-sm-6">
+                            <label class="col-sm-2">Class</label>
                             <div class="col-sm-9">
-                                <select name="badge_class" id="badge_class" onchange="previewBadge()">
+                                <select name="badge_class" id="badge_class" class="form-control" onchange="previewBadge()">
                                     <option class="badge badge-beige" value="beige">Beige</option>
                                     <option class="badge badge-danger" value="danger">Danger</option>
                                     <option class="badge badge-green" value="green">Green</option>
@@ -70,7 +71,16 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
+                          <div class="form-group col-sm-6">
+                            <label class="col-sm-2">Type</label>
+                            <div class="col-sm-9">
+                                <select name="badge_type" id="badge_type" class="form-control" onchange="previewBadge()">
+                                    <option value="badge">Badge</option>
+                                    <option value="role">Role</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12">
                             <label class="col-sm-2">Preview</label>
                             <dir class="col-sm-9" id="previewContainer"></dir>
                         </div>

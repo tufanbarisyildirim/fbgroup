@@ -60,7 +60,7 @@
             {
                 $answer_id = $this->answer_model->add($question_id,$this->current_user->user_id,$_POST['answer_detail']);
 
-                if($question->fb_id)
+                if($question->question_fb_id)
                 {
                     $a = $this->facebook->api('/'.$question->question_fb_id.'/comments','POST',array(    
                         'message' => $_POST['answer_detail'],

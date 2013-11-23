@@ -109,7 +109,7 @@
                         </li>
                         <li class="divider"></li>   
                         <li>
-                            <a href="login_example1.html">
+                            <a href="<?php echo site_url('actions/logout'); ?>">
                                 <i class="clip-exit"></i>
                                 &nbsp;Log Out
                             </a>

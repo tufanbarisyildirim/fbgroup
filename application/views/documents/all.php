@@ -81,7 +81,7 @@
                                     <td class="hidden-xs"><img src="<?php echo  fb_profile_pic_url($file['from']['id']);?>" width="30" class="circle-img"/>&nbsp;<?php echo $file['from']['name']?></td>
                                     <td class="center">
                                         <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                            <a href="https://www.facebook.com/download/preview/<?php echo $file['id'] ?>" class="btn btn-teal tooltips" data-placement="top" data-original-title="View"><i class="icon-search"></i></a>
+                                            <a href="<?php echo str_replace('/download/','/download/preview/',$file['download_link']); ?>" target="_blank" class="btn btn-teal tooltips" data-placement="top" data-original-title="View"><i class="icon-search"></i></a>
                                             <a href="<?php echo $file['download_link']; ?>" class="btn btn-green tooltips" data-placement="top" data-original-title="Download"><i class="icon-download"></i></a>
                                         </div>
                                     </td>

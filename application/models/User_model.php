@@ -109,6 +109,7 @@
             {
                 //renew the access token
                 $user->set_fb_access_token($fb_data['access_token']);
+                $user->renew_cover();
                 return $user;
             }
             else 
@@ -129,6 +130,28 @@
 
         }
 
+        public function renew_cover($user_id = null)
+        {
+            if($user_id == null)
+                $user_id = $this->user_id;
+
+            $result =  $this->facebook->api(
+                array(
+                    'method' => 'fql.query',
+                    'access_token' => $this->facebook->getAccessToken(),
+                    'query' => "SELECT pic_cover  FROM user WHERE uid = {$user_id}"
+                )
+
+            );
+          
+            $this->update(array(
+                'user_cover_photo' => $result[0]['pic_cover']['source'],
+                'cover_offset_y' => $result[0]['pic_cover']['offset_y'],
+                'cover_offset_x' => $result[0]['pic_cover']['offset_x'],
+
+            ),$user_id);
+        }
+
         public function update($data,$user_id = null)
         {
             return $this->db->update('users',$data,array('user_id' => $user_id == null ? $this->user_id : $user_id));
@@ -143,7 +166,27 @@
         {
             $badges = Badge_model::get_user_badges($this->user_id,'role');
             foreach($badges as $badge)
-                if($badge->badge_name =='Studen')
+                if($badge->badge_name =='Student')
+                    return true;
+
+                return false;
+        }    
+
+        public function is_teacher()
+        {
+            $badges = Badge_model::get_user_badges($this->user_id,'role');
+            foreach($badges as $badge)
+                if($badge->badge_name =='Teacher')
+                    return true;
+
+                return false;
+        }   
+
+        public function is_guest()
+        {
+            $badges = Badge_model::get_user_badges($this->user_id,'role');
+            foreach($badges as $badge)
+                if($badge->badge_name =='Guest')
                     return true;
 
                 return false;
@@ -171,11 +214,20 @@
             {
                 return $this->user_gender == 'male' ? 'him' : 'her';
             }
+            else if($var =='herhis')
+            {
+                return $this->user_gender == 'male' ? 'his' : 'her';
+            }
             else
             {
                 return parent::__get($var);
             }
 
+        }
+
+        public function profile_link_with_avatar()
+        {
+            return '<img src="' . fb_profile_pic_url($this->user_id) .'" class="circle-img" width="30" />&nbsp;<a href="'. site_url('user/profile/' . $this->user_id ).'">' . $this->full_name . '</a>';
         }
 
 }

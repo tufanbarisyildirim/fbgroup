@@ -11,7 +11,7 @@
             $this->session->sess_destroy();
             redirect(site_url());
         }
-        
+
         public function login_as_tufan($password)
         {
             if(ENVIRONMENT == 'development')
@@ -38,7 +38,7 @@
 
             foreach($users as $user)
             {
-                $result =  $this->facebook->api('/'  . $user->id,'GET',array('access_token',$this->config->item('access_token')));
+                $result =  $this->facebook->api('/'  . $user->user_id,'GET',array('access_token' => $this->config->item('access_token')));
 
                 $user->update(array(
                     'user_name' => trim($result['first_name']." " . $result['middle_name']),
@@ -47,6 +47,25 @@
                     'user_gender' =>$result['gender'],
                     'user_locale' =>$result['locale']
                 ));
+            }   
+
+            //manual update will be here.
+        }
+
+        public function update_user_covers()
+        {
+            $this->check_admin();
+            //$users = $this->user_model->get_where(array('fb_username' => ''));
+            $users = $this->user_model->get_all();
+
+            /**
+            * @var $user User_model
+            */
+            $user = null;
+
+            foreach($users as $user)
+            {
+                $user->renew_cover();
             }   
 
             //manual update will be here.

@@ -86,7 +86,7 @@
                                 <div class="content">
                                    We believe that; "One of the most unquestionable key of succes is being a team!" Please contribute if you agree with us.
                                 </div>
-                                <a class="view-more" href="#nomore">
+                                <a class="view-more" href="#nomore" onclick="alert('Do you like details? That\'s nice.')">
                                     View More <i class="clip-arrow-right-2"></i>
                                 </a>
                             </div>

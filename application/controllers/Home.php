@@ -5,20 +5,20 @@
         {
             parent::__construct();
         }
-        
+
         public function Index()
         {   
             if($this->is_logged_in())
             {
-                   
+
                 redirect(site_url('dashboard'));
             }
             else{
 
                 $login_params = array('scope' =>'email,user_groups,user_games_activity,friends_groups,publish_stream');
-                
+
                 $user_id = $this->facebook->getUser();
-            
+
                 if($user_id) {
 
                     // We have a user ID, so probably a logged in user.
@@ -30,7 +30,9 @@
                         $user = $this->user_model->login_with_facebook($user_profile);
                         $this->session->set_userdata("user_id",$user_profile['id']);
                         
-                       
+                        
+
+
                         redirect(site_url('dashboard'));
 
                     } catch(FacebookApiException $e) {
@@ -42,7 +44,11 @@
                         $this->load->view('login',array('fb_login_url' => $login_url));
                         error_log($e->getType());
                         error_log($e->getMessage());
-                    }   
+                    }
+
+
+
+
                 } else {
 
                     // No user, print a link for the user to login
@@ -52,5 +58,5 @@
                 }
             }  
         }
-      
+
     }

@@ -1,4 +1,23 @@
 <?php echo get_instance()->header(); ?>
+<script type="text/javascript">
+function SetCoverHeight()
+{
+   var h = $('#page_header').height();
+   console.log(h);
+   if(h == 190)
+   {
+       $('#page_header').animate({height:'500px'});
+       $('#show_icon').removeClass('icon-download-alt');
+       $('#show_icon').addClass('icon-upload-alt');
+   }
+   else
+   {
+       $('#page_header').animate({height:'200px'}); 
+       $('#show_icon').removeClass('icon-upload-alt');
+       $('#show_icon').addClass('icon-download-alt')
+   }
+}
+</script>
 <div class="container">
     <!-- start: PAGE HEADER -->
     <div class="row">
@@ -28,9 +47,13 @@
                     </form>
                 </li>
             </ol>
-            <div class="page-header">
-                <img width="50" src="https://graph.facebook.com/<?php echo $user->user_id; ?>/picture?large" class="pull-left" alt="<?php echo $user->full_name; ?> picture in facebook" style="margin-right:5px"/>
-                <h1>Classmate <small><?php echo $user->full_name; ?></small></h1>
+            <div class="page-header" id="page_header" style="position: relative;overflow:hidden;margin-top:0px;height:200px">
+                <img src="<?php echo $user->user_cover_photo; ?>" style="position: absolute;top:-<?php echo $user->cover_offset_y; ?>px;width:100%" />
+                <a href="javascript:;" class="badge badge-teal"  onclick="SetCoverHeight()" style="position: absolute;bottom:10px;right:10px"><i id="show_icon" class="icon icon-download-alt"></i></a>
+                <div class="well well-sm" style="position:absolute;bottom:0px;">
+                    <img width="90" class="pull-left" src="https://graph.facebook.com/<?php echo $user->user_id; ?>/picture?width=90&height=90" class="pull-left" alt="<?php echo $user->full_name; ?> picture in facebook" style="margin-right:5px"/>
+                    <h1 class="pull-left"><?php echo $user->full_name; ?><br /><small><?php echo $user->is_teacher() ? 'Teacher' : ($user->is_guest () ? 'Guest' :  'Classmate'); ?></small></h1>
+                </div>
             </div>
             <!-- end: PAGE TITLE & BREADCRUMB -->
         </div>
@@ -51,12 +74,12 @@
                         </a>
                     </li>
                     <?php if($user->is_student()):?>
-                    <li class="Comments">
-                        <a href="#panel_tab2_example3" data-toggle="tab">
-                            Exam Marks
-                        </a>
-                    </li>
-                    <?php endif;?>
+                        <li class="Comments">
+                            <a href="#panel_tab2_example3" data-toggle="tab">
+                                Exam Marks
+                            </a>
+                        </li>
+                        <?php endif;?>
                     <?php if($current_user->is_admin()): ?>
                         <li class="Comments">
                             <a href="#panel_tab2_example4" data-toggle="tab">
@@ -68,15 +91,15 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="panel_tab2_example1">
-                      <?php echo $user->herhim; ?> badges : <?php echo $user->print_all_bages(); ?>
-                             <hr />
+                        <?php echo $user->herhis; ?> badges : <?php echo $user->print_all_bages(); ?>
+                        <hr />
                         <?php echo $user->user_about; ?>
                         <?php if($current_user->user_id == $user->user_id):?>
                             <p class="alert alert-info">You are looking your own profile. <?php if(!$user->user_about):?> But, why did not you write anything abouy yourself? <a href="<?php echo site_url('account/about_me'); ?>">Click here to complete your profile.</a><?php else: ?> <a href="<?php echo site_url('account/about_me'); ?>">Click here to edit this text.</a><?php endif; ?></p>
                             <?php elseif(!strlen(trim($user->user_about))): ?>
                             <?php echo $user->user_name; ?> has not written anything about <?php echo $user->herhim; ?>self yet :(                        
                             <?php endif; ?>   
-                          
+
                     </div>
                     <div class="tab-pane" id="panel_tab2_example2">
                         <div class="panel-body panel-scroll">

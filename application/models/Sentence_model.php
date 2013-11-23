@@ -25,8 +25,16 @@
                 'user_id' => $user_id,
                 'sentence' => $sentence
                 ),true);
-                
+
             return  $this->db->insert_id();
+        }
+
+        public function set_fb_id($fb_id,$sentence_id = null)
+        {
+            if($sentence_id == null)
+                $sentence_id = $this->id;
+
+            return $this->db->update('sentences',array('sentence_fb_id' => $fb_id),array('id' => $sentence_id));
         }
 
 

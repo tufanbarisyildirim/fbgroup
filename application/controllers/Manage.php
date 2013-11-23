@@ -30,7 +30,7 @@
             
             if($_POST)
             {
-                $this->badge_model->add($_POST['badge_name'],$_POST['badge_class']);
+                $this->badge_model->add($_POST['badge_name'],$_POST['badge_class'],$_POST['badge_type']);
                 redirect(site_url('manage/badges'));
             }
             

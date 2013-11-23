@@ -68,8 +68,7 @@
                                     'guest' => 'orange',
                                     'administrator' => 'danger'
                                 ); 
-                                foreach($users as $user):
-
+                                foreach($users as $user):    
                                 ?>
                                 <tr>
                                     <td><a href="<?php echo site_url('user/profile/' . $user->user_id)?>"><img src="<?php echo  fb_profile_pic_url($user->user_id);?>" width="30" class="circle-img"/> <?php echo $user->full_name; ?></a></td>
