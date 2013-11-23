@@ -46,7 +46,7 @@
 
             return $print;
         }
-        
+
         public function print_all_bages()
         {
             $badges =  Badge_model::get_user_badges($this->user_id);
@@ -58,7 +58,7 @@
 
             return $print;
         }
-        
+
         public function print_all_badges()
         {
             $badges =  Badge_model::get_user_badges($this->user_id);
@@ -137,6 +137,16 @@
         public function is_admin()
         {
             return $this->user_id == '680557739';
+        }
+
+        public function is_student()
+        {
+            $badges = Badge_model::get_user_badges($this->user_id,'role');
+            foreach($badges as $badge)
+                if($badge->badge_name =='Studen')
+                    return true;
+
+                return false;
         }                                              
 
         public function __get($var)

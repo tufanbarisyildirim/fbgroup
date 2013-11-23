@@ -50,11 +50,13 @@
                             Comments <?php if($comments): ?><span class="badge badge-danger"><?php echo count($comments); ?></span><?php endif; ?>
                         </a>
                     </li>
+                    <?php if($user->is_student()):?>
                     <li class="Comments">
                         <a href="#panel_tab2_example3" data-toggle="tab">
                             Exam Marks
                         </a>
                     </li>
+                    <?php endif;?>
                     <?php if($current_user->is_admin()): ?>
                         <li class="Comments">
                             <a href="#panel_tab2_example4" data-toggle="tab">
