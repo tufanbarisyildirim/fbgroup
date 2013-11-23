@@ -1,6 +1,7 @@
 <?php
     /**
     * @property $db CI_DB_query_builder
+    * @property $user User_model
     */
     class MY_Model extends CI_Model
     {
@@ -13,5 +14,16 @@
                 foreach($result as $key => $val)
                     $this->{$key} = $val;  
         }
+
+
+
+        public function __get($key)
+        {
+            if($key == 'user' && isset($this->user_id))
+                return $this->user = User_model::by_id($this->user_id);
+
+            return parent::__get($key);
+        }
+
 
 }
