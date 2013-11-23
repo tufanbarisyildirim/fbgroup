@@ -72,7 +72,7 @@
                                 <div class="content">
                                     Here is yours! Feel free to ask any question and answer your friends as you can. Knowledge is useless unless you share it. So, The motto : "Your knowledge consists of your shares.".
                                 </div>
-                                <a class="view-more" href="#nomore">
+                                <a class="view-more" href="<?php echo site_url('qa/all'); ?>">
                                     View More <i class="clip-arrow-right-2"></i>
                                 </a>
                             </div>

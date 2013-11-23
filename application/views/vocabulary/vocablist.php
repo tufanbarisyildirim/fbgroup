@@ -26,11 +26,25 @@
                 </li>
             </ol>
             <div class="page-header">
-                <h1>Vocabulary <small>knowledge</small></h1>
+                <h1>Vocabulary <small>common knowledge</small></h1>
             </div>
             <!-- end: PAGE TITLE & BREADCRUMB -->
         </div>
     </div>
-    <h2>We're working hard to complete this part, be patient! : )</h2>
+    <div class="row">
+        <div class="col-sm-12">
+        <a href="<?php echo site_url('vocabulary/add');?>" class="btn btn-success pull-right"><i class="icon icon-plus-sign"></i>&nbsp;Add a new</a>
+            <table class="table table-condensed table-condensed">
+                <thead>
+                    <tr><th>Word</th><th>Form</th><th>Definition</th></tr>
+                </thead>
+                <tbody>
+                    <?php foreach($words as $word):?>
+                        <tr><td><a href="<?php echo site_url('vocabulary/view/' . $word->id  ) ; ?>"><b><?php echo $word->word; ?></b></a></td><td><?php echo $word->form; ?></td><td><?php echo $word->definition; ?></td></tr>
+                        <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
                     </div >
 <?php echo get_instance()->footer(); ?>

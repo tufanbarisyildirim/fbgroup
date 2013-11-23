@@ -14,6 +14,8 @@
     * @property $answer_model Answer_model
     * @property $quiz_model Quiz_model
     * @property $badge_model Badge_model
+    * @property $vocabulary_model Vocabulary_model
+    * @property $sentence_model Sentence_model
     */
     class MY_Controller extends CI_Controller
     {
@@ -31,6 +33,8 @@
             $this->load->driver('cache',array('adapter' => 'apc' , 'backup' => 'file'));
 
             $this->load->model('user_model');
+            $this->load->model('vocabulary_model');
+            $this->load->model('sentence_model');
 
             $this->load->helper('url');
 
@@ -95,6 +99,7 @@
             $data = array();
             $data['current_user'] = &$this->current_user;
             $data['controller'] = &$this;
+            $data['random_word'] = $this->vocabulary_model->get_random();
 
 
 

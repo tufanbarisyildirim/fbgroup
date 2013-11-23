@@ -85,7 +85,8 @@
             <!-- start: LOGO -->
             <a class="navbar-brand" href="<?php echo site_url(); ?>">
                 LEARN ENGLISH
-            </a>          
+            </a>  
+            <div class="pull-left alert alert-info" style="margin-top: 6px;margin-bottom: 6px;padding: 5px;"><b><?php echo $random_word->word; ?> (<?php echo $random_word->form; ?>)</b> : <?php echo $random_word->definition; ?></div>      
             <!-- end: LOGO -->
         </div>
         <div class="navbar-tools">

@@ -47,12 +47,11 @@
         <div class="col-md-12">
             <!-- start: FORM VALIDATION 2 PANEL -->
           
-          
                 
                 <div class="panel-body">
                     <h2><i class="icon-question-sign teal"></i> ASK A QUESTION</h2>
                     <p>
-                        Don't hasitate to ask about anything, we have a great teacher who can give tons of tricks in a lesson!
+                        Don't hasitate to ask about anything in english, we have a great class contains a lot of helpful students leading by a great teacher. Unquestionably; you will get the best answer!
                     </p>
                     <hr>
                     <form action="#" method="post" role="form" id="form2">
