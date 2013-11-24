@@ -44,6 +44,16 @@ require_once dirname(__FILE__).'/Array.php';
 
 class Diff_Renderer_Html_SideBySide extends Diff_Renderer_Html_Array
 {
+    public $old_title;
+    public $new_title;
+    
+    public function __construct($old_title ='Old Version',$new_title = 'New Version')
+    {
+        $this->old_title = $old_title;
+        $this->new_title = $new_title;
+        parent::__construct();
+    }
+    
 	/**
 	 * Render a and return diff with changes between the two sequences
 	 * displayed side by side.
@@ -62,8 +72,8 @@ class Diff_Renderer_Html_SideBySide extends Diff_Renderer_Html_Array
 		$html .= '<table class="Differences DifferencesSideBySide">';
 		$html .= '<thead>';
 		$html .= '<tr>';
-		$html .= '<th colspan="2">Old Version</th>';
-		$html .= '<th colspan="2">New Version</th>';
+		$html .= '<th colspan="2">' . $this->old_title . '</th>';
+		$html .= '<th colspan="2">' . $this->new_title . '</th>';
 		$html .= '</tr>';
 		$html .= '</thead>';
 		foreach($changes as $i => $blocks) {

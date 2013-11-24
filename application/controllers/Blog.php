@@ -65,7 +65,8 @@
             $this->load->library('Diff',array(explode("\n",$last_revision->post_content),explode("\n", $revision->post_content),array()),'diff');
             // Generate a side by side diff
             require_once APPPATH . '/libraries/Diff/Renderer/Html/SideBySide.php';
-            $renderer = new Diff_Renderer_Html_SideBySide;
+            require_once APPPATH . '/libraries/Diff/Renderer/Html/Inline.php';
+            $renderer = new Diff_Renderer_Html_SideBySide($last_revision->user->profile_link_with_avatar() .' <small>('.$last_revision->post_date.')</small>',$revision->user->profile_link_with_avatar().' <small>('.$revision->post_date.')</small>');
             
             $data['diff'] =  $this->diff->Render($renderer);
             
