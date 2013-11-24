@@ -6,7 +6,7 @@
 <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 <script>
     jQuery(document).ready(function() {
-        FormValidator.init();
+       // FormValidator.init();
     });
 </script>
 <div class="container">
@@ -55,7 +55,7 @@
                             <label class="control-label">
                                 Post Title <span class="symbol required"></span>
                             </label>
-                            <input type="text" placeholder="Write your post title" class="form-control" id="post_title" name="post_title">
+                            <input type="text" placeholder="Write your post title" class="form-control" value="<?php echo isset($post) ? $post->post_title :'' ?>" id="post_title" name="post_title">
                         </div>  
                     </div>
                 </div>
@@ -65,8 +65,8 @@
                             <label class="control-label">
                                 Post content <span class="symbol required"></span>
                             </label>
-                            <div class="summernote" style="border: 1px solid #eee;"></div>
-                            <textarea class="form-control no-display" id="post_content" name="post_content" cols="10" rows="10"></textarea>
+                            <div class="summernote" style="border: 1px solid #eee;display: none;"></div>
+                            <textarea class="form-control" id="post_content" name="post_content" cols="10" rows="10"><?php echo isset($post) ? $post->post_content :'' ?></textarea>
                         </div>
                     </div>
                 </div>

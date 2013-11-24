@@ -47,37 +47,39 @@
                 </div>
                 <div class="panel-body">
                     <form role="form" class="form-horizontal" method="post">
-                        
+
                         <div class="form-group col-sm-12">
                             <label class="col-sm-2">Badge Name</label>
                             <div class="col-sm-9">
                                 <input class="form-control" id="badge_name" type="text" name="badge_name" onkeyup="previewBadge()"/>
                             </div>
                         </div>
-                        <div class="form-group col-sm-6">
-                            <label class="col-sm-2">Class</label>
-                            <div class="col-sm-9">
-                                <select name="badge_class" id="badge_class" class="form-control" onchange="previewBadge()">
-                                    <option class="badge badge-beige" value="beige">Beige</option>
-                                    <option class="badge badge-danger" value="danger">Danger</option>
-                                    <option class="badge badge-green" value="green">Green</option>
-                                    <option class="badge badge-info" value="info">Info</option>
-                                    <option class="badge badge-inverse" value="inverse">Inverse</option>
-                                    <option class="badge badge-orange" value="orange">Orange</option>
-                                    <option class="badge badge-purple" value="purple">Purple</option>
-                                    <option class="badge badge-success" value="success">Success</option>
-                                    <option class="badge badge-yellow" value="yellow">Yellow</option>
-                                    <option class="badge badge-warning" value="warning">Warning</option>
-                                </select>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-2">Class</label>
+                                <div class="col-sm-9">
+                                    <select name="badge_class" id="badge_class" class="form-control" onchange="previewBadge()">
+                                        <option class="badge badge-beige" value="beige">Beige</option>
+                                        <option class="badge badge-danger" value="danger">Danger</option>
+                                        <option class="badge badge-green" value="green">Green</option>
+                                        <option class="badge badge-info" value="info">Info</option>
+                                        <option class="badge badge-inverse" value="inverse">Inverse</option>
+                                        <option class="badge badge-orange" value="orange">Orange</option>
+                                        <option class="badge badge-purple" value="purple">Purple</option>
+                                        <option class="badge badge-success" value="success">Success</option>
+                                        <option class="badge badge-yellow" value="yellow">Yellow</option>
+                                        <option class="badge badge-warning" value="warning">Warning</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                          <div class="form-group col-sm-6">
-                            <label class="col-sm-2">Type</label>
-                            <div class="col-sm-9">
-                                <select name="badge_type" id="badge_type" class="form-control" onchange="previewBadge()">
-                                    <option value="badge">Badge</option>
-                                    <option value="role">Role</option>
-                                </select>
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-2">Type</label>
+                                <div class="col-sm-9">
+                                    <select name="badge_type" id="badge_type" class="form-control" onchange="previewBadge()">
+                                        <option value="badge">Badge</option>
+                                        <option value="role">Role</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group col-sm-12">

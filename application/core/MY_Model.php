@@ -15,8 +15,6 @@
                     $this->{$key} = $val;  
         }
 
-
-
         public function __get($key)
         {
             if($key == 'user' && isset($this->user_id))
