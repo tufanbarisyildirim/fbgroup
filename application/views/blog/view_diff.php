@@ -32,7 +32,8 @@
         </div>
     </div>
     <div class="row col-sm-12">
-  <?php echo $diff; ?>
+    
+  <?php foreach($diffs as $diff) echo $diff ."<hr />"; ?>
     </div>
 </div>
 <?php echo get_instance()->footer(); ?>

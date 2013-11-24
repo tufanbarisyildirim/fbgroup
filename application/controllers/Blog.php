@@ -68,7 +68,7 @@
             require_once APPPATH . '/libraries/Diff/Renderer/Html/Inline.php';
             $renderer = new Diff_Renderer_Html_SideBySide($last_revision->user->profile_link_with_avatar() .' <small>('.$last_revision->post_date.')</small>',$revision->user->profile_link_with_avatar().' <small>('.$revision->post_date.')</small>');
             
-            $data['diff'] =  $this->diff->Render($renderer);
+            $data['diffs'][] =  $this->diff->Render($renderer);
             
              /*
             $this->load->library('FineDiff',array($last_revision->post_content,$revision->post_content,null),'finediff');
@@ -76,6 +76,31 @@
             
             $this->load->view('blog/view_diff',$data);
 
+        }
+        
+        public function view_history($post_id)
+        {
+            $data = array();
+            $data['diffs'] = array();
+            
+             $revisions =  $this->blog_model->get_revisions($post_id);
+            
+             $this->load->library('Diff',array(explode("\n",$revisions[0]->post_content),explode("\n", $revisions[1]->post_content),array()),'diff');
+             require_once APPPATH . '/libraries/Diff/Renderer/Html/SideBySide.php';
+             $renderer = new Diff_Renderer_Html_SideBySide($revisions[0]->user->profile_link_with_avatar() .' <small>('.$revisions[0]->post_date.')</small>',$revisions[1]->user->profile_link_with_avatar().' <small>('.$revisions[1]->post_date.')</small>');
+             
+             $data['diffs'][] = $this->diff->Render($renderer); 
+            
+           
+            for($i = 2; $i < count($revisions); $i++)
+            {
+                $diff = new Diff(array(explode("\n",$revisions[$i-1]->post_content),explode("\n",$revisions[$i]->post_content),array()));
+                 $renderer = new Diff_Renderer_Html_SideBySide($revisions[$i-1]->user->profile_link_with_avatar() .' <small>('.$revisions[$i-1]->post_date.')</small>',$revisions[$i]->user->profile_link_with_avatar().' <small>('.$revisions[$i]->post_date.')</small>');
+                 
+                $data['diffs'][] =   $diff->Render($renderer);
+            }
+            
+            $this->load->view('blog/view_diff',$data);
         }
 
         public function myblog()
