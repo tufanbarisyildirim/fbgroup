@@ -20,7 +20,7 @@
 
             return $quizzes;               
         }
-         
+
         public function add($quiz_name,$date,$track_id)
         {
             $this->db->insert('quizzes',array(
@@ -30,5 +30,26 @@
                 ),true);
 
             return $this->db->inser_id();  
+        }
+
+
+        public function get_non_markeds($user_id)
+        {
+            $non_markeds = $this->db->query("SELECT q.*  FROM quizzes q WHERE NOT EXISTS ( SELECT 1 FROM quiz_scores qs WHERE qs.quiz_id = q.quiz_id AND  qs.user_id = ". $user_id." )")->result();
+            $quizzes = array();
+
+            foreach($non_markeds as $quiz)
+                $quizzes[] = new Quiz_model( $quiz );
+
+            return $quizzes;    
+        }
+
+        public function save_mark($user_id,$quiz_id,$score)
+        {
+            return $this->db->insert('quiz_scores',array(
+                'user_id' => $user_id,
+                'quiz_id' => $quiz_id,
+                'score' => $score
+                ),true);
         }                                     
 }
