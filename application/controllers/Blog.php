@@ -45,6 +45,11 @@
             $this->load->view("blog/write",$data);
         }
         
+        public function write_correction()
+        {
+            
+        }
+        
          public function myblog()
         {
             $data = array();
