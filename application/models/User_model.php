@@ -144,6 +144,18 @@
 
         }
 
+
+        public function delete($user_id = null)
+        {
+            if($user_id == null)
+                $user_id = $this->user_id;
+
+            $this->db->delete('users',array('user_id',$user_id));
+
+            //TODO : delete other reletad data like comments / blogposts etc.
+
+        }
+
         public function renew_cover($user_id = null)
         {
             if($user_id == null)

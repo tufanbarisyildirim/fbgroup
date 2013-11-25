@@ -61,7 +61,7 @@
             $data['last_revision'] = $last_revision = new Blog_model($posts[0]);
 
 
-            $this->load->library('Diff',array(explode("\n",$last_revision->post_content),explode("\n", $revision->post_content),array()),'diff');
+            $this->load->library('Diff',array($last_revision->get_lines_with_title(),$revision->get_lines_with_title(),array()),'diff');
             // Generate a side by side diff
             require_once APPPATH . '/libraries/Diff/Renderer/Html/SideBySide.php';
             require_once APPPATH . '/libraries/Diff/Renderer/Html/Inline.php';
@@ -84,7 +84,7 @@
 
             $revisions =  $this->blog_model->get_revisions($post_id);
 
-            $this->load->library('Diff',array(explode("\n",$revisions[0]->post_content),explode("\n", $revisions[1]->post_content),array()),'diff');
+            $this->load->library('Diff',array($revisions[0]->get_lines_with_title(),$revisions[1]->get_lines_with_title(),array()),'diff');
             require_once APPPATH . '/libraries/Diff/Renderer/Html/SideBySide.php';
             $renderer = new Diff_Renderer_Html_SideBySide($revisions[0]->user->profile_link_with_avatar() .' <small>('.$revisions[0]->post_date.')</small>',$revisions[1]->user->profile_link_with_avatar().' <small>('.$revisions[1]->post_date.')</small>');
 
@@ -93,7 +93,7 @@
 
             for($i = 2; $i < count($revisions); $i++)
             {
-                $diff = new Diff(array(explode("\n",$revisions[$i-1]->post_content),explode("\n",$revisions[$i]->post_content),array()));
+                $diff = new Diff(array($revisions[$i-1]->get_lines_with_title(),$revisions[$i]->get_lines_with_title(),array()));
                 $renderer = new Diff_Renderer_Html_SideBySide($revisions[$i-1]->user->profile_link_with_avatar() .' <small>('.$revisions[$i-1]->post_date.')</small>',$revisions[$i]->user->profile_link_with_avatar().' <small>('.$revisions[$i]->post_date.')</small>');
 
                 $data['diffs'][] =   $diff->Render($renderer);

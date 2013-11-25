@@ -68,4 +68,12 @@
             redirect($_SERVER['HTTP_REFERER']);
             die();
         }
+        
+        public function delete($user_id)
+        {
+            if($this->current_user->is_admin())
+            {
+                $this->user_model->delete($user_id);
+            }
+        }
 }   

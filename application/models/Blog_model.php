@@ -116,5 +116,15 @@
             
             return true;
         }
+        
+        public function get_lines()
+        {
+            return explode("\n",$this->post_content);
+        }
+        
+        public function get_lines_with_title()
+        {
+            return array_merge(array($this->post_title),$this->get_lines());
+        }
 
     }
