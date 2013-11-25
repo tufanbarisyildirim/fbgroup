@@ -9,6 +9,7 @@
         public function logout()
         {
             $this->session->sess_destroy();
+            $this->facebook->destroySession();
             redirect(site_url());
         }
 

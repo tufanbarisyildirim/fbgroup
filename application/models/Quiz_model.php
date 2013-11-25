@@ -29,7 +29,7 @@
                 'track_id' => $track_id
                 ),true);
 
-            return $this->db->inser_id();  
+            return $this->db->insert_id();  
         }
 
 
@@ -42,6 +42,12 @@
                 $quizzes[] = new Quiz_model( $quiz );
 
             return $quizzes;    
+        }
+        
+        
+        public function delete($quiz_id)
+        {
+            return $this->db->query("DELETE FROM quizzes WHERE NOT EXISTS (SELECT 1 FROM quiz_scores WHERE quizzes.quiz_id = quiz_scores.quiz_d)");                        
         }
 
         public function save_mark($user_id,$quiz_id,$score)

@@ -14,6 +14,12 @@
             // honk?
         }
 
+        public function delete_quiz($quiz_id)
+        {
+            $this->quiz_model->delete($quiz_id);
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+        
         public function quizzes($quiz_id = null)
         {
 

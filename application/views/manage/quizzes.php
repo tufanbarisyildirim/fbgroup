@@ -74,10 +74,10 @@
         <div class="col-sm-12">
             <table class="table table-bordered">
                 <thead>
-                    <tr><th>Quiz Name</th><th>Track ID</th><th>Quiz Date</th></tr>
+                    <tr><th>Quiz Name</th><th>Track ID</th><th>Quiz Date</th><th>Action</th></tr>
                 </thead>
                 <?php foreach($quizzes as $quiz):?>
-                    <tr><td><?php echo $quiz->quiz_name; ?></td><td><?php echo $quiz->track_id; ?></td><td><?php echo $quiz->quiz_date; ?></td></tr>
+                    <tr><td><?php echo $quiz->quiz_name; ?></td><td><?php echo $quiz->track_id; ?></td><td><?php echo $quiz->quiz_date; ?></td><td><a onclick="return confirm('are you sure you want to delete this quiz?')" href="<?php echo site_url('manage/delete_quiz/' . $quiz->quiz_id); ?>">Delete</a></td></tr>
                     <?php endforeach;?>
             </table>
         </div>
