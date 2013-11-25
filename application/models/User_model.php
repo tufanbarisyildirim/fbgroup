@@ -114,18 +114,32 @@
             }
             else 
             {
-                $data = array(
-                    'user_id' => $fb_data['id'], 
-                    'user_name' => trim($fb_data['first_name'].' '  . $fb_data['middle_name']), 
-                    'user_surname' => $fb_data['last_name'], 
-                    'fb_username' => $fb_data['username'], 
-                    'user_locale' => $fb_data['locale'], 
-                    'user_gender' => $fb_data['gender'],
-                    'access_token' => $fb_data['access_token']
-                );
+                $info = $this->facebook->api( '/'.$this->current_user->fb_username.'/groups', 'GET');
+                foreach($info['data'] as $group)
+                {
+                    if($group['id'] == $this->config->item('group_id'))
+                    {
+                        $data = array(
+                            'user_id' => $fb_data['id'], 
+                            'user_name' => trim($fb_data['first_name'].' '  . $fb_data['middle_name']), 
+                            'user_surname' => $fb_data['last_name'], 
+                            'fb_username' => $fb_data['username'], 
+                            'user_locale' => $fb_data['locale'], 
+                            'user_gender' => $fb_data['gender'],
+                            'access_token' => $fb_data['access_token']
+                        );
 
-                $this->db->insert("users",$data,true);
-                return  $this->by_id($user_id);
+                        $this->session->set_userdata('is_group_member',true);
+
+                        $this->db->insert("users",$data,true);
+                        return  $this->by_id($user_id);
+
+
+                    }
+
+                }
+
+
             }
 
         }
@@ -143,13 +157,13 @@
                 )
 
             );
-          
+
             $this->update(array(
                 'user_cover_photo' => $result[0]['pic_cover']['source'],
                 'cover_offset_y' => $result[0]['pic_cover']['offset_y'],
                 'cover_offset_x' => $result[0]['pic_cover']['offset_x'],
 
-            ),$user_id);
+                ),$user_id);
         }
 
         public function update($data,$user_id = null)

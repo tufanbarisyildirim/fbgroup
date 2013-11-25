@@ -72,6 +72,19 @@
             //manual update will be here.
         }
 
+
+        public function my_groups()
+        {
+            $info = $this->facebook->api( '/'.$this->current_user->fb_username.'/groups', 'GET');
+            foreach($info['data'] as $group)
+            {
+                if($group['id'] == $this->config->item('group_id'))
+                    die("You are a member of " . $this->config->item('group_id') );
+            }
+            die("You are not a member of our group. sorry.");
+            
+        }
+
         public function diff_test()
         {
         ?>

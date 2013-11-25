@@ -44,7 +44,22 @@
             $this->load->helper('url');
 
             if($this->is_logged_in())
+            {
                 $this->current_user =  $this->user_model->by_id($this->session->userdata('user_id'));
+
+                if($this->session->userdata('is_group_member') == null)
+                {
+                    $info = $this->facebook->api( '/'.$this->current_user->fb_username.'/groups', 'GET');
+                    foreach($info['data'] as $group)
+                    {
+                        if($group['id'] == $this->config->item('group_id'))
+                             return $this->session->set_userdata('is_group_member',true);
+                           
+                    }
+                    
+                    die("Sorry. You are not a member of our facebook group. Bye.");
+                }
+            }
 
         }
 

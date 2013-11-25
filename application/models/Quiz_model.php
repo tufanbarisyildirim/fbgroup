@@ -47,7 +47,7 @@
         
         public function delete($quiz_id)
         {
-            return $this->db->query("DELETE FROM quizzes WHERE NOT EXISTS (SELECT 1 FROM quiz_scores WHERE quizzes.quiz_id = quiz_scores.quiz_d)");                        
+            return $this->db->query("DELETE FROM quizzes WHERE quiz_id = {$quiz_id} AND NOT EXISTS (SELECT 1 FROM quiz_scores WHERE quizzes.quiz_id = quiz_scores.quiz_id)");                        
         }
 
         public function save_mark($user_id,$quiz_id,$score)
