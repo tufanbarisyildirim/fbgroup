@@ -33,11 +33,16 @@
     </div>
     <div class="row col-sm-12">
         <table class="table table-condensed table-hover">
-            <thead><tr><th>Post Title</th><th>Writer</th></tr></thead>
+            <thead><tr><th>Post Title</th><th>Writer</th><?php if($current_user->is_admin()):?><th>Actions</th><?php endif;?></tr></thead>
             <tbody>
                 <?php foreach($posts as $post): ?>
-                <tr><td><a href="<?php echo site_url('blog/view/' . $post->post_id); ?>"><?php echo $post->post_title ?></a></td><td><?php echo $post->user->profile_link_with_avatar(); ?></td></tr>
-                <?php endforeach; ?>
+                    <tr>
+                        <td><a href="<?php echo site_url('blog/view/' . $post->post_id); ?>"><?php echo $post->post_title ?></a></td><td><?php echo $post->user->profile_link_with_avatar(); ?></td>
+                        <?php if($current_user->is_admin()):?>
+                            <td><a href="<?php echo site_url('blog/delete/' . $post->post_id); ?>">Delete</a></td>
+                            <?php endif;?>
+                    </tr>
+                    <?php endforeach; ?>
             </tbody>
         </table>
     </div>

@@ -6,7 +6,6 @@
             parent::__construct();
         }
 
-
         public function index()
         {
             $this->all();   
@@ -61,45 +60,45 @@
             $posts = $this->db->query("SELECT * FROM blogs WHERE post_type IN ('original','revision') AND parent_id = " . $revision->parent_id." AND post_id < " . $revision_id ." ORDER BY post_id DESC LIMIT 1")->result();
             $data['last_revision'] = $last_revision = new Blog_model($posts[0]);
 
-            
+
             $this->load->library('Diff',array(explode("\n",$last_revision->post_content),explode("\n", $revision->post_content),array()),'diff');
             // Generate a side by side diff
             require_once APPPATH . '/libraries/Diff/Renderer/Html/SideBySide.php';
             require_once APPPATH . '/libraries/Diff/Renderer/Html/Inline.php';
             $renderer = new Diff_Renderer_Html_SideBySide($last_revision->user->profile_link_with_avatar() .' <small>('.$last_revision->post_date.')</small>',$revision->user->profile_link_with_avatar().' <small>('.$revision->post_date.')</small>');
-            
+
             $data['diffs'][] =  $this->diff->Render($renderer);
-            
-             /*
+
+            /*
             $this->load->library('FineDiff',array($last_revision->post_content,$revision->post_content,null),'finediff');
             $data['diff']  = $this->finediff->renderDiffToHTML();     */
-            
+
             $this->load->view('blog/view_diff',$data);
 
         }
-        
+
         public function view_history($post_id)
         {
             $data = array();
             $data['diffs'] = array();
-            
-             $revisions =  $this->blog_model->get_revisions($post_id);
-            
-             $this->load->library('Diff',array(explode("\n",$revisions[0]->post_content),explode("\n", $revisions[1]->post_content),array()),'diff');
-             require_once APPPATH . '/libraries/Diff/Renderer/Html/SideBySide.php';
-             $renderer = new Diff_Renderer_Html_SideBySide($revisions[0]->user->profile_link_with_avatar() .' <small>('.$revisions[0]->post_date.')</small>',$revisions[1]->user->profile_link_with_avatar().' <small>('.$revisions[1]->post_date.')</small>');
-             
-             $data['diffs'][] = $this->diff->Render($renderer); 
-            
-           
+
+            $revisions =  $this->blog_model->get_revisions($post_id);
+
+            $this->load->library('Diff',array(explode("\n",$revisions[0]->post_content),explode("\n", $revisions[1]->post_content),array()),'diff');
+            require_once APPPATH . '/libraries/Diff/Renderer/Html/SideBySide.php';
+            $renderer = new Diff_Renderer_Html_SideBySide($revisions[0]->user->profile_link_with_avatar() .' <small>('.$revisions[0]->post_date.')</small>',$revisions[1]->user->profile_link_with_avatar().' <small>('.$revisions[1]->post_date.')</small>');
+
+            $data['diffs'][] = $this->diff->Render($renderer); 
+
+
             for($i = 2; $i < count($revisions); $i++)
             {
                 $diff = new Diff(array(explode("\n",$revisions[$i-1]->post_content),explode("\n",$revisions[$i]->post_content),array()));
-                 $renderer = new Diff_Renderer_Html_SideBySide($revisions[$i-1]->user->profile_link_with_avatar() .' <small>('.$revisions[$i-1]->post_date.')</small>',$revisions[$i]->user->profile_link_with_avatar().' <small>('.$revisions[$i]->post_date.')</small>');
-                 
+                $renderer = new Diff_Renderer_Html_SideBySide($revisions[$i-1]->user->profile_link_with_avatar() .' <small>('.$revisions[$i-1]->post_date.')</small>',$revisions[$i]->user->profile_link_with_avatar().' <small>('.$revisions[$i]->post_date.')</small>');
+
                 $data['diffs'][] =   $diff->Render($renderer);
             }
-            
+
             $this->load->view('blog/view_diff',$data);
         }
 
@@ -110,6 +109,15 @@
             $this->load->view("blog/myblog",$data);
         }
 
+        public function delete($post_id)
+        {
+            if($this->current_user->is_admin())
+            {
+                $this->blog_model->delete($post_id);
+            }
+            
+            redirect(site_url('blog'));
+        }
 
         public function view($post_id)
         {

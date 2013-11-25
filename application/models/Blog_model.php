@@ -107,5 +107,14 @@
 
             return $this->db->update('blogs',$data,array('post_id' => $post_id));
         }
+        
+        
+        public function delete($post_id)
+        {
+            $this->db->delete('blogs',array('post_id' => $post_id));
+            $this->db->delete('blogs',array('parent_id' => $post_id));
+            
+            return true;
+        }
 
     }

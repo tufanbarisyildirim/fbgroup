@@ -1,22 +1,22 @@
 <?php echo get_instance()->header(); ?>
 <script type="text/javascript">
-function SetCoverHeight()
-{
-   var h = $('#page_header').height();
-   console.log(h);
-   if(h == 190)
-   {
-       $('#page_header').animate({height:'500px'});
-       $('#show_icon').removeClass('icon-download-alt');
-       $('#show_icon').addClass('icon-upload-alt');
-   }
-   else
-   {
-       $('#page_header').animate({height:'200px'}); 
-       $('#show_icon').removeClass('icon-upload-alt');
-       $('#show_icon').addClass('icon-download-alt')
-   }
-}
+    function SetCoverHeight()
+    {
+        var h = $('#page_header').height();
+        console.log(h);
+        if(h == 190)
+        {
+            $('#page_header').animate({height:'500px'});
+            $('#show_icon').removeClass('icon-download-alt');
+            $('#show_icon').addClass('icon-upload-alt');
+        }
+        else
+        {
+            $('#page_header').animate({height:'200px'}); 
+            $('#show_icon').removeClass('icon-upload-alt');
+            $('#show_icon').addClass('icon-download-alt')
+        }
+    }
 </script>
 <div class="container">
     <!-- start: PAGE HEADER -->
@@ -159,6 +159,10 @@ function SetCoverHeight()
                     </div>
                     <?php if($current_user->is_admin()): ?>
                         <div class="tab-pane" id="panel_tab2_example4">
+                            <div class="row col-md-12" style="padding: 10px;">
+                                <a href="<?php echo site_url('user/delete/' . $user->user_id);?>" class="badge badge-danger">Delete User</a>
+                            </div>
+
                             <form method="post">
                                 <div class="input-group">
                                     <select name="badge_id" class="form-control">
