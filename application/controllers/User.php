@@ -75,5 +75,8 @@
             {
                 $this->user_model->delete($user_id);
             }
+            
+            redirect(site_url('user'));
+            die();
         }
 }   

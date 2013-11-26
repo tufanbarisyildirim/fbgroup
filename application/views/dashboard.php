@@ -92,18 +92,21 @@
                             </div>
                         </div>
                         <div class="col-sm-4">
-                            <div class="core-box">
-                                <div class="heading">
-                                    <i class="clip-bubble circle-icon circle-bricky"></i>
-                                    <h2>Talk With Friends</h2>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <i class="icon-question-sign"></i>
+                                    Summary
                                 </div>
-                                <div class="content">
-                                    Meet new foreign friends to improve your English skills (soon).
+                                <div class="panel-body">
+                                    <table class="table table-bordered table-condensed">
+                                        <tr><th>Name</th><th>Max</th><th>Min</th><th>Avg</th></tr>
+                                        <?php $score = 0; foreach($quiz_scores as $quiz): $score += $quiz->average; ?>
+                                            <tr><td><?php echo $quiz->quiz_name ?></td><td><?php echo $quiz->max_score; ?></td><td><?php echo $quiz->min_score; ?></td><td style="text-align: right"><?php echo number_format($quiz->average,2); ?></td></tr>
+                                            <?php endforeach;?>
+                                            <tr><th>General Average</th><th colspan="3" style="text-align: right;"><?php echo number_format($score / count($quiz_scores),2) ?></th></tr>
+                                    </table>
                                 </div>
-                                <a class="view-more" href="#nomore">
-                                    View More <i class="clip-arrow-right-2"></i>
-                                </a>
-                            </div>
+                            </div> 
                         </div>
                     </div>
                

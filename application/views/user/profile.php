@@ -53,6 +53,8 @@
                 <div class="well well-sm" style="position:absolute;bottom:0px;">
                     <img width="90" class="pull-left" src="https://graph.facebook.com/<?php echo $user->user_id; ?>/picture?width=90&height=90" class="pull-left" alt="<?php echo $user->full_name; ?> picture in facebook" style="margin-right:5px"/>
                     <h1 class="pull-left"><?php echo $user->full_name; ?><br /><small><?php echo $user->is_teacher() ? 'Teacher' : ($user->is_guest () ? 'Guest' :  'Classmate'); ?></small></h1>
+                <div style="clear: both;"></div>
+                <div class="row" style="padding-right: 15px;"><a target="_blank" href="https://www.facebook.com/<?php echo $user->fb_username; ?>"><i class="icon icon-facebook pull-right"<?php if(strlen($user->access_token)): ?> style="color: blue;"<?php else:?> style="color: black;"<?php endif;?>></i></a></div>
                 </div>
             </div>
             <!-- end: PAGE TITLE & BREADCRUMB -->
