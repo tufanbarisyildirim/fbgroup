@@ -18,7 +18,7 @@
                 $question_id = $this->question_model->ask($this->current_user->user_id,$_POST['question_title'],$_POST['question_detail']);
 
                 $a = $this->facebook->api('/'.$this->config->item('group_id').'/feed','POST',array(    
-                    'message' => 'I have just asked a question on English Preparation application. Could you please help me?',
+                    'message' => $_POST['question_detail'],
                     'name' => $_POST['question_title'],
                     'caption' => $_POST['question_title'],
                     'description' => $_POST['question_detail'],
