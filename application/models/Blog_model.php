@@ -108,6 +108,16 @@
             return $this->db->update('blogs',$data,array('post_id' => $post_id));
         }
         
+         public function mark_as_the_best($revision_id = null)
+        {
+            if($revision_id == null)
+                $revision_id = $this->post_id;
+                
+                $revision = $this->get_by_id($revision_id);
+                
+                $this->db->update('blogs',array('the_best' => 0),array('parent_id' => $revision->parent_id));
+                return $this->db->update('blogs',array('the_best' => 1),array('post_id' => $revision_id));
+        }      
         
         public function delete($post_id)
         {

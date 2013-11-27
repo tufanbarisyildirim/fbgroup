@@ -134,4 +134,15 @@
 
             $this->load->view('blog/view',$data);
         }
+        
+        public function mark_as_best($revision_id)
+        {
+            if($this->current_user->is_admin || $this->current_user->is_teacher())
+            {
+                $this->blog_model->mark_as_the_best($revision_id);
+            }
+            
+            redirect($_SERVER['HTTP_REFERER']);
+            die();
+        }
     }

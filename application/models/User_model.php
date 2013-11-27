@@ -200,6 +200,9 @@
 
         public function is_teacher()
         {
+            if($this->is_admin())
+                return true;
+
             $badges = Badge_model::get_user_badges($this->user_id,'role');
             foreach($badges as $badge)
                 if($badge->badge_name =='Teacher')
@@ -216,7 +219,7 @@
                     return true;
 
                 return false;
-        }                                              
+        }  
 
         public function __get($var)
         {
@@ -244,6 +247,11 @@
             {
                 return $this->user_gender == 'male' ? 'his' : 'her';
             }
+            else if(method_exists($this,$var))
+            {
+                return $this->{$var} = $this->{$var}();
+            }
+
             else
             {
                 return parent::__get($var);

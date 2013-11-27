@@ -37,7 +37,7 @@
     <div class="row col-sm-12">
         <?php echo nl2br( $post->post_content ); ?>
     </div>
-    <?php if(isset($revisions) && count($revisions) > 1): ?>
+    <?php  if(isset($revisions) && count($revisions) > 1): ?>
         <div class="row col-sm-12" style="margin-top:10px">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -46,13 +46,13 @@
                 </div>
                 <div class="panel-body">  
                     <table class="table table-condensed table-hover">
-                        <thead><tr><th>Post Title</th><th>Reviewer</th><th>Action</th></tr></thead>
+                        <thead><tr><th>Post Title</th><th>Reviewer</th><th>Action</th><?php if($current_user->is_teacher): ?><th>Best</th><?php endif;?></tr></thead>
                         <tbody>
                             <?php $prev_post = null; foreach($revisions as $post):  ?>
                                 <?php if($post->post_type =='original'):?>
-                                    <tr class="success"><td><span class="badge badge-success">original</span>&nbsp;<a href="<?php echo site_url('blog/view/' . $post->post_id); ?>"><?php echo $post->post_title ?></a></td><td><?php echo $post->user->profile_link_with_avatar(); ?></td><td></td></tr>
+                                    <tr class="warning"><td><span class="badge badge-warning">original</span>&nbsp;<a href="<?php echo site_url('blog/view/' . $post->post_id); ?>"><?php echo $post->post_title ?></a></td><td><?php echo $post->user->profile_link_with_avatar(); ?></td><td></td></tr>
                                     <?php else:?>
-                                    <tr><td><a href="<?php echo site_url('blog/view/' . $post->post_id); ?>"><?php echo $post->post_title ?></a></td><td><?php echo $post->user->profile_link_with_avatar(); ?></td><td><a class="tooltips" data-placement="top" data-original-title="View differences between this and and <?php echo $prev_post->post_type =='original' ? 'oringial version' :  $prev_post->user->user_name . '\'s revision'; ?>"  href="<?php echo site_url('blog/view_diff/' . $post->post_id); ?>">compare</a></td></tr>
+                                    <tr<?php if($post->the_best):?> class="success"<?php endif;?>><td><a href="<?php echo site_url('blog/view/' . $post->post_id); ?>"><?php echo $post->post_title ?></a></td><td><?php echo $post->user->profile_link_with_avatar(); ?></td><td><a class="tooltips" data-placement="top" data-original-title="View differences between this and and <?php echo $prev_post->post_type =='original' ? 'oringial version' :  $prev_post->user->user_name . '\'s revision'; ?>"  href="<?php echo site_url('blog/view_diff/' . $post->post_id); ?>">compare</a></td><?php if($current_user->is_teacher): ?><td><?php if($post->the_best):?><span class="badge badge-success tooltips" data-placement="top" data-original-title="This revision is marked as the best by Aynur Yılmazer">The best.</span><?php else: ?><a class="tooltips" data-placement="top" data-original-title="Mark as the best revision"  href="<?php echo site_url('blog/mark_as_best/' . $post->post_id)?>"><i class="icon icon-ok-sign"></i></a><?php endif;?></td><?php endif;?></tr>
                                     <?php endif;?>
                                     
                                 <?php $prev_post = $post; endforeach; ?>
