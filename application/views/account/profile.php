@@ -50,13 +50,13 @@
                         <?php endif;?>
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="panel_tab2_example1">
+                    <div class="tab-pane<?php if($tab == null || $tab == 'general'): ?>active<?php endif;?>" id="panel_tab2_example1">
                         <h4>My badges</h4><?php echo $user->print_all_badges(); ?>
                         <h4><a href="<?php echo site_url('account/about_me'); ?>">About me</a></h4>
                         <h4><a href="<?php echo site_url('user/profile/' . $user->user_id); ?>">My Public Profile</a></h4>
 
                     </div>
-                    <div class="tab-pane" id="panel_tab2_example3">
+                    <div class="tab-pane<?php if($tab == 'marks'): ?> active<?php endif;?>" id="panel_tab2_example3">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="panel panel-default">

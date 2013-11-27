@@ -6,7 +6,7 @@
 <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 <script>
     jQuery(document).ready(function() {
-       // FormValidator.init();
+        // FormValidator.init();
     });
 </script>
 <div class="container">
@@ -42,48 +42,51 @@
         </div>
     </div>
     <div class="row col-sm-12">
-      
-            <h2><i class="clip-bubble-3"></i>&nbsp;What's Going On These Days?</h2>
-            <p>
-               Share with your friends, discuss on your writing or the topic you wrote.
-            </p>
-            <hr>
-            <form action="#" method="post" role="form" id="form2">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="control-label">
-                                Post Title <span class="symbol required"></span>
-                            </label>
-                            <input type="text" placeholder="Write your post title" class="form-control" value="<?php echo isset($post) ? $post->post_title :'' ?>" id="post_title" name="post_title">
-                        </div>  
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="control-label">
-                                Post content <span class="symbol required"></span>
-                            </label>
-                            <div class="summernote" style="border: 1px solid #eee;display: none;"></div>
-                            <textarea class="form-control" id="post_content" name="post_content" cols="10" rows="10"><?php echo isset($post) ? $post->post_content :'' ?></textarea>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-8">
-                        <p>
+        <h2><i class="clip-bubble-3"></i>&nbsp;What's Going On These Days?</h2>
+        <p>
+            Share with your friends, discuss on your writing or the topic you wrote.
 
-                        </p>
-                    </div>
-                    <div class="col-md-4">
-                        <button class="btn btn-primary btn-block" type="submit" name="save_post">
-                            Post it! <i class="icon-circle-arrow-right"></i>
-                        </button>
+        </p>
+        <p class="alert alert-success"><b>"Mistakes are for learning, not repeating".</b><br /> 
+            When learning a language, don't worry about making mistakes - just get out there and practice!</p>
+        <hr>
+        <form action="#" method="post" role="form" id="form2">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">
+                            Post Title <span class="symbol required"></span>
+                        </label>
+                        <input type="text" placeholder="Write your post title" class="form-control" value="<?php echo isset($post) ? $post->post_title :'' ?>" id="post_title" name="post_title">
+                    </div>  
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label">
+                            Post content <span class="symbol required"></span>
+                        </label>
+                        <div class="summernote" style="border: 1px solid #eee;display: none;"></div>
+                        <textarea class="form-control" id="post_content" name="post_content" cols="10" rows="10"><?php echo isset($post) ? $post->post_content :'' ?></textarea>
                     </div>
                 </div>
-            </form>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <p>
+
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-primary btn-block" type="submit" name="save_post">
+                        Post it! <i class="icon-circle-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
     </div>
 </div >
 <?php echo get_instance()->footer(); ?>
