@@ -91,7 +91,39 @@
         </div>
         <div class="navbar-tools">
             <!-- start: TOP NAVIGATION MENU -->
-            <ul class="nav navbar-right">
+            <ul class="nav navbar-right">    
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <i class="clip-list-5"></i>
+                        <?php if(count($todolist)): ?>   <span class="badge"><?php echo count($todolist)?></span>  <?php endif;?>
+                    </a>
+                    <ul class="dropdown-menu todo">
+                        <li>
+                            <span class="dropdown-menu-title"> You have <?php if(count($todolist)): ?><?php echo count($todolist)?><?php else:?>no<?php endif;?> pending tasks</span>
+                        </li>
+                        <li>
+                            <div class="drop-down-wrapper">
+                                <ul>
+                                    <?php foreach($todolist as $task):?>
+                                        <li>
+                                            <a  href="<?php echo site_url('account/me/marks'); ?>">
+                                                <span class="desc" style="opacity: 1; text-decoration: none;">Your <?php echo $task->quiz_name;?> mark is missing.</span>
+                                            </a>
+                                        </li>
+                                        <?php endforeach; ?>
+                                </ul>
+                            </div>
+                        </li>
+                        <?php if(false):?>
+                            <li class="view-all">
+                                <a href="javascript:void(0)">
+                                    See all tasks <i class="fa fa-arrow-circle-o-right"></i>
+                                </a>
+                            </li>
+                            <?php endif;?>
+
+                    </ul>
+                </li>
 
                 <!-- start: USER DROPDOWN -->
                 <li class="dropdown current-user">

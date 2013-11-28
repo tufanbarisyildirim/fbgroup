@@ -53,12 +53,16 @@
                     foreach($info['data'] as $group)
                     {
                         if($group['id'] == $this->config->item('group_id'))
-                             return $this->session->set_userdata('is_group_member',true);
-                           
+                            return $this->session->set_userdata('is_group_member',true);
+
                     }
-                    
+
                     die("Sorry. You are not a member of our facebook group. Bye.");
                 }
+
+
+                //get to-do list or notifications.
+
             }
 
         }
@@ -121,6 +125,11 @@
             $data['controller'] = &$this;
             $data['random_word'] = $this->vocabulary_model->get_random();
 
+            if($this->is_logged_in())
+            {
+                if($this->current_user->is_student)
+                    $data['todolist'] = $this->quiz_model->get_non_markeds($this->current_user->user_id);
+            }
 
 
             return array_merge($data,$controller_data);
