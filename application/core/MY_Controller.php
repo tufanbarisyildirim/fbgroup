@@ -95,13 +95,21 @@
 
         public function check_admin()
         {
-            if($this->current_user->user_id != '680557739')
+            if(!$this->current_user->is_admin)
             {      
                 redirect(site_url('home'));
                 die();
             }
         }
 
+        public function check_moderator()
+        {
+            if(!$this->current_user->is_moderator)
+            {      
+                redirect(site_url('home'));
+                die();
+            }
+        }
 
         public function header()
         {

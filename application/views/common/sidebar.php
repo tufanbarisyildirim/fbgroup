@@ -148,23 +148,33 @@
                 <span class="selected"></span>
             </a>
         </li>
-        <?php if($current_user->user_id == '680557739'):?>
+        <?php if($current_user->is_moderator):?>
             <li<?php if($controler_name =='manage'):?> class="active open"<?php endif;?>>
                 <a href="javascript:void(0)"><i class="clip-file"></i>
                     <span class="title"> Management </span><i class="icon-arrow"></i>
                     <span class="selected"></span>
                 </a>
                 <ul class="sub-menu">
-                    <li>
-                        <a href="<?php echo site_url('manage/quizzes'); ?>">
-                            <span class="title">Quizzes</span>
-                        </a>
-                    </li>
-                   <li>
-                        <a href="<?php echo site_url('manage/badges'); ?>">
-                            <span class="title">Badges</span>
-                        </a>
-                    </li>
+                    <?php if($current_user->is_admin):?>
+                        <li>
+                            <a href="<?php echo site_url('manage/quizzes'); ?>">
+                                <span class="title">Quizzes</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo site_url('manage/badges'); ?>">
+                                <span class="title">Badges</span>
+                            </a>
+                        </li>
+                        <?php endif; ?>
+
+                    <?php if($current_user->is_moderator):?>
+                        <li<?php if($method_name =='absentings'):?> class="active open"<?php endif;?>>
+                            <a href="<?php echo site_url('manage/absentings'); ?>">
+                                <span class="title">Absentings</span>
+                            </a>
+                        </li>
+                        <?php endif;?>
                 </ul>
             </li> 
             <?php endif;?>  
