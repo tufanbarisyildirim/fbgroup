@@ -47,18 +47,6 @@
             return $print;
         }
 
-        public function print_all_bages()
-        {
-            $badges =  Badge_model::get_user_badges($this->user_id);
-            $print = '';
-            foreach($badges as $badge)
-            {
-                $print .='<span class="badge badge-'.$badge->badge_class.'">'.$badge->badge_name.'</span>&nbsp;';
-            }
-
-            return $print;
-        }
-
         public function print_all_badges()
         {
             $badges =  Badge_model::get_user_badges($this->user_id);
@@ -185,41 +173,43 @@
 
         public function is_admin()
         {
-            return $this->user_id == '680557739';
+            return $this->has_badge('Administrator');
         }
 
         public function is_student()
         {
-            $badges = Badge_model::get_user_badges($this->user_id,'role');
-            foreach($badges as $badge)
-                if($badge->badge_name =='Student')
-                    return true;
-
-                return false;
+            return $this->is_admin() || $this->has_badge('Student');
         }    
 
         public function is_teacher()
         {
-            if($this->is_admin())
-                return true;
-
-            $badges = Badge_model::get_user_badges($this->user_id,'role');
-            foreach($badges as $badge)
-                if($badge->badge_name =='Teacher')
-                    return true;
-
-                return false;
+            return $this->is_admin() || $this->has_badge('Teacher');
         }   
 
         public function is_guest()
         {
-            $badges = Badge_model::get_user_badges($this->user_id,'role');
-            foreach($badges as $badge)
-                if($badge->badge_name =='Guest')
-                    return true;
-
-                return false;
+            return $this->is_admin() || $this->has_badge('Guest');
         }  
+
+        public function is_moderator()
+        {
+            return $this->is_admin() || $this->has_badge('Moderator');
+        }
+
+        private  $user_badges = null;
+        public function has_badge($badge_name)
+        {
+            if($this->user_badges == null)
+                $this->user_badges = Badge_model::get_user_badges($this->user_id);
+
+            foreach($this->user_badges as $badge)
+            {
+                if($badge->badge_name == $badge_name)
+                    return true;
+            }   
+
+            return false;
+        }
 
         public function __get($var)
         {
