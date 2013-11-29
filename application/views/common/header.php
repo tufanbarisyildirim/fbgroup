@@ -99,7 +99,7 @@
                     </a>
                     <ul class="dropdown-menu todo">
                         <li>
-                            <span class="dropdown-menu-title"> You have <?php if(count($todolist)): ?><?php echo count($todolist)?><?php else:?>no<?php endif;?> pending tasks</span>
+                            <span class="dropdown-menu-title"> You have <?php if(count($todolist)): ?><?php echo count($todolist)?><?php else:?>no<?php endif;?> pending <?php echo count($todolist) > 1 ? "tasks" : "task";?></span>
                         </li>
                         <li>
                             <div class="drop-down-wrapper">
