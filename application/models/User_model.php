@@ -59,7 +59,6 @@
             return $print;
         }
 
-
         public static function by_id($user_id)
         {     
             if(isset(self::$userCache[$user_id]))
@@ -80,7 +79,6 @@
 
             return null;
         }
-
 
         public function set_fb_access_token($token,$user_id = null)
         {
@@ -131,7 +129,6 @@
             }
 
         }
-
 
         public function delete($user_id = null)
         {
