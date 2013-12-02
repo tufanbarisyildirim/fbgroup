@@ -166,6 +166,11 @@
                                 <span class="title">Badges</span>
                             </a>
                         </li>
+                         <li>
+                            <a href="<?php echo site_url('manage/lessons'); ?>">
+                                <span class="title">Lessons</span>
+                            </a>
+                        </li>
                         <?php endif; ?>
 
                     <?php if($current_user->is_moderator):?>

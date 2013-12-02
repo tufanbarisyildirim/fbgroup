@@ -40,6 +40,7 @@
             $this->load->model('badge_model');
             $this->load->model('blog_model');
             $this->load->model('quiz_model');
+            $this->load->model('lesson_model');
 
             $this->load->helper('url');
 

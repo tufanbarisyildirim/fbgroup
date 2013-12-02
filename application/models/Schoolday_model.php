@@ -1,5 +1,5 @@
 <?php
-    class Lessoday_model extends MY_Model
+    class Schoolday_model extends MY_Model
     {
         public function __construct($result = null)
         {

@@ -21,6 +21,14 @@
             $this->quiz_model->delete($quiz_id);
             redirect($_SERVER['HTTP_REFERER']);
         }
+        
+         public function delete_lesson($lesson_id)
+        {
+            $this->check_admin();
+
+            $this->lesson_model->delete($lesson_id);
+            redirect($_SERVER['HTTP_REFERER']);
+        }
 
         public function quizzes($quiz_id = null)
         {
@@ -31,7 +39,19 @@
                 $this->quiz_model->add($_POST['quiz_name'],$_POST['quiz_date'],$_POST['track_id']);
 
             $data['quizzes'] = $this->quiz_model->getAll();
-            $this->load->view('manage/quizzes',$this->common_data($data));
+            $this->load->view('manage/quizzes',$data);
+        }
+        
+        public function lessons($quiz_id = null)
+        {
+
+            $this->check_admin();
+
+            if($_POST)
+                $this->lesson_model->add($_POST['lesson_name']);
+
+            $data['lessons'] = $this->lesson_model->get_all();
+            $this->load->view('manage/lessons',$data);
         }
 
         public function badges()
