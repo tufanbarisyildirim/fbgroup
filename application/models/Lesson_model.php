@@ -11,9 +11,14 @@
             $lessons = array();
             foreach($this->db->get('lessons')->result() as $lesson)
                 $lessons[] = new Lesson_model($lesson);
-               
+
 
             return $lessons;
+        }
+        
+        public static function by_id($id)
+        {
+            return new Lesson_model(get_instance()->db->get_where('lessons',array('lesson_id' => $id))->result()[0]);
         }
 
         public function add($lesson_name)

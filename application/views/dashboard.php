@@ -95,15 +95,16 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <i class="icon-question-sign"></i>
-                                    Summary
+                                    Your Track <?php echo $track_id; ?> Summary
                                 </div>
                                 <div class="panel-body">
                                     <table class="table table-bordered table-condensed">
-                                        <tr><th>Name</th><th>Max</th><th>Min</th><th>Avg</th></tr>
-                                        <?php $score = 0; foreach($quiz_scores as $quiz): $score += $quiz->average; ?>
-                                            <tr><td><?php echo $quiz->quiz_name ?></td><td><?php echo $quiz->max_score; ?></td><td><?php echo $quiz->min_score; ?></td><td style="text-align: right"><?php echo number_format($quiz->average,2); ?></td></tr>
+                                        <tr><th>Exam / Lesson</th><th>Weight</th><th>Average</th></tr>
+                                        <?php $point = 0; foreach($quiz_scores as $quiz): $point += $quiz->class_avg / 100 *$quiz->quiz_weight;  ?>
+                                            <tr><td><?php echo $quiz->lesson_name ?></td><td>%<?php echo $quiz->quiz_weight; ?></td><td style="text-align: right"><?php echo number_format($quiz->class_avg,2); ?></td></tr>
                                             <?php endforeach;?>
-                                            <tr><th>General Average</th><th colspan="3" style="text-align: right;"><?php echo number_format($score / count($quiz_scores),2) ?></th></tr>
+                                            <tr><td>Teacher Note</td><td>%10</td><td>100  :)</td></tr>
+                                            <tr><th>General Average</th><th colspan="3" style="text-align: right;"><?php echo number_format($point + 10,2) ?></th></tr>
                                     </table>
                                 </div>
                             </div> 

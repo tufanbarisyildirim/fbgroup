@@ -29,14 +29,13 @@
             </div>
             <!-- end: PAGE TITLE & BREADCRUMB -->
         </div>
-    </div>
-
+    </div>                                   
     <div class="row">
         <div class="col-sm-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <i class="icon-external-link-sign"></i>
-                   Add a Lesson
+                    Add a Lesson
                 </div>
                 <div class="panel-body">
                     <form role="form" class="form-horizontal" method="post">

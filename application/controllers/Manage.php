@@ -36,9 +36,11 @@
             $this->check_admin();
 
             if($_POST)
-                $this->quiz_model->add($_POST['quiz_name'],$_POST['quiz_date'],$_POST['track_id']);
+                $this->quiz_model->add($_POST['quiz_name'],$_POST['quiz_date'],$_POST['track_id'],$_POST['quiz_weight'],$_POST['lesson_id']);
 
             $data['quizzes'] = $this->quiz_model->getAll();
+            $data['lessons'] = $this->lesson_model->get_all();
+            
             $this->load->view('manage/quizzes',$data);
         }
         

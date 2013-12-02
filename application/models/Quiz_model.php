@@ -21,13 +21,13 @@
             return $quizzes;               
         }
 
-        public function add($quiz_name,$date,$track_id,$weight,$lesson_id)
+        public function add($quiz_name,$date,$track_id,$quiz_weight,$lesson_id)
         {
             $this->db->insert('quizzes',array(
                 'quiz_name' => $quiz_name,
                 'quiz_date' => $date,
                 'track_id' => $track_id,
-                'weight' => $weight,
+                'quiz_weight' => $quiz_weight,
                 'lesson_id' => $lesson_id
                 ),true);
 
@@ -45,8 +45,8 @@
 
             return $quizzes;    
         }
-        
-        
+
+
         public function delete($quiz_id)
         {
             return $this->db->query("DELETE FROM quizzes WHERE quiz_id = {$quiz_id} AND NOT EXISTS (SELECT 1 FROM quiz_scores WHERE quizzes.quiz_id = quiz_scores.quiz_id)");                        
@@ -59,5 +59,14 @@
                 'quiz_id' => $quiz_id,
                 'score' => $score
                 ),true);
-        }                                     
+        } 
+
+
+        public function __get($var)
+        {
+            if($var == 'lesson')
+                return $this->lesson = Lesson_model::by_id($this->lesson_id);
+
+            return parent::__get($var);
+        }                                    
 }

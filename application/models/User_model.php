@@ -193,6 +193,24 @@
             return $this->is_admin() || $this->has_badge('Moderator');
         }
 
+        public static function getGeneralAverage($user_id = null,$track_id = null)
+        {
+            if($user_id == null)
+                $user_id = $this->user_id;
+
+            if($track_id == null)
+                $track_id = get_instance()->config->item('active_track');
+
+            return get_instance()->db->query("SELECT (SUM(point) + 10) as total FROM (
+                SELECT q.lesson_id, AVG( qs.score ) , MAX( q.quiz_weight ) , AVG( qs.score ) /100 * MAX( q.quiz_weight ) POINT
+                FROM quiz_scores qs
+                JOIN quizzes q ON q.quiz_id = qs.quiz_id
+                WHERE user_id = 680557739
+                AND q.track_id = {$track_id}
+                GROUP BY q.lesson_id ) ASA
+                ")->result()[0]['total'];
+        }
+
         private  $user_badges = null;
         public function has_badge($badge_name)
         {

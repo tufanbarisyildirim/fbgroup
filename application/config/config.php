@@ -441,7 +441,7 @@ $config['facebook'] = array(
 
 $config['group_id']         = 'GROUP_ID';
 $config['access_token']     = 'GROUP_ADMIN_ACCESS_TOKEN'; //(optional) this token will be used to find all users in the group and get information about their without their access token
-
+$config['active_track']         = '1';
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */
