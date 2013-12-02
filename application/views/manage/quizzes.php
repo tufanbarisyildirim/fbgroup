@@ -67,9 +67,7 @@
             </div>
 
         </div>
-    </div>
-
-
+    </div>    
     <div class="row">
         <div class="col-sm-12">
             <table class="table table-bordered">
@@ -83,6 +81,5 @@
         </div>
     </div>
 
-
 </div>
-        <?php echo get_instance()->footer(); ?>
+<?php echo get_instance()->footer(); ?>
