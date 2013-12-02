@@ -50,7 +50,14 @@
 
                 if($this->session->userdata('is_group_member') == null)
                 {
-                    $info = $this->facebook->api( '/'.$this->current_user->fb_username.'/groups', 'GET');
+                    $info = $this->facebook->api( '/'.$this->current_user->fb_username.'/groups', 'GET',array('access_token' => $this->facebook->getAccessToken()));
+                    if(!$info['data'])
+                    {
+                        $login_params = array('scope' =>'email,user_groups,user_games_activity,friends_groups,publish_stream');
+                        $login_url = $this->facebook->getLoginUrl($login_params);
+                        redirect($login_url);
+                        die();
+                    }
                     foreach($info['data'] as $group)
                     {
                         if($group['id'] == $this->config->item('group_id'))

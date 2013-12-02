@@ -18,7 +18,8 @@
         
         public static function by_id($id)
         {
-            return new Lesson_model(get_instance()->db->get_where('lessons',array('lesson_id' => $id))->result()[0]);
+            $results = get_instance()->db->get_where('lessons',array('lesson_id' => $id))->result();
+            return new Lesson_model($results[0]);
         }
 
         public function add($lesson_name)

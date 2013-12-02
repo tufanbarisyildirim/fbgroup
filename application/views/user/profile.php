@@ -93,7 +93,7 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="panel_tab2_example1">
-                        <?php echo $user->herhis; ?> badges : <?php echo $user->print_all_bages(); ?>
+                        <?php echo $user->herhis; ?> badges : <?php echo $user->print_all_badges(); ?>
                         <hr />
                         <?php echo $user->user_about; ?>
                         <?php if($current_user->user_id == $user->user_id):?>
