@@ -7,6 +7,7 @@ Google Calendar
 Vocabulary
 Quesstions & Answer
 Blogs
+Quizzes (Quiz weight, class average etc.)
 Top5 (Quiz results, blogpost count, like count etc.)
 Documents uploaded to facebook group.
 

@@ -13,4 +13,3 @@ handlers:
 
 - url: /.*
   script: index.php
-  
