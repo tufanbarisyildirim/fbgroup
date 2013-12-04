@@ -28,11 +28,8 @@
                         $user_profile = $this->facebook->api('/me','GET');
                         $user_profile['access_token'] = $this->facebook->getAccessToken();
                         $user = $this->user_model->login_with_facebook($user_profile);
-                        $this->session->set_userdata("user_id",$user_profile['id']);
+                        $this->session->set_userdata("user_id",$user->user_id);
                         
-                        
-
-
                         redirect(site_url('dashboard'));
 
                     } catch(FacebookApiException $e) {

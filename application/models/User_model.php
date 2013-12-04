@@ -100,7 +100,7 @@
             }
             else 
             {
-                $info = $this->facebook->api( '/'.$this->current_user->fb_username.'/groups', 'GET');
+                $info = $this->facebook->api( '/me/groups', 'GET');
                 foreach($info['data'] as $group)
                 {
                     if($group['id'] == $this->config->item('group_id'))
