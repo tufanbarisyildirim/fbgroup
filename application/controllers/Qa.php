@@ -51,6 +51,12 @@
             $data['questions_type'] ='Important';
             $this->load->view('qa/list',$data);
         }
+        
+        public function mark_as_important($question_id)
+        {
+            $this->question_model->set_as_important($question_id);
+            redirect($_SERVER['HTTP_REFERER']);
+        }
 
         public function view($question_id)
         {

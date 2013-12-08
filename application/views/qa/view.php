@@ -37,6 +37,11 @@
             </ol>
             <div class="page-header">
                 <h1><i class="icon-question-sign teal"></i> <small style="color: #000;font-weight: 700"><?php echo $question->question_title; ?></small></h1>
+                <?php if($question->question_important):?>
+                    <span class="badge badge-success pull-right">Important Question</span>
+                <?php elseif($this->current_user->is_teacher):?>
+                <a href="<?php echo site_url('qa/mark_as_important/' . $question->question_id ); ?>" class="badge badge-danger pull-right">Mark as important</a>
+                <?php endif; ?>
             </div>
             <!-- end: PAGE TITLE & BREADCRUMB -->
         </div>
