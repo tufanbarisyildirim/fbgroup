@@ -71,7 +71,7 @@
                 </li>
             </ul>
         </li>
-        <li>  
+        <!--li>  
             <a href="javascript:void(0)"><i class="clip-grid-6"></i>
                 <span class="title"> Tables </span><i class="icon-arrow"></i>
                 <span class="selected"></span>
@@ -112,7 +112,7 @@
 
                 </li>
             </ul>
-        </li>
+        </li-->
         <li<?php if($controler_name =='documents'):?> class="active open"<?php endif;?>>
             <a href="javascript:void(0)"><i class="clip-file"></i>
                 <span class="title"> Documents </span><i class="icon-arrow"></i>
