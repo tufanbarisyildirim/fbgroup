@@ -26,7 +26,11 @@
                 </li>
             </ol>
             <div class="page-header">
+             <?php if($word):?>
+                <h1><?php echo $word; ?> <small>edit the word</small></h1>
+             <?php else:?>
                 <h1>Add a new word <small>help to improve the common knowledge</small></h1>
+                <?php endif;?>
             </div>
             <!-- end: PAGE TITLE & BREADCRUMB -->
         </div>
@@ -40,7 +44,7 @@
                             <label class="control-label">
                                 Word / Expression <span class="symbol required"></span>
                             </label>
-                            <input type="text" placeholder="Word / Expression" class="form-control" id="word" name="word">
+                            <input type="text" placeholder="Word / Expression" value="<?php echo $word; ?>" class="form-control" id="word" name="word">
                         </div>  
                     </div>
                     <div class="col-md-6">
@@ -50,11 +54,11 @@
                             </label>
                             <select name="word_form" class="form-control">
                                 <option>Please Select</option>
-                                <option value="noun">noun</option>
-                                <option value="verb">verb</option>
-                                <option value="adjactive">adjactive</option>
-                                <option value="adverb">adverb</option>
-                                <option value="expression">expression</option>
+                                <option value="noun"<?php if($word_form == 'noun'):?> selected="selected"<?php endif;?>>noun</option>
+                                <option value="verb"<?php if($word_form == 'verb'):?> selected="selected"<?php endif;?>>verb</option>
+                                <option value="adjactive"<?php if($word_form == 'adjactive'):?> selected="selected"<?php endif;?>>adjactive</option>
+                                <option value="adverb"<?php if($word_form == 'adverb'):?> selected="selected"<?php endif;?>>adverb</option>
+                                <option value="expression"<?php if($word_form == 'expression'):?> selected="selected"<?php endif;?>>expression</option>
                             </select>
                         </div>  
                     </div>
@@ -65,7 +69,7 @@
                             <label class="control-label">
                                 Definition <span class="symbol required"></span>
                             </label>
-                            <input type="text" placeholder="Describe the word you want to add." class="form-control" id="word_definition" name="word_definition">
+                            <input type="text" placeholder="Describe the word you want to add." class="form-control" id="word_definition" value="<?php echo $word_definition; ?>" name="word_definition">
                         </div>  
                     </div>
                 </div>
@@ -76,9 +80,15 @@
                         </p>
                     </div>
                     <div class="col-md-4">
+                    <?php if($word):?>
+                         <button class="btn btn-warning btn-block" type="submit">
+                            Save The Word <i class="icon-circle-arrow-right"></i>
+                        </button>
+                    <?php else: ?>
                         <button class="btn btn-primary btn-block" type="submit">
                             Send Word <i class="icon-circle-arrow-right"></i>
                         </button>
+                        <?php endif;?>
                     </div>
                 </div>
             </form>

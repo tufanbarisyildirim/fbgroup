@@ -49,14 +49,14 @@
             </ul>
         </li>
         <li<?php if($controler_name =='blog'):?> class="active open"<?php endif;?>>
-            <a href="javascript:;"><i class="clip-bubble-4"></i>
-                <span class="title"> Blogs </span><i class="icon-arrow"></i>
+            <a href="javascript:;"><i class="clip-pencil-3"></i>
+                <span class="title"> Writings </span><i class="icon-arrow"></i>
                 <span class="selected"></span>
             </a>
             <ul class="sub-menu">
                 <li<?php if($method_name =='all'):?> class="active open"<?php endif;?>>
                     <a href="<?php echo site_url('blog/all'); ?>">
-                        <span class="title"> All Blog Posts </span>
+                        <span class="title"> All Writings </span>
                     </a>
                 </li>
                 <li<?php if($method_name =='write'):?> class="active open"<?php endif;?>>
@@ -66,7 +66,7 @@
                 </li>
                 <li<?php if($method_name =='myblog'):?> class="active open"<?php endif;?>>
                     <a href="<?php echo site_url('blog/myblog'); ?>">
-                        <span class="title"> My Blog </span>
+                        <span class="title"> My Writings </span>
                     </a>
                 </li>
             </ul>

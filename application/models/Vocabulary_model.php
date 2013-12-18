@@ -42,6 +42,16 @@
             return $this->db->insert_id();   
         }
         
+        public function update($word,$word_form,$word_definition,$word_id)
+        {
+            $this->db->update('vocabulary',array(
+            'word' => $word,
+            'form' => $word_form,
+            'definition' => $word_definition 
+            ),array('id' => $word_id));
+            
+        }
+        
         public function set_fb_id($word_id,$fb_id)
         {
             return $this->db->update('vocabulary',array('word_fb_id' => $fb_id),array('id' => $word_id));

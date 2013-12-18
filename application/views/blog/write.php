@@ -22,7 +22,7 @@
                     </a>
                 </li>
                 <li class="active">
-                    Blog
+                    Writing
                 </li>
                 <li class="search-box">
                     <form class="sidebar-search">
@@ -36,7 +36,7 @@
                 </li>
             </ol>
             <div class="page-header">
-                <h1>Blog <small>improve your english writing skill</small></h1>
+                <h1>Writing <small>improve your english writing skill</small></h1>
             </div>
             <!-- end: PAGE TITLE & BREADCRUMB -->
         </div>

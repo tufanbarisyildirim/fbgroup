@@ -37,6 +37,12 @@
         <div class="col-sm-12">
             <p><?php echo $word->definition; ?></p>        
             <a href="javascript:;" class="badge badge-green pull-right" onclick="$('#example_form').toggle('fast')"><i class="icon icon-play-sign"></i>&nbsp; add an example</a>
+            <?php if($word->user_id == $current_user->user_id):?>
+            <a href="<?php echo site_url('vocabulary/add/' . $word->id);?>" class="badge badge-primary pull-right"><i class="icon icon-pencil"></i>&nbsp; edit</a>
+            
+            <?php endif;?>
+            
+            
             <div class="row" id="example_form" style="display:none;">
                 <div class="col-sm-12">
                     <form action="#" method="post" role="form" id="form2">

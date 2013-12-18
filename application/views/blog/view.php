@@ -12,7 +12,7 @@
                     </a>
                 </li>
                 <li class="active">
-                    Blog
+                    Writing
                 </li>
                 <li class="search-box">
                     <form class="sidebar-search">
