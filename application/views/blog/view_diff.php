@@ -31,7 +31,7 @@
             <!-- end: PAGE TITLE & BREADCRUMB -->
         </div>
     </div>
-    <div class="row col-sm-12">
+    <div class="row col-sm-12" style="padding: 90px;">
     
   <?php foreach($diffs as $diff) echo $diff ."<hr />"; ?>
     </div>

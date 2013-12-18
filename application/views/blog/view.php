@@ -34,7 +34,9 @@
             <!-- end: PAGE TITLE & BREADCRUMB -->
         </div>
     </div>
-    <div class="row col-sm-12">
+    <div class="row col-sm-12" style="padding: 100px;">
+        <h5><b><?php echo $post->post_title; ?></b></h5>
+        <br>
         <?php echo nl2br( $post->post_content ); ?>
     </div>
     <?php  if(isset($revisions) && count($revisions) > 1): ?>
@@ -53,8 +55,8 @@
                                     <tr class="warning"><td><span class="badge badge-warning">original</span>&nbsp;<a href="<?php echo site_url('blog/view/' . $post->post_id); ?>"><?php echo $post->post_title ?></a></td><td><?php echo $post->user->profile_link_with_avatar(); ?></td><td></td></tr>
                                     <?php else:?>
                                     <tr<?php if($post->the_best):?> class="success"<?php endif;?>><td><a href="<?php echo site_url('blog/view/' . $post->post_id); ?>"><?php echo $post->post_title ?></a></td><td><?php echo $post->user->profile_link_with_avatar(); ?></td><td><a class="tooltips" data-placement="top" data-original-title="View differences between this and and <?php echo $prev_post->post_type =='original' ? 'oringial version' :  $prev_post->user->user_name . '\'s revision'; ?>"  href="<?php echo site_url('blog/view_diff/' . $post->post_id); ?>">compare</a></td><?php if($current_user->is_teacher): ?><td><?php if($post->the_best):?><span class="badge badge-success tooltips" data-placement="top" data-original-title="This revision is marked as the best by Aynur Yılmazer">The best.</span><?php else: ?><a class="tooltips" data-placement="top" data-original-title="Mark as the best revision"  href="<?php echo site_url('blog/mark_as_best/' . $post->post_id)?>"><i class="icon icon-ok-sign"></i></a><?php endif;?></td><?php endif;?></tr>
-                                    <?php endif;?>
-                                    
+                                <?php endif;?>
+
                                 <?php $prev_post = $post; endforeach; ?>
                         </tbody>
                     </table>

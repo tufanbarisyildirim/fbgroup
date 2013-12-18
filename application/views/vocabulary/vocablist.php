@@ -72,6 +72,7 @@
     <div class="row">
         <div class="col-sm-12">
             <a href="<?php echo site_url('vocabulary/add');?>" class="btn btn-success pull-right"><i class="icon icon-plus-sign"></i>&nbsp;Add a new</a>
+            <div style="clear: both;"></div>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <i class="icon-external-link-sign"></i>

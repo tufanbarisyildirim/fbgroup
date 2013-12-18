@@ -84,8 +84,8 @@
             $html .='</thead>';
             $html .='<tbody>';
             $html .='<tr>';
-            $html .='<td> '.$last_revision->post_content.'</td>';
-            $html .='<td>' .  htmlDiff($last_revision->post_content,$revision->post_content) . '</td>';
+            $html .='<td style="padding:30px"> '.$last_revision->post_content.'</td>';
+            $html .='<td style="padding:30px">' .  htmlDiff($last_revision->post_content,$revision->post_content) . '</td>';
             $html .='</tr>';   
             $html .='</tbody>';        
             $html .='</table>';
