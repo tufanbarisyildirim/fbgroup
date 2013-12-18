@@ -33,9 +33,9 @@
         public function add($word,$form,$definition,$user_id)
         {
             $this->db->insert('vocabulary',array(
-                'word' => $word,
+                'word' => strtolower( $word ),
                 'form' => $form,
-                'definition' => $definition,
+                'definition' => strtolower( $definition ),
                 'user_id' => $user_id
                 ),true);
 
@@ -45,9 +45,9 @@
         public function update($word,$word_form,$word_definition,$word_id)
         {
             $this->db->update('vocabulary',array(
-            'word' => $word,
+            'word' => strtolower($word),
             'form' => $word_form,
-            'definition' => $word_definition 
+            'definition' => strtolower($word_definition) 
             ),array('id' => $word_id));
             
         }

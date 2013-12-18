@@ -33,6 +33,8 @@
     <!-- end: MAIN CSS -->
     <!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
     <link rel="stylesheet" href="<?php echo assets_url(); ?>/plugins/fullcalendar/fullcalendar/fullcalendar.css">
+     <link rel="stylesheet" href="<?php echo assets_url(); ?>/plugins/DataTables/media/css/DT_bootstrap.css">
+     <link rel="stylesheet" type="text/css" href="<?php echo assets_url(); ?>/plugins/select2/select2.css" />
     <!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
 
 
@@ -56,6 +58,9 @@
     <script src="<?php echo assets_url(); ?>/plugins/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
     <script src="<?php echo assets_url(); ?>/plugins/fullcalendar/fullcalendar/fullcalendar.js"></script>
     <script src="<?php echo assets_url(); ?>/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="<?php echo assets_url(); ?>/plugins/select2/select2.min.js"></script>
+    <script type="text/javascript" src="<?php echo assets_url(); ?>/plugins/DataTables/media/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="<?php echo assets_url(); ?>/plugins/DataTables/media/js/DT_bootstrap.js"></script>
     <script src="<?php echo assets_url(); ?>/js/index.js"></script>
     <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
     <script>

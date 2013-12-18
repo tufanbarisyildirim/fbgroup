@@ -29,7 +29,7 @@
                     $post_id = $this->blog_model->add($this->current_user->user_id,$_POST['post_title'],$_POST['post_content']);
 
                     $a = $this->facebook->api('/'.$this->config->item('group_id').'/feed','POST',array(    
-                        'message' => 'Hello fridends! I have just written a blogpost. Do you want to read it and write some comments?',
+                        'message' => 'Hello fridends! I have just posts a writing. Do you want to read it and write some comments?',
                         'name' => $_POST['post_title'],
                         'caption' =>$_POST['post_title'],
                         'description' => $_POST['post_content'],
