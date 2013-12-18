@@ -61,17 +61,36 @@
             $data['last_revision'] = $last_revision = new Blog_model($posts[0]);
 
 
-            $this->load->library('Diff',array($last_revision->get_lines_with_title(),$revision->get_lines_with_title(),array()),'diff');
+            /*  $this->load->library('Diff',array($last_revision->get_lines_with_title(),$revision->get_lines_with_title(),array()),'diff');
             // Generate a side by side diff
             require_once APPPATH . '/libraries/Diff/Renderer/Html/SideBySide.php';
             require_once APPPATH . '/libraries/Diff/Renderer/Html/Inline.php';
             $renderer = new Diff_Renderer_Html_SideBySide($last_revision->user->profile_link_with_avatar() .' <small>('.$last_revision->post_date.')</small>',$revision->user->profile_link_with_avatar().' <small>('.$revision->post_date.')</small>');
 
-            $data['diffs'][] =  $this->diff->Render($renderer);
+            $data['diffs'][] =  $this->diff->Render($renderer);    */
 
             /*
             $this->load->library('FineDiff',array($last_revision->post_content,$revision->post_content,null),'finediff');
             $data['diff']  = $this->finediff->renderDiffToHTML();     */
+
+            $this->load->helper('string');
+
+            $html = '<table>';
+            $html .='<thead>';
+            $html .='<tr>';
+            $html .='<th>'.$last_revision->user->profile_link_with_avatar() .' <small>('.$last_revision->post_date.')</small>' .'</th>';
+            $html .='<th>'.$revision->user->profile_link_with_avatar().' <small>('.$revision->post_date.')</small>' .'</th>';
+            $html .='</tr>';
+            $html .='</thead>';
+            $html .='<tbody>';
+            $html .='<tr>';
+            $html .='<td> '.$revision->post_content.'</td>';
+            $html .='<td>' .  htmlDiff($revision->post_content,$last_revision->post_content) . '</td>';
+            $html .='</tr>';   
+            $html .='</tbody>';        
+            $html .='</table>';
+
+            $data['diffs'][] = $html;  
 
             $this->load->view('blog/view_diff',$data);
 
@@ -115,7 +134,7 @@
             {
                 $this->blog_model->delete($post_id);
             }
-            
+
             redirect(site_url('blog'));
         }
 
@@ -134,14 +153,14 @@
 
             $this->load->view('blog/view',$data);
         }
-        
+
         public function mark_as_best($revision_id)
         {
             if($this->current_user->is_admin || $this->current_user->is_teacher())
             {
                 $this->blog_model->mark_as_the_best($revision_id);
             }
-            
+
             redirect($_SERVER['HTTP_REFERER']);
             die();
         }

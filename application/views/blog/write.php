@@ -46,7 +46,6 @@
         <h2><i class="clip-bubble-3"></i>&nbsp;What's Going On These Days?</h2>
         <p>
             Share with your friends, discuss on your writing or the topic you wrote.
-
         </p>
         <p class="alert alert-success"><b>"Mistakes are for learning, not repeating".</b><br /> 
             When learning a language, don't worry about making mistakes - just get out there and practice!</p>
