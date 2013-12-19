@@ -35,9 +35,9 @@
         }
 
 
-        public function get_non_markeds($user_id)
+        public function get_non_markeds($user_id,$add = null)
         {
-            $non_markeds = $this->db->query("SELECT q.*  FROM quizzes q WHERE NOT EXISTS ( SELECT 1 FROM quiz_scores qs WHERE qs.quiz_id = q.quiz_id AND  qs.user_id = ". $user_id." )")->result();
+            $non_markeds = $this->db->query("SELECT q.*  FROM quizzes q WHERE NOT EXISTS ( SELECT 1 FROM quiz_scores qs WHERE qs.quiz_id = q.quiz_id AND  qs.user_id = ". $user_id." )" . ($add ? ' OR q.quiz_id IN('.implode(',',$add).')' : ''))->result();
             $quizzes = array();
 
             foreach($non_markeds as $quiz)
@@ -54,11 +54,13 @@
 
         public function save_mark($user_id,$quiz_id,$score)
         {
-            return $this->db->insert('quiz_scores',array(
+            $this->db->query("INSERT INTO quiz_scores (user_id,quiz_id,score) VALUES({$user_id},{$quiz_id},{$score}) ON DUPLICATE KEY UPDATE score=" . $score);
+            
+            /*return $this->db->insert('quiz_scores',array(
                 'user_id' => $user_id,
                 'quiz_id' => $quiz_id,
                 'score' => $score
-                ),true);
+                ),true);  */
         } 
 
 

@@ -97,7 +97,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <?php foreach($panels as $track_id => $panel):?>
                             <div class="row">
                                 <div class="col-md-12">      
@@ -108,9 +107,11 @@
                                         </div>
                                         <div class="panel-body">    
                                             <table class="table table-bordered table-condensed">
-                                                <tr><th>Quiz Name</th><th>Quiz Date</th><th>Score</th></tr>
+                                                <tr><th>Quiz Name</th><th>Quiz Date</th><th>Score</th><th>Action</th></tr>
                                                 <?php foreach($panel as $quiz): ?>  
-                                                    <tr><td><?php echo $quiz['quiz_name']?></td><td><?php echo $quiz['quiz_date']?></td><td><?php echo $quiz['score']; ?></td></tr>
+                                                    <tr><td><?php echo $quiz['quiz_name']?></td><td><?php echo $quiz['quiz_date']?></td><td><?php echo $quiz['score']; ?></td>
+                                                    <td><a href="<?php echo site_url('account/me/marks/' . $quiz['quiz_id']); ?>">Edit</a></td>
+                                                    </tr>
                                                     <?php endforeach;?>
                                             </table>   
 

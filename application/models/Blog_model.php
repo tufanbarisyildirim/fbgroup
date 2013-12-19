@@ -17,6 +17,42 @@
             return $posts;
         }
 
+        public function get_by_permitted_user($permitted_user_id)
+        {
+            $posts = array();
+
+            /* $_posts = $this
+            ->db
+            ->order_by('post_date','DESC')
+            ->where('is_private',0)
+            ->where('post_type', 'post')
+            ->or_where('user_id', $permitted_user_id)
+            ->or_where('EXISTS','(SELECT 1 FROM blog_privacy WHERE blog_privacy.post_id = blogs.post_id AND blog_privacy.user_id = ' . $permitted_user_id . ')',false)
+            ->get('blogs')
+            ->result();*/
+
+            $_posts = $this
+            ->db
+            ->query("
+                SELECT * 
+                FROM 
+                blogs b 
+                WHERE b.post_type = 'post' AND 
+                (
+                b.is_private = 0 
+                OR b.user_id = {$permitted_user_id}
+                OR EXISTS (SELECT 1 FROM blog_privacy  bp WHERE bp.post_id = b.post_id AND bp.user_id =  {$permitted_user_id} )
+                )
+                ORDER BY b.post_date DESC
+                ")
+            ->result();
+
+            foreach($_posts as $post)
+                $posts[] = new Blog_model( $post );
+
+            return $posts;
+        }
+
         public function get_by_user_id($user_id)
         {
             $posts = array();
@@ -42,24 +78,25 @@
             $this->update(array('post_fb_id' => $fb_id),$post_id);
         }
 
-        public function add($user_id,$title,$content)
+        public function add($user_id,$title,$content,$private = false)
         {
             $this->db->insert('blogs',array(
                 'user_id' => $user_id,
                 'post_title' =>$title,
                 'post_content' =>$content,
+                'is_private' => $private ? 1 : 0
                 ),true);
 
             $inserted_id =  $this->db->insert_id();
 
             // add a first revision
 
-            $this->add_revision($user_id,$title,$content,$inserted_id,'original');
+            $this->add_revision($user_id,$title,$content,$inserted_id,'original',$private);
 
             return $inserted_id;
         }
 
-        public function add_revision($user_id,$title,$content,$parent_id,$post_type = 'revision')
+        public function add_revision($user_id,$title,$content,$parent_id,$post_type = 'revision',$private = false)
         {
             $this->db->insert(
                 'blogs',array(
@@ -67,7 +104,8 @@
                     'post_title' =>$title,
                     'post_content' =>$content,
                     'post_type' => $post_type,
-                    'parent_id' =>  $parent_id
+                    'parent_id' =>  $parent_id,
+                    'is_private' => $private ? 1 : 0
                 ),true);
 
             $revision_id = $this->db->insert_id();
@@ -107,31 +145,31 @@
 
             return $this->db->update('blogs',$data,array('post_id' => $post_id));
         }
-        
-         public function mark_as_the_best($revision_id = null)
+
+        public function mark_as_the_best($revision_id = null)
         {
             if($revision_id == null)
                 $revision_id = $this->post_id;
-                
-                $revision = $this->get_by_id($revision_id);
-                
-                $this->db->update('blogs',array('the_best' => 0),array('parent_id' => $revision->parent_id));
-                return $this->db->update('blogs',array('the_best' => 1),array('post_id' => $revision_id));
+
+            $revision = $this->get_by_id($revision_id);
+
+            $this->db->update('blogs',array('the_best' => 0),array('parent_id' => $revision->parent_id));
+            return $this->db->update('blogs',array('the_best' => 1),array('post_id' => $revision_id));
         }      
-        
+
         public function delete($post_id)
         {
             $this->db->delete('blogs',array('post_id' => $post_id));
             $this->db->delete('blogs',array('parent_id' => $post_id));
-            
+
             return true;
         }
-        
+
         public function get_lines()
         {
             return explode("\n",$this->post_content);
         }
-        
+
         public function get_lines_with_title()
         {
             return array_merge(array($this->post_title),$this->get_lines());

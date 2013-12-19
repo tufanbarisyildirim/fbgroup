@@ -13,17 +13,21 @@
             $this->me();
         }  
 
-        public function me($tab = null)
+        public function me($tab = null,$quiz_id = null)
         {
             $data = array();
             $data['tab'] = $tab;
-            
+
             $data['user'] = &$this->current_user;
 
             if(isset($_POST['save_result']))
             {
                 $this->quiz_model->save_mark($this->current_user->user_id,$_POST['quiz_id'],$_POST['exam_result']);
-                redirect($_SERVER['HTTP_REFERER'] ."/marks");
+                if(strpos($_SERVER['HTTP_REFERER'],"/marks"))
+                    redirect($_SERVER['HTTP_REFERER']);
+                else
+                    redirect($_SERVER['HTTP_REFERER'],"/marks");                                           
+
             }
 
             $panels = array(); //horrays  
@@ -39,9 +43,9 @@
             $data['panels'] = $panels;   
 
 
-            $non_markeds = $this->quiz_model->get_non_markeds($this->current_user->user_id);
+            $non_markeds = $this->quiz_model->get_non_markeds($this->current_user->user_id,$quiz_id ? array($quiz_id) : null);
             $data['tracks'] = array();
-            
+
             foreach($non_markeds as $q)
             {
                 if(!isset($data['tracks'][$q->track_id]))

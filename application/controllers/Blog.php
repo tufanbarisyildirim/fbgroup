@@ -14,7 +14,7 @@
         public function all()
         {
             $data = array();
-            $data['posts'] = $this->blog_model->get_all();
+            $data['posts'] = $this->blog_model->get_by_permitted_user($this->current_user->user_id);
             $this->load->view("blog/all",$data);
         }
 
@@ -24,32 +24,46 @@
 
             if(isset($_POST['save_post']))
             {
-                if($parent_id == null)
+                if($parent_id == null )
                 {
-                    $post_id = $this->blog_model->add($this->current_user->user_id,$_POST['post_title'],$_POST['post_content']);
+                    $post_id = $this->blog_model->add($this->current_user->user_id,$_POST['post_title'],$_POST['post_content'],isset($_POST['permitted_users']) && $_POST['permitted_users']);
 
-                    $a = $this->facebook->api('/'.$this->config->item('group_id').'/feed','POST',array(    
-                        'message' => 'Hello fridends! I have just posts a writing. Do you want to read it and write some comments?',
-                        'name' => $_POST['post_title'],
-                        'caption' =>$_POST['post_title'],
-                        'description' => $_POST['post_content'],
-                        'link' =>   site_url('blog/view/' . $post_id)
-                    ));
+                    if(!isset($_POST['permitted_users']) || !$_POST['permitted_users'] )
+                    {
+                        $a = $this->facebook->api('/'.$this->config->item('group_id').'/feed','POST',array(    
+                            'message' => 'Hello fridends! I have just posts a writing. Do you want to read it and write some comments?',
+                            'name' => $_POST['post_title'],
+                            'caption' =>$_POST['post_title'],
+                            'description' => $_POST['post_content'],
+                            'link' =>   site_url('blog/view/' . $post_id)
+                        ));
 
-                    $this->blog_model->set_fb_id($a['id'],$post_id);
-
+                        $this->blog_model->set_fb_id($a['id'],$post_id);
+                    }
+                    else
+                    {
+                       foreach($_POST['permitted_users'] as $permitted_user_id)
+                       {
+                           $this->db->query("INSERT INTO blog_privacy (post_id,user_id) VALUES ({$post_id},{$permitted_user_id})");
+                       } 
+                    }
+                    
                     redirect(site_url('blog/view/' . $post_id));
                     die();
                 }
                 else{
                     $this->blog_model->add_revision($this->current_user->user_id,$_POST['post_title'],$_POST['post_content'],$parent_id);
                     redirect(site_url('blog/view/' . $parent_id));
-                }
-
+                    die();
+                }  
             }
 
             if($parent_id != null)
                 $data['post'] = $this->blog_model->get_by_id($parent_id);
+            else
+            {
+                $data['allusers'] =  $allusers = $this->user_model->get_all();
+            }
 
             $this->load->view("blog/write",$data);
         }
@@ -140,15 +154,20 @@
 
         public function view($post_id)
         {
+            //change permissions
+
             $data['post'] = $post = $this->blog_model->get_by_id($post_id);
+
+            if($_POST && isset($_POST['save_permissions']) && $post->user_id == $this->current_user->user_id)
+            {
+                //yes, this user can change permissions of a post.
+            }
+
+
 
             if($post->post_type == 'post')
             {
                 $data['revisions'] = $this->blog_model->get_revisions($post_id); 
-            }
-            else if($post->post_type == 'revision')
-            {
-                // find the first revision and compare them yeah!
             }
 
             $this->load->view('blog/view',$data);

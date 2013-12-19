@@ -6,7 +6,10 @@
 <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
 <script>
     jQuery(document).ready(function() {
-        // FormValidator.init();
+         $(".search-select").select2({
+            placeholder: "Select permitted users",
+            allowClear: true
+        });
     });
 </script>
 <div class="container">
@@ -41,8 +44,7 @@
             <!-- end: PAGE TITLE & BREADCRUMB -->
         </div>
     </div>
-    <div class="row col-sm-12">
-
+    <div class="row col-sm-12">  
         <h2><i class="clip-bubble-3"></i>&nbsp;What's Going On These Days?</h2>
         <p>
             Share with your friends, discuss on your writing or the topic you wrote.
@@ -51,7 +53,7 @@
             When learning a language, don't worry about making mistakes - just get out there and practice!</p>
         <hr>
         <form action="#" method="post" role="form" id="form2">
-            <div class="row">
+            <div class="form-group">
                 <div class="col-md-12">
                     <div class="form-group">
                         <label class="control-label">
@@ -61,7 +63,7 @@
                     </div>  
                 </div>
             </div>
-            <div class="row">
+            <div class="form-group">
                 <div class="col-md-12">
                     <div class="form-group">
                         <label class="control-label">
@@ -72,7 +74,18 @@
                     </div>
                 </div>
             </div>
-
+            <?php if(isset($allusers) && $allusers):?>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label>Is this a private writing for someones? Choose them! (empty means public)</label>
+                    <select name="permitted_users[]" multiple="multiple" id="form-field-select-2" class="form-control search-select">
+                        <?php foreach($allusers as $user): ?>
+                        <option value="<?php echo $user->user_id; ?>"><?php echo $user->full_name; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+            </div>
+            <?php endif;?>
             <div class="row">
                 <div class="col-md-8">
                     <p>
