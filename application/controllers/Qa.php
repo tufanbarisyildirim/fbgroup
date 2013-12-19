@@ -1,88 +1,88 @@
 <?php
 
-    class Qa extends MY_Controller
-    {
-        public function __construct()
-        {
-            parent::__construct();
-            $this->force_to_login();
-            $this->load->model('question_model');
-            $this->load->model('answer_model');
-        }
+	class Qa extends MY_Controller
+	{
+		public function __construct()
+		{
+			parent::__construct();
+			$this->force_to_login();
+			$this->load->model('question_model');
+			$this->load->model('answer_model');
+		}
 
-        public function ask()
-        {
-            if(isset($_POST) && $_POST)
-            {
+		public function ask()
+		{
+			if(isset($_POST) && $_POST)
+			{
 
-                $question_id = $this->question_model->ask($this->current_user->user_id,$_POST['question_title'],$_POST['question_detail']);
+				$question_id = $this->question_model->ask($this->current_user->user_id,$_POST['question_title'],$_POST['question_detail']);
 
-                $a = $this->facebook->api('/'.$this->config->item('group_id').'/feed','POST',array(    
-                    'message' => $_POST['question_detail'],
-                    'name' => $_POST['question_title'],
-                    'caption' => $_POST['question_title'],
-                    'description' => $_POST['question_detail'],
-                    'link' =>   site_url('qa/view/' . $question_id)
-                ));
+				$a = $this->facebook->api('/'.$this->config->item('group_id').'/feed','POST',array(    
+					'message' => $_POST['question_detail'],
+					'name' => $_POST['question_title'],
+					'caption' => $_POST['question_title'],
+					'description' => $_POST['question_detail'],
+					'link' =>   site_url('qa/view/' . $question_id)
+				));
 
-                $this->question_model->set_fb_id($question_id,$a['id']);
+				$this->question_model->set_fb_id($question_id,$a['id']);
 
-                redirect(site_url('qa/view/' . $question_id));
-            }
+				redirect(site_url('qa/view/' . $question_id));
+			}
 
-            $this->load->view('qa/ask');
-        }
+			$this->load->view('qa/ask');
+		}
 
-        public function index()
-        {
-            $this->all();
-        }
+		public function index()
+		{
+			$this->all();
+		}
 
-        public function all()
-        {     
-            $data['questions'] = $this->question_model->get_all();
-            $data['questions_type'] ='All';
-            $this->load->view('qa/list',$data);
-        }
+		public function all()
+		{     
+			$data['questions'] = $this->question_model->get_all();
+			$data['questions_type'] ='All';
+			$this->load->view('qa/list',$data);
+		}
 
-        public function important()
-        {
-            $data['questions'] = $this->question_model->get_important();
-            $data['questions_type'] ='Important';
-            $this->load->view('qa/list',$data);
-        }
-        
-        public function mark_as_important($question_id)
-        {
-            $this->question_model->set_as_important($question_id);
-            redirect($_SERVER['HTTP_REFERER']);
-        }
+		public function important()
+		{
+			$data['questions'] = $this->question_model->get_important();
+			$data['questions_type'] ='Important';
+			$this->load->view('qa/list',$data);
+		}
 
-        public function view($question_id)
-        {
-            $question = $this->question_model->by_id($question_id);
+		public function mark_as_important($question_id)
+		{
+			$this->question_model->set_as_important($question_id);
+			redirect($_SERVER['HTTP_REFERER']);
+		}
 
-            if($_POST) // do validation.
-            {
-                $answer_id = $this->answer_model->add($question_id,$this->current_user->user_id,$_POST['answer_detail']);
+		public function view($question_id)
+		{
+			$question = $this->question_model->by_id($question_id);
 
-                if($question->question_fb_id)
-                {
-                    $a = $this->facebook->api('/'.$question->question_fb_id.'/comments','POST',array(    
-                        'message' => $_POST['answer_detail'],
-                    ));
-                    
-                   $this->answer_model->set_fb_id($answer_id,$a['id']);
-                   
-                }
+			if($_POST) // do validation.
+			{
+				$answer_id = $this->answer_model->add($question_id,$this->current_user->user_id,$_POST['answer_detail']);
 
-                redirect(site_url('qa/view/' . $question_id));
-                die();           
-            }
+				if($question->question_fb_id)
+				{
+					$a = $this->facebook->api('/'.$question->question_fb_id.'/comments','POST',array(    
+						'message' => $_POST['answer_detail'],
+					));
 
-            $data['question'] = $question;
-            $data['answers'] = $question->get_answers();
+					$this->answer_model->set_fb_id($answer_id,$a['id']);
 
-            $this->load->view('qa/view',$this->common_data($data));
-        }
-    }
+				}
+
+				redirect(site_url('qa/view/' . $question_id));
+				die();           
+			}
+
+			$data['question'] = $question;
+			$data['answers'] = $question->get_answers();
+
+			$this->load->view('qa/view',$this->common_data($data));
+		}
+	}
