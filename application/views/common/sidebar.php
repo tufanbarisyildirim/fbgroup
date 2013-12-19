@@ -48,6 +48,13 @@
                 </li>
             </ul>
         </li>
+           <li<?php if($controler_name =='listening'):?> class="active open"<?php endif;?>>
+            <a href="<?php echo site_url('listening'); ?>"><i class="icon icon-headphones"></i>
+                <span class="title">Listening</span>
+                <span class="selected"></span>
+                <span class="badge badge-success pull-right">new</span>
+            </a>
+        </li>
         <li<?php if($controler_name =='blog'):?> class="active open"<?php endif;?>>
             <a href="javascript:;"><i class="clip-pencil-3"></i>
                 <span class="title"> Writings </span><i class="icon-arrow"></i>
