@@ -54,6 +54,14 @@
 					);  
 					return $sort[$a] - $sort[$b];
 				}
+				
+				function sortRecording($rec,$rec2)
+				{
+				preg_match('/^(\d+)/i',$rec,$matchesrec1);
+				preg_match('/^(\d+)/i',$rec2,$matchesrec2);
+				
+					return (int)$matchesrec1[0] - (int)$matchesrec2[0]; 
+				}
 
 				foreach($levels as $level => $units):
 					uksort($units,'sortus');
@@ -77,6 +85,7 @@
 									</div>
 									<div id="collapse<?php echo $i;?>" class="panel-collapse collapse">
 										<div class="panel-body">
+										<?php usort($recordings,'sortRecording'); ?>
 											<?php $id = 1; foreach($recordings as $record):?>
 												<div>Recording <?php echo $id++; ?> <object type="application/x-shockwave-flash" data="<?php echo assets_url();?>/plugins/player/player_mp3.swf" width="200" height="20">
 														<param name="movie" value="<?php echo assets_url();?>/plugins/player/player_mp3.swf" />

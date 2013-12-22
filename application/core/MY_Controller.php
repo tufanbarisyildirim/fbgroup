@@ -27,7 +27,7 @@
 		{
 			parent::__construct();                                 
 
-			//Use autoload for these.
+			//TODO : Use autoload for these.
 			$this->load->database();
 			$this->load->library('facebook',$this->config->facebook);
 			$this->load->driver('session');
