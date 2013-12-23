@@ -96,7 +96,7 @@
             return $inserted_id;
         }
 
-        public function add_revision($user_id,$title,$content,$parent_id,$post_type = 'revision',$private = false)
+        public function add_revision($user_id,$title,$content,$parent_id,$post_type = 'revision',$private = false,$revision_notes = null)
         {
             $this->db->insert(
                 'blogs',array(
@@ -105,6 +105,7 @@
                     'post_content' =>$content,
                     'post_type' => $post_type,
                     'parent_id' =>  $parent_id,
+                    'revision_notes' =>  $revision_notes,
                     'is_private' => $private ? 1 : 0
                 ),true);
 

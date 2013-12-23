@@ -36,7 +36,7 @@
             <thead><tr><th>Post Title</th><th>Action</th></tr></thead>
             <tbody>
                 <?php foreach($posts as $post): ?>
-                <tr><td><a href="<?php echo site_url('blog/view/' . $post->post_id); ?>"><?php echo $post->post_title ?></a></td><td>Edit / Delete</td></tr>
+                <tr><td><a href="<?php echo site_url('blog/view/' . $post->post_id); ?>"><?php echo $post->post_title ?></a></td><td onclick="alert('maybe in future. but not now. : )')">Edit / Delete</td></tr>
                 <?php endforeach; ?>
             </tbody>
         </table>

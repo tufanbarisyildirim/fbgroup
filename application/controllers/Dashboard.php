@@ -26,8 +26,7 @@
 				GROUP BY q.lesson_id , qs.user_id) ss
 				GROUP BY ss.lesson_id
 				")->result();
-
-
+				
 			$this->load->view('dashboard',$data);
 		}
 }

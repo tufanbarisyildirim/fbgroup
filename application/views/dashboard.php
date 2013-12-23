@@ -63,7 +63,7 @@
                     <!-- end: PAGE HEADER -->
                     <!-- start: PAGE CONTENT -->
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-4"> 
                             <div class="core-box">
                                 <div class="heading">
                                     <i class="clip-question-2 circle-icon circle-teal"></i>

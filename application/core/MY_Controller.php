@@ -18,6 +18,7 @@
 	* @property $sentence_model Sentence_model
 	* @property $badge_model Badge_model
 	* @property $blog_model Blog_model
+	* @property $point_model Point_model
 	*/
 	class MY_Controller extends CI_Controller
 	{
@@ -41,6 +42,7 @@
 			$this->load->model('blog_model');
 			$this->load->model('quiz_model');
 			$this->load->model('lesson_model');
+			$this->load->model('point_model');
 
 			$this->load->helper('url');
 
@@ -104,7 +106,7 @@
 			redirect(site_url('home')  . "?redirect_to="  . str_replace('/index.php','' ,$_SERVER['REQUEST_URI'] ));
 			die();    
 		}
-		
+
 		//for these metods (check_{permission}) we can create a "no permission" page.
 		public function check_admin()
 		{
@@ -146,10 +148,13 @@
 			$data['controller'] = &$this;
 			$data['random_word'] = $this->vocabulary_model->get_random();
 
+
 			if($this->is_logged_in())
 			{
-				if($this->current_user->is_student)
-					$data['todolist'] = $this->quiz_model->get_non_markeds($this->current_user->user_id);
+				//if($this->current_user->is_student)
+
+				$data['todolist'] = $this->quiz_model->get_non_markeds($this->current_user->user_id);
+				$data['points'] = $this->point_model->get_by_user_id($this->current_user->user_id);
 			}
 
 

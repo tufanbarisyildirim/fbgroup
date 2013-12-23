@@ -22,6 +22,7 @@
 		public function write($parent_id = null)
 		{
 			$data = array();
+			$data['parent_id'] = $parent_id;
 
 			if(isset($_POST['save_post']))
 			{
@@ -31,8 +32,10 @@
 
 					if(!isset($_POST['permitted_users']) || !$_POST['permitted_users'] )
 					{
+						$this->point_model->add($this->current_user->user_id,'writing_' . $post_id,'You have posted a public writing. That\'s  great! You have gained 10 points! ',10,'blog/view/' . $post_id,null);
+
 						$a = $this->facebook->api('/'.$this->config->item('group_id').'/feed','POST',array(    
-							'message' => 'Hello fridends! I have just posts a writing. Do you want to read it and write some comments?',
+							'message' => 'Hello friends! I have just posted a writing and gained 10 points. Do you want to read it and write some comments?',
 							'name' => $_POST['post_title'],
 							'caption' =>$_POST['post_title'],
 							'description' => $_POST['post_content'],
@@ -53,7 +56,10 @@
 					die();
 				}
 				else{
-					$this->blog_model->add_revision($this->current_user->user_id,$_POST['post_title'],$_POST['post_content'],$parent_id);
+					$rev_id = $this->blog_model->add_revision($this->current_user->user_id,$_POST['post_title'],$_POST['post_content'],$parent_id,'revision',false,$_POST['revision_notes']);
+
+					$this->point_model->add($this->current_user->user_id,'writing_' . $rev_id,'You have done a review for a writing post. That\'s  great! You have gained 20 points! ',20,'blog/view_diff/' . $rev_id,null);
+
 					redirect(site_url('blog/view/' . $parent_id));
 					die();
 				}  
@@ -101,7 +107,11 @@
 			$html .='<tr>';
 			$html .='<td style="padding:30px"> '.$last_revision->post_content.'</td>';
 			$html .='<td style="padding:30px">' .  htmlDiff($last_revision->post_content,$revision->post_content) . '</td>';
-			$html .='</tr>';   
+			$html .='</tr>';  
+
+			if($revision->revision_notes)
+				$html .="<tr><td colspan=\"2\"><div class=\"alert alert-info\"><b>".$revision->user->profile_link_with_avatar()."</b><p>" . nl2br($revision->revision_notes) . "</p></div></td></tr>";
+
 			$html .='</tbody>';        
 			$html .='</table>';
 
