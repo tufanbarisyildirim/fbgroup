@@ -71,7 +71,9 @@
                                 foreach($users as $user):    
                                 ?>
                                 <tr>
-                                    <td><a href="<?php echo site_url('user/profile/' . $user->user_id)?>"><img src="<?php echo  fb_profile_pic_url($user->user_id);?>" width="30" class="circle-img"/> <?php echo $user->full_name; ?></a></td>
+                                    <td><a href="<?php echo site_url('user/profile/' . $user->user_id)?>" style="position: relative">
+                                    <img src="<?php echo assets_url(); ?>/images/christmas_hat.png" style="width: 30px;position: absolute;top: -18px;left: 10px;">
+                                    <img src="<?php echo  fb_profile_pic_url($user->user_id);?>" width="30" class="circle-img"/> <?php echo $user->full_name; ?></a></td>
                                     <td><?php echo $user->print_badges(); ?></td>
                                 </tr>
                                 <?php endforeach; ?>

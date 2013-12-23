@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- Template Name: Clip-One - Responsive Admin Template build with Twitter Bootstrap 3 Version: 1.0 Author: ClipTheme -->
 <!--[if IE 8]><html class="ie8 no-js" lang="en"><![endif]-->
 <!--[if IE 9]><html class="ie9 no-js" lang="en"><![endif]-->
 <!--[if !IE]><!-->
@@ -77,7 +76,7 @@
 <!-- start: BODY -->
 <body>
 <!-- start: HEADER -->
-<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="navbar navbar-inverse navbar-fixed-top" style="background:url('<?php echo assets_url();?>/images/xmas_bg_n.gif');">
 	<!-- start: TOP NAVIGATION CONTAINER -->
 	<div class="container">
 
@@ -88,7 +87,7 @@
 			</button>
 			<!-- end: RESPONSIVE MENU TOGGLER -->
 			<!-- start: LOGO -->
-			<a class="navbar-brand" href="<?php echo site_url(); ?>">
+			<a class="navbar-brand" href="<?php echo site_url(); ?>" style="color: #fff;">
 				LEARN ENGLISH
 			</a>  
 			<div class="pull-left alert alert-info" style="margin-top: 6px;margin-bottom: 6px;padding: 5px;"><b><?php echo $random_word->word; ?></b> (<?php echo $random_word->form; ?>) : <?php echo $random_word->definition; ?></div>      
@@ -99,7 +98,7 @@
 			<ul class="nav navbar-right">    
 				<li class="dropdown">
 					<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-						<i class="clip-list-5"></i>
+						<i class="clip-list-5" style="color: #fff;"></i>
 						<?php if(count($todolist)): ?>   <span class="badge"><?php echo count($todolist)?></span>  <?php endif;?>
 					</a>
 					<ul class="dropdown-menu todo">
@@ -132,7 +131,7 @@
 
 				<li class="dropdown">
 					<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-						<i class="clip-list-5"></i>
+						<i class="clip-list-5" style="color: #fff;"></i>
 						<span class="badge"><?php echo $current_user->point ;?></span> 
 					</a>
 					<ul class="dropdown-menu todo">
@@ -162,10 +161,11 @@
 				</li>
 
 				<!-- start: USER DROPDOWN -->
-				<li class="dropdown current-user">
+				<li class="dropdown current-user" >
 					<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+						<img src="<?php echo assets_url(); ?>/images/christmas_hat.png" style="width: 30px;position: absolute;top: -2px;left: 17px;">
 						<img width="30" src="<?php echo fb_profile_pic_url($controller->current_user->user_id); ?>" class="circle-img" alt="">
-						<span class="username"><?php echo $controller->current_user->user_name ?> <?php echo $controller->current_user->user_surname ?></span>
+						<span class="username" style="color: #fff;"><?php echo $controller->current_user->user_name ?> <?php echo $controller->current_user->user_surname ?></span>
 						<i class="clip-chevron-down"></i>
 					</a>
 					<ul class="dropdown-menu">
