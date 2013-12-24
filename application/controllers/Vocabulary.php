@@ -38,19 +38,26 @@
 				if($word_id)
 				{
 
-					$this->vocabulary_model->update($_POST['word'],$_POST['word_form'],$_POST['word_definition'],$word_id);
+					$this->vocabulary_model->update(
+						$this->input->post('word'),
+						$this->input->post('word_form'),
+						$this->input->post('word_definition'),$word_id);
 				}
 				else
 				{
-					$new_word_id = $this->vocabulary_model->add($_POST['word'],$_POST['word_form'],$_POST['word_definition'],$this->current_user->user_id);
+					$new_word_id = $this->vocabulary_model->add(
+						$this->input->post('word'),
+						$this->input->post('word_form'),
+						$this->input->post('word_definition'),
+						$this->current_user->user_id);
 
 					$this->point_model->add($this->current_user->user_id,'word_'  . $new_word_id,"You have added a new word. +5",5,'vocabulary/view/' . $new_word_id);
 
 					$a = $this->facebook->api('/'.$this->config->item('group_id').'/feed','POST',array(    
 						'message' => 'I have just added a new ' . $_POST['word_form'] . ' to our common knowledge. Check it and write your examples :)',
-						'name' => $_POST['word'],
-						'caption' => $_POST['word_form'],
-						'description' => $_POST['word_definition'],
+						'name' =>$this->input->post('word'),
+						'caption' => $this->input->post('word_form'),
+						'description' => $this->input->post('word_definition'),
 						'link' =>   site_url('vocabulary/view/' . $new_word_id)
 					));
 
@@ -70,9 +77,12 @@
 			$data = array();
 			$data['word'] = $word = $this->vocabulary_model->get_by_id($word_id);
 
-			if($_POST)
+			if($this->input->post('example_sentence'))
 			{
-				$sentence_id =  $this->sentence_model->add($word_id,$this->current_user->user_id,$_POST['example_sentence']);
+				$sentence_id =  $this->sentence_model->add(
+				$word_id,
+				$this->current_user->user_id,
+				$this->input->post('example_sentence'));
 
 				if($word->word_fb_id)
 				{

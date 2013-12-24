@@ -24,21 +24,21 @@
 			$data = array();
 			$data['parent_id'] = $parent_id;
 
-			if(isset($_POST['save_post']))
+			if($this->input->post('save_post'))
 			{
 				if($parent_id == null )
 				{
 					$post_id = $this->blog_model->add($this->current_user->user_id,$_POST['post_title'],$_POST['post_content'],isset($_POST['permitted_users']) && $_POST['permitted_users']);
 
-					if(!isset($_POST['permitted_users']) || !$_POST['permitted_users'] )
+					if(!$this->input->post('permitted_users'))
 					{
 						$this->point_model->add($this->current_user->user_id,'writing_' . $post_id,'You have posted a public writing. That\'s  great! You have gained 10 points! ',10,'blog/view/' . $post_id,null);
 
 						$a = $this->facebook->api('/'.$this->config->item('group_id').'/feed','POST',array(    
 							'message' => 'Hello friends! I have just posted a writing and gained 10 points. Do you want to read it and write some comments?',
-							'name' => $_POST['post_title'],
-							'caption' =>$_POST['post_title'],
-							'description' => $_POST['post_content'],
+							'name' => $this->input->post('post_title'),
+							'caption' =>$this->input->post('post_title'),
+							'description' => $this->input->post('post_content'),
 							'link' =>   site_url('blog/view/' . $post_id)
 						));
 
@@ -169,9 +169,9 @@
 
 			$data['post'] = $post = $this->blog_model->get_by_id($post_id);
 
-			if($_POST && isset($_POST['save_permissions']) && $post->user_id == $this->current_user->user_id)
+			if($this->input->post('save_permissions') && $post->user_id == $this->current_user->user_id)
 			{
-				//yes, this user can change permissions of a post.
+				//yes, this user can change permissions of the post.
 			}
 
 

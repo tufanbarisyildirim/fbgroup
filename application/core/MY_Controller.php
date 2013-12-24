@@ -19,6 +19,7 @@
 	* @property $badge_model Badge_model
 	* @property $blog_model Blog_model
 	* @property $point_model Point_model
+	* @property $input CI_Input
 	*/
 	class MY_Controller extends CI_Controller
 	{

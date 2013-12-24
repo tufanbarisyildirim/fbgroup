@@ -54,7 +54,7 @@
 				$data['tracks'][$q->track_id][] = $q;     
 			}
 
-			$this->load->view('account/profile',$this->common_data( $data));
+			$this->load->view('account/profile', $data);
 		}
 
 		public function about_me()
@@ -62,9 +62,9 @@
 			$data = array();
 			$data['user'] = &$this->current_user;
 
-			if($_POST)
+			if($this->input->post('about_me'))
 			{
-				$this->current_user->update(array('user_about' => $_POST['about_me']));
+				$this->current_user->update(array('user_about' => $this->input->post('about_me')));
 				redirect( site_url( 'account/about_me' ) );
 				die();
 			}

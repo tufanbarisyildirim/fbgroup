@@ -25,9 +25,9 @@
 			$this->load->model('comment_model');
 			$this->load->helper('date');
 
-			if(isset($_POST['add_comment']))
+			if($this->input->post('add_comment'))
 			{
-				$this->comment_model->add($this->current_user->user_id,$user_id,$_POST['comment_text']);
+				$this->comment_model->add($this->current_user->user_id,$user_id,$this->input->post('comment_text'));
 				redirect('user/profile/' . $user_id);
 				die();
 			}

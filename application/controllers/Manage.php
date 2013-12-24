@@ -35,9 +35,10 @@
 
 			$this->check_admin();
 
-			if($_POST)
-				$this->quiz_model->add($_POST['quiz_name'],$_POST['quiz_date'],$_POST['track_id'],$_POST['quiz_weight'],$_POST['lesson_id']);
+			if($_POST) // TODO : use ->input->post
+				$this->quiz_model->add($this->input->post('quiz_name'),$this->input->post('quiz_date'),$this->input->post('track_id'),$this->input->post('quiz_weight'),$this->input->post('lesson_id'));
 
+				//catch the different amk : D
 			$data['quizzes'] = $this->quiz_model->getAll();
 			$data['lessons'] = $this->lesson_model->get_all();
 
@@ -49,8 +50,8 @@
 
 			$this->check_admin();
 
-			if($_POST)
-				$this->lesson_model->add($_POST['lesson_name']);
+			if($this->input->post('lesson_name'))
+				$this->lesson_model->add($this->input->post('lesson_name'));
 
 			$data['lessons'] = $this->lesson_model->get_all();
 			$this->load->view('manage/lessons',$data);
@@ -64,7 +65,7 @@
 
 			if($_POST)
 			{
-				$this->badge_model->add($_POST['badge_name'],$_POST['badge_class'],$_POST['badge_type']);
+				$this->badge_model->add($this->input->post('badge_name'),$this->input->post('badge_class'),$this->input->post('badge_type'));
 				redirect(site_url('manage/badges'));
 			}
 

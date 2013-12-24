@@ -104,7 +104,7 @@
 					</p>
 				</div>
 				<div class="col-md-4">
-					<button onclick="$(this).attr('onlick','return false');$(this).html('Posting.. Please wait.');$('#form2').submit()" class="btn btn-primary btn-block" type="submit" name="save_post">
+					<button onclick="$(this).attr('onlick','return false');$(this).html('Posting.. Please wait.');$('#form2').submit()" class="btn btn-primary btn-block" type="submit" value="Yes!" name="save_post">
 						Post it! <i class="icon-circle-arrow-right"></i>
 					</button>
 				</div>

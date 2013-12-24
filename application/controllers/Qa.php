@@ -12,16 +12,19 @@
 
 		public function ask()
 		{
-			if(isset($_POST) && $_POST)
+			if($this->input->post('question_title') && $this->input->post('question_detail'))
 			{
 
-				$question_id = $this->question_model->ask($this->current_user->user_id,$_POST['question_title'],$_POST['question_detail']);
+				$question_id = $this->question_model->ask(
+					$this->current_user->user_id,
+					$this->input->post('question_title'),
+					$this->input->post('question_detail'));
 
 				$a = $this->facebook->api('/'.$this->config->item('group_id').'/feed','POST',array(    
-					'message' => $_POST['question_detail'],
-					'name' => $_POST['question_title'],
-					'caption' => $_POST['question_title'],
-					'description' => $_POST['question_detail'],
+					'message' => $this->input->post('question_detail'),
+					'name' => $this->input->post('question_title'),
+					'caption' => $this->input->post('question_title'),
+					'description' => $this->input->post('question_detail'),
 					'link' =>   site_url('qa/view/' . $question_id)
 				));
 
@@ -64,7 +67,7 @@
 
 			if($_POST) // do validation.
 			{
-				$answer_id = $this->answer_model->add($question_id,$this->current_user->user_id,$_POST['answer_detail']);
+				$answer_id = $this->answer_model->add($question_id,$this->current_user->user_id,$this->input->post('answer_detail'));
 
 				if($question->question_fb_id)
 				{

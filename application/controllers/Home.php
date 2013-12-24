@@ -10,10 +10,10 @@
 		{   
 			if($this->is_logged_in())
 			{
-				if(isset($_GET['redirect_to']))
-					redirect($_GET['redirect_to']);
-				else
-					redirect(site_url('dashboard'));
+					if($this->input->get('redirect_to'))
+							redirect($this->input->get('redirect_to'));
+						else
+						redirect(site_url('dashboard'));
 			}
 			else{
 
@@ -32,8 +32,8 @@
 						$user = $this->user_model->login_with_facebook($user_profile);
 						$this->session->set_userdata("user_id",$user->user_id);
 
-						if(isset($_GET['redirect_to']))
-							redirect($_GET['redirect_to']);
+						if($this->input->get('redirect_to'))
+							redirect($this->input->get('redirect_to'));
 						else
 						redirect(site_url('dashboard'));
 
