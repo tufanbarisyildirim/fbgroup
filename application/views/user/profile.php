@@ -51,7 +51,7 @@
                 <img src="<?php echo $user->user_cover_photo; ?>" style="position: absolute;top:-<?php echo $user->cover_offset_y; ?>px;width:100%" />
                 <a href="javascript:;" class="badge badge-teal"  onclick="SetCoverHeight()" style="position: absolute;bottom:10px;right:10px"><i id="show_icon" class="icon icon-download-alt"></i></a>
                 <div class="well well-sm" style="position:absolute;bottom:0px;">
-                <img src="http://fbgroupiau.com/assets/images/christmas_hat.png" style="width: 100px;position: absolute;top: -26px;left: 44px;">
+                <img src="<?php echo assets_url(); ?>/images/christmas_hat.png" style="width: 100px;position: absolute;top: -26px;left: 44px;">
                     <img width="90" class="pull-left" src="https://graph.facebook.com/<?php echo $user->user_id; ?>/picture?width=90&height=90" class="pull-left" alt="<?php echo $user->full_name; ?> picture in facebook" style="margin-right:5px"/>
                     <h1 class="pull-left"><?php echo $user->full_name; ?><br /><small><?php echo $user->is_student ? 'Classmate' : ($user->is_teacher ? 'Teacher' :  'Guest'); ?></small></h1>
                 <div style="clear: both;"></div>
