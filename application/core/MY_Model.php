@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
     /**
     * @property $db CI_DB_query_builder
     * @property $user User_model

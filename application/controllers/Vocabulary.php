@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 	class Vocabulary extends MY_Controller
 	{
 		public function __construct()
@@ -80,9 +80,9 @@
 			if($this->input->post('example_sentence'))
 			{
 				$sentence_id =  $this->sentence_model->add(
-				$word_id,
-				$this->current_user->user_id,
-				$this->input->post('example_sentence'));
+					$word_id,
+					$this->current_user->user_id,
+					$this->input->post('example_sentence'));
 
 				if($word->word_fb_id)
 				{
