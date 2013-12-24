@@ -44,6 +44,7 @@
 				{
 					$new_word_id = $this->vocabulary_model->add($_POST['word'],$_POST['word_form'],$_POST['word_definition'],$this->current_user->user_id);
 
+					$this->point_model->add($this->current_user->user_id,'word_'  . $new_word_id,"You have added a new word. +5",5,'vocabulary/view/' . $new_word_id);
 
 					$a = $this->facebook->api('/'.$this->config->item('group_id').'/feed','POST',array(    
 						'message' => 'I have just added a new ' . $_POST['word_form'] . ' to our common knowledge. Check it and write your examples :)',
