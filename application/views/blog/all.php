@@ -39,7 +39,7 @@
                     <tr>
                         <td><a href="<?php echo site_url('blog/view/' . $post->post_id); ?>"><?php echo $post->post_title ?></a></td>
                         <td><?php echo $post->user->profile_link_with_avatar(); ?></td>
-                        <td><?php echo $post->reviewer->profile_link_with_avatar(); ?></td>
+                        <td> <?php echo ($post->last_reviewer == $post->user_id) ? "by " . $post->user->herhim . "self" :  $post->reviewer->profile_link_with_avatar(); ?></td>
                         <?php if($current_user->is_admin()):?>
                             <td><a onclick="return confirm('are you sure?')" href="<?php echo site_url('blog/delete/' . $post->post_id); ?>">Delete</a></td>
                             <?php endif;?>
