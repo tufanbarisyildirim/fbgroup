@@ -115,6 +115,7 @@
 			$this->update(array(
 				'post_title' =>$title,
 				'post_content' =>$content,
+				'last_reviewer' => $user_id
 				),$parent_id);
 
 			return $revision_id;
