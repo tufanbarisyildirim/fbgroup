@@ -1,4 +1,7 @@
 <?php
+	/**
+	* @property $reviewer User_model
+	*/
 	class Blog_model extends MY_Model
 	{
 		public function __construct($result = null)
@@ -187,10 +190,10 @@
 					$this->last_reviewer = $posts[0]->user_id;
 					$this->db->query("UPDATE blogs SET last_reviewer = " . $this->last_reviewer." WHERE post_id = " . $this->post_id);
 				}
-				
+
 				return $this->reviewer = User_model::by_id($this->last_reviewer ? $this->last_reviewer  : $this->user_id);
 			}
-				
+
 			return parent::__get($property);
 		}
 
