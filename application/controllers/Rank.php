@@ -11,7 +11,7 @@
 			//load all tracks including all quizzes!
 			$panels = array(); //horrays   
 
-			$quizzes = $this->db->query("SELECT * FROM quizzes")->result_array();
+			$quizzes = $this->db->query("SELECT * FROM quizzes ORDER BY track_id DESC")->result_array();
 
 			foreach($quizzes as $quiz)
 			{
