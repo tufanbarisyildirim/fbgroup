@@ -35,6 +35,7 @@
         </div>
     </div>
     <div class="row col-sm-12" style="padding: 100px;">
+        <div class="pull-right alert alert-success"><b>Writer</b><br /><?php echo $post->user->profile_link_with_avatar(); ?></div>
         <h5><b><?php echo $post->post_title; ?></b></h5>
         <br>
         <?php echo nl2br( $post->post_content ); ?>
