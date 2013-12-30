@@ -84,6 +84,8 @@
 					$this->current_user->user_id,
 					$this->input->post('example_sentence'));
 
+					$this->point_model->add($this->current_user->user_id,'sentence_'  . $sentence_id,"You have added a new example for {$word->word} +7",7,'vocabulary/view/' . $word_id);
+					
 				if($word->word_fb_id)
 				{
 					$a = $this->facebook->api('/'.$word->word_fb_id.'/comments','POST',array(    
