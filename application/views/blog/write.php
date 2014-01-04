@@ -104,6 +104,7 @@
 					</p>
 				</div>
 				<div class="col-md-4">
+				<input type="hidden" name="save_post" value="Yes!"/>
 					<button onclick="$(this).attr('onlick','return false');$(this).html('Posting.. Please wait.');$('#form2').submit()" class="btn btn-primary btn-block" type="submit" value="Yes!" name="save_post">
 						Post it! <i class="icon-circle-arrow-right"></i>
 					</button>
