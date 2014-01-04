@@ -103,7 +103,7 @@
                                         <?php $point = 0; foreach($quiz_scores as $quiz): $point += $quiz->class_avg / 100 *$quiz->quiz_weight;  ?>
                                             <tr><td><?php echo $quiz->lesson_name ?></td><td>%<?php echo $quiz->quiz_weight; ?></td><td style="text-align: right"><?php echo number_format($quiz->class_avg,2); ?></td></tr>
                                             <?php endforeach;?>
-                                            <tr><td>Teacher Note</td><td>%10</td><td>100  :)</td></tr>
+                                            <tr><td>Teacher Assessment</td><td>%10</td><td>100  :)</td></tr>
                                             <tr><th>General Average</th><th colspan="3" style="text-align: right;"><?php echo number_format($point + 10,2) ?></th></tr>
                                     </table>
                                 </div>
