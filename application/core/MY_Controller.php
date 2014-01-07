@@ -128,17 +128,17 @@
 
 		public function header()
 		{
-			return $this->load->view('common/header',$this->common_data(),true);
+			return $this->load->view('common/header',null,true);
 		}
 
 		public function footer()
 		{
-			return $this->load->view('common/footer',$this->common_data(),true);
+			return $this->load->view('common/footer',null,true);
 		}
 
 		public function sidebar()
 		{
-			return $this->load->view('common/sidebar',$this->common_data(),true);
+			return $this->load->view('common/sidebar',null,true);
 		}
 
 		public function common_data($controller_data = array())
