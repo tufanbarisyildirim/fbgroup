@@ -23,9 +23,17 @@
 		{
 			$data = array();
 			$data['parent_id'] = $parent_id;
+			if($parent_id != null)
+				$data['post'] = $current_post = $this->blog_model->get_by_id($parent_id);
+			else
+			{
+				$data['allusers'] =  $allusers = $this->user_model->get_all();
+			}
+			        
 
 			if($this->input->post('save_post'))
 			{
+				// add a new one.s
 				if($parent_id == null )
 				{
 					$post_id = $this->blog_model->add($this->current_user->user_id,$_POST['post_title'],$_POST['post_content'],isset($_POST['permitted_users']) && $_POST['permitted_users']);
@@ -55,22 +63,41 @@
 					redirect(site_url('blog/view/' . $post_id));
 					die();
 				}
+				// make a revision
 				else{
+					// add a revision
 					$rev_id = $this->blog_model->add_revision($this->current_user->user_id,$_POST['post_title'],$_POST['post_content'],$parent_id,'revision',false,$_POST['revision_notes']);
-
-					$this->point_model->add($this->current_user->user_id,'writing_' . $rev_id,'You have done a review for a writing post. That\'s  great! You have gained 20 points! ',20,'blog/view_diff/' . $rev_id,null);
-
+					// add point
+                    $this->point_model->add($this->current_user->user_id,'writing_' . $rev_id,'You have done a review for a writing post. That\'s  great! You have gained 20 points! ',20,'blog/view_diff/' . $rev_id,null);
+                    
+                    //comment on facebook post
+                    if($current_post->post_fb_id)
+                    {
+						if(false && $current_post->user_id == $this->current_user->user_id)
+						{
+							$comment = "I have revised my writing. Does anyone want to check it?";
+						}
+						else
+						{
+							$names = explode(' ',$current_post->user->user_name);
+							$name = $names[0]; 
+							
+							//$comment = "Dear @[" . $current_post->user->user_id . ":" . $name ."], I have just revised your writing. Click here to see the see the differences : ".site_url('blog/view_diff/' . $rev_id).". Hope to help you! :)";
+							$comment = "Dear {$name}, I have just revised your writing. Click here to see the see the differences : ".site_url('blog/view_diff/' . $rev_id).". Hope to help you! :)";
+						}
+						
+						$a = $this->facebook->api('/'.$current_post->post_fb_id.'/comments','POST',array(    
+								'message' => $comment,
+							));
+							
+							// add fb id to revision!
+                    }
+                    
 					redirect(site_url('blog/view/' . $parent_id));
 					die();
 				}  
 			}
-
-			if($parent_id != null)
-				$data['post'] = $this->blog_model->get_by_id($parent_id);
-			else
-			{
-				$data['allusers'] =  $allusers = $this->user_model->get_all();
-			}
+            
 
 			$this->load->view("blog/write",$data);
 		}
