@@ -40,10 +40,10 @@
 
 					if(!$this->input->post('permitted_users'))
 					{
-						$this->point_model->add($this->current_user->user_id,'writing_' . $post_id,'You have posted a public writing. That\'s  great! You have gained 10 points! ',10,'blog/view/' . $post_id,null);
+						$this->point_model->add($this->current_user->user_id,'writing_' . $post_id,'You have posted a public writing. That\'s  great! (+10)! ',10,'blog/view/' . $post_id,null);
 
 						$a = $this->facebook->api('/'.$this->config->item('group_id').'/feed','POST',array(    
-							'message' => 'Hello friends! I have just posted a writing and gained 10 points. Do you want to read it and write some comments?',
+							'message' => 'Hello friends! I have just posted a writing titled " '.$this->input->post('post_title').' ". Do you want to read it and write some comments?',
 							'name' => $this->input->post('post_title'),
 							'caption' =>$this->input->post('post_title'),
 							'description' => $this->input->post('post_content'),
@@ -68,7 +68,7 @@
 					// add a revision
 					$rev_id = $this->blog_model->add_revision($this->current_user->user_id,$_POST['post_title'],$_POST['post_content'],$parent_id,'revision',false,$_POST['revision_notes']);
 					// add point
-                    $this->point_model->add($this->current_user->user_id,'writing_' . $rev_id,'You have done a review for a writing post. That\'s  great! You have gained 20 points! ',20,'blog/view_diff/' . $rev_id,null);
+                    $this->point_model->add($this->current_user->user_id,'writing_' . $rev_id,'You have posted a revision for a writing (+20)! ',20,'blog/view_diff/' . $rev_id,null);
                     
                     //comment on facebook post
                     if($current_post->post_fb_id)
@@ -83,7 +83,7 @@
 							$name = $names[0]; 
 							
 							//$comment = "Dear @[" . $current_post->user->user_id . ":" . $name ."], I have just revised your writing. Click here to see the see the differences : ".site_url('blog/view_diff/' . $rev_id).". Hope to help you! :)";
-							$comment = "Dear {$name}, I have just revised your writing. Click here to see the see the differences : ".site_url('blog/view_diff/' . $rev_id).". Hope to help you! :)";
+							$comment = "Dear {$name}, I have just revised your writing. Click here to see the differences : ".site_url('blog/view_diff/' . $rev_id).". Hope to help you! :)";
 						}
 						
 						$a = $this->facebook->api('/'.$current_post->post_fb_id.'/comments','POST',array(    
